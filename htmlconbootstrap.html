@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo completa · Bootstrap 5</title>
+
+  <!-- 1) CSS de Bootstrap (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous"/>
+
+  <style>
+    /* Estilos mínimos para diferenciar zonas en la demo (no es necesario para usar Bootstrap) */
+    .demo-section{ padding-top: 3rem; padding-bottom: 3rem; }
+    .bg-zebra:nth-child(odd){ background: #f8f9fa; }
+    .gallery-img{ aspect-ratio: 16/10; object-fit: cover; width: 100%; border-radius: .5rem; }
+    .card-cover{ height: 180px; object-fit: cover; }
+   
+  </style>
+</head>
+<body>
+
+<!-- =========================================================
+     NAVBAR (barra de navegación responsive con colapso)
+     - .navbar-expand-lg: menú horizontal desde lg, colapsado debajo
+     - .navbar-toggler: botón “hamburguesa”
+     ========================================================= -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top border-bottom">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Bootstrap Demo</a>
+
+    <!-- Botón hamburguesa (aparece en móvil) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Enlaces del menú -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#contenedores">Contenedores</a></li>
+        <li class="nav-item"><a class="nav-link" href="#grid">Grid</a></li>
+        <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+        <li class="nav-item"><a class="nav-link" href="#carrusel">Carrusel</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tarjetas">Tarjetas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#botones">Botones</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tostadas">Tostadas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#spinners">Hilanderos</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- =========================================================
+     HERO sencillo
+     ========================================================= -->
+<header class="py-5 text-center border-bottom">
+  <div class="container">
+    <h1 class="display-5 fw-bold">Qué nos aporta Bootstrap</h1>
+    <p class="lead mb-0">Componentes listos, rejilla responsive, utilidades de espaciado y color, interactividad sin escribir JS.</p>
+  </div>
+</header>
+
+<!-- =========================================================
+     CONTENEDORES
+     ========================================================= -->
+<section id="contenedores" class="demo-section bg-zebra">
+  <div class="container">
+    <h2 class="h3 mb-4">1) Contenedores</h2>
+    <p class="text-muted">Los contenedores son la caja base del layout. Pueden ser de ancho adaptable (<code>.container</code>), fluido hasta un punto (<code>.container-lg</code>) o siempre 100% (<code>.container-fluid</code>).</p>
+
+    <div class="mb-3 p-3 bg-light border rounded">
+      <strong>.container</strong> (ancho máximo según breakpoint). Redimensiona la ventana y verás cómo se centra.
+    </div>
+
+    <div class="container-lg mb-3 p-3 bg-warning-subtle border rounded">
+      <strong>.container-lg</strong> (fluido hasta <em>lg</em>, luego centrado con ancho fijo).
+    </div>
+
+    <div class="container-fluid p-3 bg-info-subtle border rounded">
+      <strong>.container-fluid</strong> (siempre 100% de ancho).
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     GRID (sin SCSS: .row + .col-*)
+     ========================================================= -->
+<section id="grid" class="demo-section">
+  <div class="container">
+    <h2 class="h3 mb-4">2) Sistema de Cuadrícula (Grid) sin SCSS</h2>
+    <p class="text-muted">Rejilla de 12 columnas. Abajo: 1→2→3 columnas según el tamaño de pantalla (<code>.col-12 .col-md-6 .col-lg-4</code>).</p>
+
+    <div class="row g-3 text-center">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="p-4 bg-light border rounded">Columna A</div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="p-4 bg-light border rounded">Columna B</div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="p-4 bg-light border rounded">Columna C</div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="p-4 bg-light border rounded">Columna D</div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="p-4 bg-light border rounded">Columna E</div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="p-4 bg-light border rounded">Columna F</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     GALERÍA DE IMÁGENES (NO es carrusel)
+     - Diferencia: aquí mostramos muchas imágenes a la vez en grid.
+     ========================================================= -->
+<section id="galeria" class="demo-section bg-zebra">
+  <div class="container">
+    <h2 class="h3 mb-4">3) Galería de imágenes (grid)</h2>
+    <p class="text-muted">Una galería muestra varias imágenes simultáneamente en una rejilla responsive.</p>
+
+    <div class="row g-3">
+      <!-- Usamos picsum.photos como imágenes de demo -->
+      <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img" src="https://picsum.photos/seed/a/800/500" alt="Foto demo a"></div>
+      <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img" src="https://picsum.photos/seed/b/800/500" alt="Foto demo b"></div>
+      <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img" src="https://picsum.photos/seed/c/800/500" alt="Foto demo c"></div>
+      <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img" src="https://picsum.photos/seed/d/800/500" alt="Foto demo d"></div>
+      <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img" src="https://picsum.photos/seed/e/800/500" alt="Foto demo e"></div>
+      <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img" src="https://picsum.photos/seed/f/800/500" alt="Foto demo f"></div>
+      <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img" src="https://picsum.photos/seed/g/800/500" alt="Foto demo g"></div>
+      <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img" src="https://picsum.photos/seed/h/800/500" alt="Foto demo h"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CARRUSEL (Slider de una imagen a la vez)
+     - Diferencia con la galería: aquí navegas entre diapositivas.
+     ========================================================= -->
+<section id="carrusel" class="demo-section">
+  <div class="container">
+    <h2 class="h3 mb-4">4) Carrusel de imágenes</h2>
+    <p class="text-muted">El carrusel muestra <em>una</em> diapositiva a la vez y permite avanzar/retroceder.</p>
+
+    <div id="demoCarousel" class="carousel slide shadow-sm rounded overflow-hidden">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#demoCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#demoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#demoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://picsum.photos/seed/aa/1200/500" class="d-block w-100" alt="Imagen 1">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Primera</h5><p>Texto de ejemplo.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://picsum.photos/seed/bb/1200/500" class="d-block w-100" alt="Imagen 2">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Segunda</h5><p>Texto de ejemplo.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://picsum.photos/seed/cc/1200/500" class="d-block w-100" alt="Imagen 3">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Tercera</h5><p>Texto de ejemplo.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#demoCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#demoCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECCIÓN 1: Diferentes estilos de tarjetas
+     ========================================================= -->
+<section id="tarjetas-estilos" class="demo-section bg-zebra py-5">
+  <div class="container">
+    <h2 class="h3 mb-4">5) Diferentes estilos de tarjetas</h2>
+    <p class="text-muted">
+      Bootstrap permite combinar elementos dentro de <code>.card</code> 
+      para crear diseños muy variados: con imagen, solo texto, con listas, con pie, etc.
+    </p>
+
+    <div class="row g-4">
+      <!-- Card 1: imagen + footer -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <!-- Imagen superior -->
+          <img src="https://picsum.photos/seed/card1/800/500" class="card-img-top" alt="imagen card 1">
+          <div class="card-body">
+            <h5 class="card-title">Card 1</h5>
+            <p class="card-text">Ejemplo con imagen, cuerpo de texto y un botón de acción.</p>
+            <a href="#" class="btn btn-primary">Acción</a>
+          </div>
+          <!-- Pie de tarjeta -->
+          <div class="card-footer text-muted small">Pie de tarjeta</div>
+        </div>
+      </div>
+
+      <!-- Card 2: solo cuerpo -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow">
+          <div class="card-body">
+            <h5 class="card-title">Card 2 (solo cuerpo)</h5>
+            <p class="card-text">Tarjeta sin imagen ni pie. Ideal para texto o recordatorios.</p>
+            <button class="btn btn-outline-secondary">Más info</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: con encabezado y lista -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <!-- Encabezado -->
+          <div class="card-header">Encabezado</div>
+          <div class="card-body">
+            <h5 class="card-title">Card 3 con lista</h5>
+            <!-- Lista dentro de la tarjeta -->
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Elemento A</li>
+              <li class="list-group-item">Elemento B</li>
+              <li class="list-group-item">Elemento C</li>
+            </ul>
+          </div>
+          <!-- Pie con botones -->
+          <div class="card-footer d-flex gap-2">
+            <button class="btn btn-success btn-sm">Aceptar</button>
+            <button class="btn btn-danger btn-sm">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECCIÓN 2: Galería práctica de tarjetas
+     ========================================================= -->
+<section id="tarjetas-galeria" class="py-5 border-top">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Galería de tarjetas prácticas</h2>
+    <p class="text-center text-muted mb-5">
+      Ejemplo de un conjunto de 6 tarjetas organizadas en rejilla (<code>.row</code> + <code>.col</code>).  
+      En móviles se ven de una en una, y a partir de pantallas medianas (md) se organizan en 3 columnas.
+    </p>
+
+    <!-- Grid de 6 tarjetas -->
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+      <!-- Tarjeta 1 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/cardA/400/200" class="card-img-top" alt="Imagen noticia 1">
+          <div class="card-body">
+            <h5 class="card-title">Últimas Novedades</h5>
+            <p class="card-text">Tarjeta con título, imagen y texto descriptivo. Ideal para noticias.</p>
+            <a href="#" class="btn btn-primary">Leer más</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/cardB/400/200" class="card-img-top" alt="Imagen registro">
+          <div class="card-body">
+            <h5 class="card-title">¡Regístrate!</h5>
+            <p class="card-text">Tarjeta de llamada a la acción con botón destacado en verde.</p>
+            <a href="#" class="btn btn-success">Regístrate ahora</a>
+          </div>
+          <div class="card-footer text-muted">Última actualización: hace 3 min.</div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="col">
+        <div class="card h-100 bg-secondary text-white shadow-sm">
+          <img src="https://picsum.photos/seed/cardC/400/200" class="card-img-top" alt="Producto destacado">
+          <div class="card-body">
+            <h5 class="card-title">Producto Destacado</h5>
+            <p class="card-text">Ejemplo de tarjeta personalizada con fondo oscuro.</p>
+            <a href="#" class="btn btn-light">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 4 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/cardD/400/200" class="card-img-top" alt="Servicios">
+          <div class="card-body">
+            <h5 class="card-title">Nuestros Servicios</h5>
+            <p class="card-text">Otra tarjeta con botón estilo <code>.btn-outline-primary</code>.</p>
+            <a href="#" class="btn btn-outline-primary">Ver servicios</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 5 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/cardE/400/200" class="card-img-top" alt="Blog educativo">
+          <div class="card-body">
+            <h5 class="card-title">Blog Educativo</h5>
+            <p class="card-text">Tarjeta ideal para mostrar artículos o publicaciones recientes.</p>
+            <a href="#" class="btn btn-info text-white">Ir al blog</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 6 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/cardF/400/200" class="card-img-top" alt="Contacto">
+          <div class="card-body">
+            <h5 class="card-title">Contáctanos</h5>
+            <p class="card-text">Una tarjeta sencilla para invitar al usuario a comunicarse.</p>
+            <a href="#" class="btn btn-warning">Escríbenos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- =========================================================
+     BOTONES (variantes, tamaños, grupos y dropdowns)
+     ========================================================= -->
+<section id="botones" class="demo-section">
+  <!-- Un contenedor centra y da márgenes laterales al contenido -->
+  <div class="container">
+    <h2 class="h3 mb-4">6) Botones</h2>
+    <p class="text-muted">Variantes predefinidas, tamaños y grupo de botones.</p>
+
+    <!-- Variantes de botón (colores del tema) -->
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="button" class="btn btn-secondary">Secondary</button>
+      <button type="button" class="btn btn-success">Success</button>
+      <button type="button" class="btn btn-danger">Danger</button>
+      <button type="button" class="btn btn-warning">Warning</button>
+      <button type="button" class="btn btn-info">Info</button>
+      <button type="button" class="btn btn-light">Light</button>
+      <button type="button" class="btn btn-dark">Dark</button>
+      <button type="button" class="btn btn-link">Link</button>
+    </div>
+
+    <!-- Grupo de botones (alineados como un solo control) -->
+    <div class="btn-group mb-3" role="group" aria-label="Grupo simple">
+      <button type="button" class="btn btn-outline-primary">Izq</button>
+      <button type="button" class="btn btn-outline-primary">Centro</button>
+      <button type="button" class="btn btn-outline-primary">Der</button>
+    </div>
+
+    <!-- Tamaños: btn-lg / (normal) / btn-sm -->
+    <div class="d-flex gap-2 mb-4">
+      <button type="button" class="btn btn-primary btn-lg">Grande</button>
+      <button type="button" class="btn btn-primary">Normal</button>
+      <button type="button" class="btn btn-primary btn-sm">Pequeño</button>
+    </div>
+
+    <!-- Dropdown como botón de peligro (requiere JS de Bootstrap bundle) -->
+    <div class="btn-group mb-3">
+      <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Danger
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Separated link</a></li>
+      </ul>
+    </div>
+
+    <!-- Dropdown básico independiente -->
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+
+  </div><!-- /container -->
+</section>
+
+
+=====================
+     SPINNERS (Hilanderos)
+     ========================================================= -->
+<section id="spinners" class="demo-section">
+  <div class="container">
+    <h2 class="h3 mb-4">8) Hilanderos (Spinners)</h2>
+    <p class="text-muted">Indicadores de carga. Pueden ir solos o dentro de un botón.</p>
+
+    <div class="d-flex flex-wrap align-items-center gap-4">
+
+      <!-- Spinners clásicos -->
+      <div class="d-flex align-items-center gap-3">
+        <div class="spinner-border text-primary" role="status" aria-label="Cargando"></div>
+        <div class="spinner-border text-success" role="status" aria-label="Cargando"></div>
+        <div class="spinner-border text-danger" role="status" aria-label="Cargando"></div>
+      </div>
+
+      <!-- Spinners en línea -->
+      <div class="d-flex align-items-center gap-3">
+        <div class="spinner-grow text-warning" role="status" aria-label="Cargando"></div>
+        <div class="spinner-grow text-info" role="status" aria-label="Cargando"></div>
+      </div>
+
+      <!-- Botón con spinner -->
+      <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+        Cargando…
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="py-4 border-top">
+  <div class="container text-center small text-muted">
+    Demo didáctica de Bootstrap · Rejilla, contenedores, navbar, galería, carrusel, tarjetas, botones, toasts e hilanderos.
+  </div>
+</footer>
+
+<!-- 2) JS de Bootstrap (BUNDLE = incluye Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+<script>
+
+  // Opcional: activar auto-ciclo del carrusel
+  const demoCarousel = document.getElementById('demoCarousel');
+  if (demoCarousel) new bootstrap.Carousel(demoCarousel, { interval: 4000, ride: false });
+</script>
+
+</body>
+</html>
