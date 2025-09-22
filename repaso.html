@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repaso HTML y Grid</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="main-content">
+  <section class="content-section" style="margin-bottom:1.5rem;">
+    <h2 class="section-title">Ejemplo con errores: corrige este HTML</h2>
+    <div style="background:#fbe9e7; color:#b71c1c; padding:1rem; border-radius:8px; margin-bottom:1rem;">
+      <strong>Este código está mal a propósito:</strong>
+      <pre style="overflow:auto;"><code>&lt;head&gt;
+  
+&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;Repaso de HTML y CSS Grid&lt;/title&gt;
+        <p>Hola soy un parrafo</p>
+    &lt;/head&gt;
+   
+        &lt;div&gt;Esta es una caja 1&lt;/div&gt;
+        &lt;div&gt;Otra caja 2&lt;/div&gt;
+        &lt;div&gt;Una caja 3&lt;/div&gt;
+        &lt;div&gt;Más cajas 4&lt;/div&gt;
+        &lt;div&gt;Otra más 5&lt;/div&gt;
+        &lt;div&gt;Y otra 6&lt;/div&gt;
+        &lt;div&gt;La última 7&lt;/div&gt;
+    &lt;/body&gt;
+
+</code></pre>
+    </div>
+    <ul>
+      <li>Incluye al menos 7 etiquetas semánticas de esta lista: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;figure&gt;</code>, <code>&lt;figcaption&gt;</code>.</li>
+      <li>Corrige al menos 3 errores de estructura (head, body, html, <header></header>, etc).</li>
+      <li>Mejora el diseño usando CSS Grid y <code>grid-area</code>.</li>
+    </ul>
+    <div class="code-box" style="margin-top:1rem;">
+      <strong>Ayuda para el grid-area:</strong>
+      <pre><code>.main-content {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "footer footer";
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem;
+}
+header { grid-area: header; }
+nav { grid-area: nav; }
+main { grid-area: main; }
+footer { grid-area: footer; }
+</code></pre>
+    </div>
+    <button class="btn btn-primary" style="margin-top:1.5rem;" onclick="document.getElementById('solucion').style.display='block'">Ver posible solución</button>
+  </section>
+
+  <section class="content-section" id="solucion" style="display:none;">
+    <h2 class="section-title">Posible solución</h2>
+    <div class="code-box">
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Repaso HTML y Grid&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+    &lt;style&gt;
+      .main-content {
+        display: grid;
+        grid-template-areas:
+          "header header"
+          "nav main"
+          "footer footer";
+        grid-template-columns: 1fr 2fr;
+        gap: 1.5rem;
+      }
+      header { grid-area: header; }
+      nav { grid-area: nav; }
+      main { grid-area: main; }
+      footer { grid-area: footer; }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body class="main-content"&gt;
+    &lt;header class="content-section"&gt;Encabezado de la página&lt;/header&gt;
+    &lt;nav class="content-section"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Inicio&lt;/li&gt;
+        &lt;li&gt;Repaso&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;main class="content-section"&gt;
+      &lt;section&gt;
+        &lt;h1&gt;Bienvenido al repaso&lt;/h1&gt;
+        &lt;p&gt;Corrige el HTML y aplica Grid.&lt;/p&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;footer class="content-section"&gt;Pie de página&lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="code-box" style="background:#f4f7f9;">
+      <strong>¿Qué se ha corregido y qué aporta?</strong>
+      <ul>
+        <li>Se ha añadido <code>&lt;!DOCTYPE html&gt;</code> y se ha cerrado la etiqueta <code>&lt;html&gt;</code>.</li>
+        <li>Se ha incluido la etiqueta <code>&lt;body&gt;</code> y se ha movido el contenido fuera del <code>&lt;head&gt;</code>.</li>
+        <li>Se han añadido etiquetas semánticas: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;footer&gt;</code>.</li>
+        <li>Se ha corregido la estructura general y se ha añadido un diseño con <code>grid-area</code> para organizar el layout.</li>
+        <li>El uso de <code>grid-area</code> permite un diseño flexible y semántico, separando claramente las áreas de la página.</li>
+        <li>Se han aplicado las clases <code>main-content</code> y <code>content-section</code> para un diseño visual coherente con el resto del proyecto.</li>
+      </ul>
+    </div>
+  </section>
+  <!-- Estructura mejorada con CSS Grid -->
+  <section>
+    <h2>Mejora de estructura con CSS Grid</h2>
+    <p>La siguiente estructura utiliza <strong>CSS Grid</strong> para dividir la página en áreas bien definidas: encabezado, banner lateral, contenido principal, barra lateral y pie de página. Esto facilita la organización visual y la adaptabilidad del diseño.</p>
+    <h3>Ejemplo de CSS</h3>
+    <pre><code>.grid-container {
+    display: grid;
+    grid-template-areas:
+      "header header header"
+      "banner main aside"
+      "footer footer footer";
+    grid-template-columns: 150px 1fr 220px;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    }
+
+    header {
+      grid-area: header;
+    }
+    .banner {
+      grid-area: banner;
+    }
+    main {
+      grid-area: main;
+    }
+    aside {
+      grid-area: aside;
+    }
+    footer {
+      grid-area: footer;
+    }
+    </code></pre>
+    <h3>Ejemplo de HTML</h3>
+    <pre><code>&lt;div class="grid-container"&gt;
+      &lt;header&gt;Encabezado&lt;/header&gt;
+      &lt;div class="banner"&gt;Banner&lt;/div&gt;
+      &lt;main&gt;Contenido principal&lt;/main&gt;
+      &lt;aside&gt;Barra lateral&lt;/aside&gt;
+      &lt;footer&gt;Pie de página&lt;/footer&gt;
+    &lt;/div&gt;
+    </code></pre>
+    <p><strong>¡Anímate a crear tu propia hoja de estilos!</strong> Personaliza los colores, fuentes y espaciados para que tu web refleje tu estilo. Experimenta con las áreas del grid y prueba diferentes distribuciones para aprender cómo funciona CSS Grid en la práctica.</p>
+  </section>
+</body>
+</html>
