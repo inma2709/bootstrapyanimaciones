@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lección: Buenas Prácticas de Maquetación</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="page-header">
+        <h1 class="page-title">Buenas Prácticas de Maquetación</h1>
+        <p class="page-subtitle">Elevando tu código a un nivel profesional 🚀</p>
+    </header>
+
+    <main class="main-content">
+        <section class="content-section">
+            <h2 class="section-title">Semántica y Accesibilidad: El Porqué es Más Importante que el Cómo</h2>
+            <p>La maquetación va mucho más allá de la estética. Un buen desarrollador web crea sitios que no solo se ven bien, sino que son **comprensibles y accesibles** para todos. La base de esto es el uso correcto de las etiquetas HTML.</p>
+            
+            <div class="comparison-container">
+                <div class="comparison-card">
+                    <h3 class="comparison-title">HTML Semántico 📖</h3>
+                    <p>Cada etiqueta tiene un propósito y un significado. Utilizar etiquetas como `&lt;header&gt;`, `&lt;nav&gt;`, `&lt;main&gt;`, `&lt;article&gt;`, `&lt;section&gt;` y `&lt;footer&gt;` en lugar de una colección de `&lt;div&gt;` le da una estructura clara a nuestra página. Esto es crucial para:</p>
+                    <ul>
+                        <li>**SEO:** Los motores de búsqueda entienden mejor el contenido.</li>
+                        <li>**Accesibilidad:** Los lectores de pantalla guían a los usuarios por la estructura del sitio.</li>
+                        <li>**Mantenibilidad:** El código es más legible para otros desarrolladores.</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card">
+                    <h3 class="comparison-title">Accesibilidad (A11y) ♿</h3>
+                    <p>Un maquetador profesional siempre piensa en el usuario. La **accesibilidad** es un derecho. Aquí tienes algunas prácticas clave:</p>
+                    <ul>
+                        <li>**Etiquetas y `for`/`id`:** Vincula siempre un `&lt;label&gt;` a su `&lt;input&gt;` para que los usuarios puedan interactuar fácilmente con los formularios.</li>
+                        <li>**Atributos ARIA:** Usa atributos como `aria-label` o `role` para proporcionar información adicional a las tecnologías de asistencia cuando la semántica nativa no es suficiente.</li>
+                        <li>**Texto alternativo en imágenes:** Usa siempre el atributo `alt` en tus imágenes para describir su contenido.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Metodologías CSS: Escribir Código Limpio y Escalable</h2>
+            <p>El código CSS desordenado es una pesadilla. Las metodologías nos ayudan a escribir código que es fácil de leer, mantener y escalar en proyectos grandes.  </p>
+            
+            <div class="comparison-container">
+                <div class="comparison-card">
+                    <h3 class="comparison-title">Metodología BEM (Block-Element-Modifier) 🏗️</h3>
+                    <p>BEM es una convención de nomenclatura que hace el código CSS más modular y reutilizable. Es un concepto simple, pero poderoso:</p>
+                    <ul>
+                        <li>**Bloque:** Un componente independiente y reutilizable. Ej: `.card`</li>
+                        <li>**Elemento:** Una parte del bloque. Ej: `.card__image`</li>
+                        <li>**Modificador:** Una variación del bloque o elemento. Ej: `.card--dark`</li>
+                    </ul>
+                    <p>Con BEM, un solo vistazo al nombre de la clase te dice exactamente qué es y para qué sirve.</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3 class="comparison-title">Variables CSS (Custom Properties) 🎨</h3>
+                    <p>¿Cansado de cambiar los mismos colores en docenas de archivos? Las variables CSS resuelven ese problema. Te permiten almacenar valores (como colores, fuentes o espaciado) en un solo lugar y reutilizarlos en toda tu hoja de estilos.</p>
+                    <pre><code>:root {
+    --color-primary: #3498db;
+}
+.button {
+    background-color: var(--color-primary);
+}</code></pre>
+                    <p>Esto simplifica enormemente el mantenimiento y la creación de temas de color.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Optimización y Rendimiento: La Velocidad Importa</h2>
+            <p>Un sitio web lento ahuyenta a los usuarios. Las buenas prácticas de maquetación también incluyen la optimización para un rendimiento superior.</p>
+            <ul>
+                <li><strong>Imágenes Responsivas:</strong> Utiliza `srcset` en la etiqueta `&lt;img&gt;` o la etiqueta `&lt;picture&gt;` para que el navegador sirva una imagen del tamaño correcto para el dispositivo del usuario, evitando descargas innecesarias y pesadas.</li>
+                <li><strong>Mobile-First:</strong> Como ya hemos visto, diseñar primero para móviles no solo mejora la experiencia en estos dispositivos, sino que también optimiza el rendimiento general.</li>
+                <li><strong>Código Limpio:</strong> Elimina las reglas CSS no utilizadas y mantén tus selectores lo menos específicos posible para que el navegador no tenga que trabajar de más.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <p>Curso de Maquetación Web - Clase de Buenas Prácticas</p>
+    </footer>
+
+</body>
+</html>

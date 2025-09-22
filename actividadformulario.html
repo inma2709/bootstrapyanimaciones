@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Actividades — Formularios accesibles</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Opcional: dar aspecto de botón al summary de <details> reutilizando tu sistema */
+    details.solution > summary.btn {
+      cursor: pointer;
+      list-style: none;
+      -webkit-user-select: none; user-select: none;
+    }
+    details.solution > summary.btn::-webkit-details-marker { display: none; }
+    details.solution { margin-top: 1rem; }
+    /* Separación limpia entre grupos de campos (evita <br>) */
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display:block; margin-bottom:.35rem; }
+    /* Realzar accesibilidad visual en foco/validez */
+    .field:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+    .field:invalid { border-color: #e74c3c; }
+    .field:valid { border-color: #2ecc71; }
+    /* Recuadro celeste didáctico */
+    .explain {
+      background-color:#e3f6ff; padding:1rem; border-radius:8px; margin-top:1rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1 class="page-title">Actividades — Formularios Accesibles</h1>
+    <p class="page-subtitle">Aprendemos a hacer formularios</p>
+  </header>
+
+  <main class="main-content">
+
+    <!-- ACTIVIDAD 1 -->
+    <section class="card">
+      <div class="card-body">
+        <h2 class="section-title">Actividad 1 · Formulario de contacto (nivel básico)</h2>
+
+        <p><strong>Objetivo:</strong> crear un formulario de contacto accesible con los campos mínimos y validación nativa.</p>
+        <ul>
+          <li>Incluye: <em>Nombre y apellidos</em>, <em>Correo electrónico</em>, <em>Mensaje</em> y <em>Aceptación de privacidad</em>.</li>
+          <li>Usa <code>&lt;label&gt;</code> visible por campo, <code>required</code> y <code>autocomplete</code> adecuados.</li>
+          <li>Añade ayudas con <code>&lt;small id="..."&gt;</code> enlazadas vía <code>aria-describedby</code>.</li>
+          <li>Usa <code>fieldset</code>/<code>legend</code> para la agrupación semántica.</li>
+          <li>Botón de envío con texto claro (p. ej. “Enviar consulta”).</li>
+          <li>Sin JavaScript. Puedes usar <code>action="mailto:..."</code> o <code>action="#"</code> según prefieras.</li>
+        </ul>
+
+        <details class="solution">
+          <summary class="btn btn-success">Posible solución</summary>
+          <div class="code-box" style="margin-top:1rem;">
+<pre><code>&lt;!-- Formulario de contacto básico y accesible (SIN JS) --&gt;
+&lt;form action="mailto:hola@gmail.com" method="post" enctype="text/plain" autocomplete="on"&gt;
+
+  &lt;fieldset&gt;
+    &lt;legend&gt;Contacto&lt;/legend&gt;
+
+    &lt;!-- Grupo: Nombre --&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="nombre"&gt;Nombre y apellidos&lt;/label&gt;
+      &lt;input class="field" id="nombre" name="name" type="text"
+             placeholder="Ej.: Inma Contreras"
+             autocomplete="name" aria-describedby="ayuda-nombre" required&gt;
+      &lt;small id="ayuda-nombre"&gt;Escribe tu nombre real para dirigirnos a ti correctamente.&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Grupo: Email --&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="email"&gt;Correo electrónico&lt;/label&gt;
+      &lt;input class="field" id="email" name="email" type="email"
+             placeholder="ejemplo@correo.com"
+             autocomplete="email" aria-describedby="ayuda-email" required&gt;
+      &lt;small id="ayuda-email"&gt;Usaremos este correo para responderte.&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Grupo: Mensaje --&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="mensaje"&gt;Mensaje&lt;/label&gt;
+      &lt;textarea class="field" id="mensaje" name="message" rows="5" cols="30"
+                placeholder="Cuéntanos brevemente tu consulta"
+                aria-describedby="ayuda-mensaje" required&gt;&lt;/textarea&gt;
+      &lt;small id="ayuda-mensaje"&gt;Intenta resumir en 3-4 líneas.&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Aceptación de privacidad: checkbox clicable --&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label&gt;
+        &lt;input type="checkbox" name="privacy" required&gt;
+        He leído y acepto la política de privacidad
+      &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;button type="submit" class="btn btn-primary"&gt;Enviar consulta&lt;/button&gt;
+
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+</code></pre>
+          </div>
+
+          <div class="explain">
+            <h4 style="margin-top:0;">🔎 Puntos clave (Actividad 1)</h4>
+            <ul>
+              <li><strong>Semántica:</strong> <code>fieldset/legend</code> agrupa los campos del contacto.</li>
+              <li><strong>Accesibilidad:</strong> <code>label for</code> + <code>id</code>; ayudas con <code>small</code> enlazadas mediante <code>aria-describedby</code>.</li>
+              <li><strong>Validación nativa:</strong> <code>required</code> y <code>type="email"</code> sin necesidad de JS.</li>
+              <li><strong>Comodidad:</strong> <code>autocomplete</code> con tokens estándar (<code>name</code>, <code>email</code>).</li>
+              <li><strong>Botón:</strong> <code>&lt;button type="submit"&gt;</code> con texto descriptivo.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 2 -->
+    <section class="card">
+      <div class="card-body">
+        <h2 class="section-title">Actividad 2 · Formulario de registro (nivel intermedio)</h2>
+
+        <p><strong>Objetivo:</strong> crear un formulario de registro más completo y accesible.</p>
+        <ul>
+          <li>Incluye campos: <em>Nombre</em>, <em>Apellidos</em>, <em>Email</em>, <em>Teléfono</em>, <em>Ciudad (con datalist)</em>, <em>País (select)</em>, <em>Fecha de nacimiento</em>, <em>Contraseña con pattern</em>, <em>Preferencia de contacto (radios)</em> y <em>privacidad</em>.</li>
+          <li>Usa <code>fieldset/legend</code> para agrupar: “Datos personales”, “Contacto” y “Cuenta”.</li>
+          <li>Valida con <code>required</code>, <code>type</code> adecuados, <code>pattern</code>, <code>minlength/maxlength</code> donde aplique.</li>
+          <li>Añade <code>&lt;small&gt;</code> con ayudas enlazadas con <code>aria-describedby</code>.</li>
+          <li>Diseña radios y checkbox con etiqueta clicable.</li>
+          <li>Sin JavaScript.</li>
+        </ul>
+
+        <details class="solution">
+          <summary class="btn btn-success">Posible solución</summary>
+          <div class="code-box" style="margin-top:1rem;">
+<pre><code>&lt;!-- Formulario de registro accesible (SIN JS) --&gt;
+&lt;form action="#" method="post" autocomplete="on"&gt;
+
+  &lt;!-- Grupo 1: Datos personales --&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Datos personales&lt;/legend&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;label for="given-name"&gt;Nombre&lt;/label&gt;
+      &lt;input class="field" id="given-name" name="given-name" type="text"
+             autocomplete="given-name" aria-describedby="ayuda-nombre" required&gt;
+      &lt;small id="ayuda-nombre"&gt;Tu nombre tal y como aparece en tu documentación.&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;label for="family-name"&gt;Apellidos&lt;/label&gt;
+      &lt;input class="field" id="family-name" name="family-name" type="text"
+             autocomplete="family-name" aria-describedby="ayuda-apellidos" required&gt;
+      &lt;small id="ayuda-apellidos"&gt;Si tienes dos, inclúyelos.&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;label for="dob"&gt;Fecha de nacimiento&lt;/label&gt;
+      &lt;input class="field" id="dob" name="birthdate" type="date"
+             aria-describedby="ayuda-dob" required&gt;
+      &lt;small id="ayuda-dob"&gt;Usa el selector de fecha.&lt;/small&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+
+  &lt;!-- Grupo 2: Contacto --&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Contacto&lt;/legend&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;label for="email2"&gt;Correo electrónico&lt;/label&gt;
+      &lt;input class="field" id="email2" name="email" type="email"
+             placeholder="ejemplo@correo.com" autocomplete="email"
+             aria-describedby="ayuda-email2" required&gt;
+      &lt;small id="ayuda-email2"&gt;Te enviaremos la verificación a este correo.&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;label for="tel"&gt;Teléfono&lt;/label&gt;
+      &lt;input class="field" id="tel" name="tel" type="tel"
+             inputmode="tel" autocomplete="tel"
+             pattern="\\+?\\d{9,15}" maxlength="16"
+             aria-describedby="ayuda-tel"
+             placeholder="+34900111222"&gt;
+      &lt;small id="ayuda-tel"&gt;Incluye prefijo si es internacional (ej.: +34...).&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;label for="country"&gt;País&lt;/label&gt;
+      &lt;select class="field" id="country" name="country" autocomplete="country-name"
+              aria-describedby="ayuda-country" required&gt;
+        &lt;option value="" disabled selected&gt;Selecciona un país&lt;/option&gt;
+        &lt;option&gt;España&lt;/option&gt;
+        &lt;option&gt;Francia&lt;/option&gt;
+        &lt;option&gt;Italia&lt;/option&gt;
+        &lt;option&gt;Portugal&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;small id="ayuda-country"&gt;Selecciona tu país de residencia.&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;label for="city"&gt;Ciudad&lt;/label&gt;
+      &lt;input class="field" id="city" name="address-level2" list="cities"
+             placeholder="Escribe o elige una ciudad"
+             autocomplete="address-level2" aria-describedby="ayuda-city" required&gt;
+      &lt;datalist id="cities"&gt;
+        &lt;option value="Madrid"&gt;
+        &lt;option value="Barcelona"&gt;
+        &lt;option value="Sevilla"&gt;
+        &lt;option value="Valencia"&gt;
+        &lt;option value="Bilbao"&gt;
+      &lt;/datalist&gt;
+      &lt;small id="ayuda-city"&gt;Puedes escribir libremente o seleccionar una sugerencia.&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Preferencia de contacto (radios con etiqueta clicable) --&gt;
+    &lt;fieldset&gt;
+      &lt;legend&gt;Preferencia de contacto&lt;/legend&gt;
+      &lt;label&gt;&lt;input type="radio" name="pref-contact" value="email" checked&gt; Email&lt;/label&gt;
+      &lt;label&gt;&lt;input type="radio" name="pref-contact" value="tel"&gt; Teléfono&lt;/label&gt;
+    &lt;/fieldset&gt;
+
+  &lt;/fieldset&gt;
+
+  &lt;!-- Grupo 3: Cuenta --&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Cuenta&lt;/legend&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;label for="user"&gt;Nombre de usuario&lt;/label&gt;
+      &lt;input class="field" id="user" name="username" type="text"
+             minlength="4" maxlength="20" aria-describedby="ayuda-user" required&gt;
+      &lt;small id="ayuda-user"&gt;4–20 caracteres, sin espacios.&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;label for="pass2"&gt;Contraseña&lt;/label&gt;
+      &lt;input class="field" id="pass2" name="password" type="password"
+             pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}"
+             title="Mín. 8 caracteres, al menos 1 mayúscula, 1 minúscula y 1 número"
+             aria-describedby="ayuda-pass2" required&gt;
+      &lt;small id="ayuda-pass2"&gt;Usa 8+ caracteres, con mayúsculas, minúsculas y números.&lt;/small&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;label&gt;
+        &lt;input type="checkbox" name="privacy" required&gt;
+        Acepto la política de privacidad
+      &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;button type="submit" class="btn btn-primary"&gt;Crear cuenta&lt;/button&gt;
+
+  &lt;/fieldset&gt;
+
+&lt;/form&gt;
+</code></pre>
+          </div>
+
+          <div class="explain">
+            <h4 style="margin-top:0;">🔎 Puntos clave (Actividad 2)</h4>
+            <ul>
+              <li><strong>Tokens de autocompletado reales:</strong> <code>given-name</code>, <code>family-name</code>, <code>birthdate</code>, <code>email</code>, <code>tel</code>, <code>country-name</code>, <code>address-level2</code>.</li>
+              <li><strong>Accesibilidad:</strong> ayudas en <code>&lt;small&gt;</code> enlazadas con <code>aria-describedby</code>.</li>
+              <li><strong><code>datalist</code>:</strong> sugiere sin obligar; el usuario puede escribir otra ciudad.</li>
+              <li><strong>Validación nativa:</strong> <code>required</code>, <code>pattern</code>, <code>minlength</code>/<code>maxlength</code>.</li>
+              <li><strong>Radios clicables:</strong> todo el &lt;label&gt; es objetivo de clic.</li>
+              <li><strong>Sin JavaScript:</strong> todo funciona con HTML5 y validación del navegador.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Tarjeta final de recordatorio -->
+    <section class="card">
+      <div class="card-body">
+        <h2 class="section-title">Recordatorio rápido</h2>
+        <ul>
+          <li>La validación del navegador es útil, pero siempre complementa con validación en servidor en proyectos reales.</li>
+          <li>Usa <strong>etiquetas visibles</strong> (nunca solo placeholder).</li>
+          <li>En producción evita <code>mailto:</code>; usa un endpoint seguro por HTTPS.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    &copy; 2025 · inmacontreras.com · Actividades de formularios
+  </footer>
+</body>
+</html>

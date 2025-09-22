@@ -1,123 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bootstrap y animaciones</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manual Interactivo de Maquetación</title>
 
-  <!-- Bootstrap CSS (CDN) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- HERO -->
-  <header class="py-5 bg-light border-bottom">
-    <div class="container text-center">
-      <h1 class="display-5 fw-bold">Bienvenidos al Manual Interactivo</h1>
-    
-      <p class="lead mb-0"
-        style="
-          font-weight: 800;
-          font-size: 3rem;
-          text-align:center;    
-          background: linear-gradient(90deg, red, orange, green, blue, purple);
-          -webkit-background-clip: text; 
-          background-clip: text;
-          color: transparent;
-          animation: caer 3800ms ease-out forwards;
-          animation-delay: 200ms;
-          display: inline-block;
-        ">
-        ¡Feliz Viernes!
-      </p>
+    <header class="page-header">
+        <div class="main-content">
+            <h1 class="page-title">Bienvenidos al Manual Interactivo</h1>
+            <p class="page-subtitle"
+               style="
+                font-weight: 800;
+                font-size: 3rem;
+                text-align:center;    
+                background: linear-gradient(90deg, red, orange, green, blue, purple);
+                -webkit-background-clip: text; 
+                background-clip: text;
+                color: transparent;
+                animation: caer 3800ms ease-out forwards;
+                animation-delay: 200ms;
+                display: inline-block;
+               ">
+                ¡Buenos días Lunes!
+            </p>
+            <style>
+                @keyframes caer{
+                    from{
+                        transform: translateY(-100px);
+                        opacity: 0;
+                    }
+                    to{
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+            </style>
+        </div>
+    </header>
 
-      <style>
-        @keyframes caer{
-          from{
-            transform: translateY(-100px);
-            opacity: 0;
-          }
-          to{
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-      </style>
-    </div>
-  </header>
-
-  <!-- TARJETAS -->
-  <main class="py-5">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-
-        <!-- Tarjeta 3 -->
-        <div class="col">
-          <div class="card h-100 shadow-sm">
-            <img src="animaciones.png" class="card-img-top" alt="Ejemplos de Bootstrap">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Ejemplos</h5>
-              <p class="card-text">Explora ejemplos prácticos: tarjetas, carruseles, botones y más.</p>
-              <a href="animaciones.html" class="btn btn-success mt-auto">Animaciones</a>
+    <main class="main-content">
+        <div class="grid-container">
+            <div class="card">
+                <img src="https://picsum.photos/400/200?random=1" class="card-img-top" alt="Arquitectura de la Navegación">
+                <div class="card-body">
+                    <h5 class="card-title">Arquitectura de la Navegación</h5>
+                    <p class="card-text">Diseña la estructura de tu sitio de manera lógica y coherente.</p>
+                    <a href="arquitectura.html" class="btn btn-primary">Aprender más</a>
+                </div>
             </div>
-          </div>
+
+            <div class="card">
+                <img src="https://picsum.photos/400/200?random=2" class="card-img-top" alt="Formularios">
+                <div class="card-body">
+                    <h5 class="card-title">Formularios Accesibles</h5>
+                    <p class="card-text">Aprende a crearformularios accesibles para captar información.</p>
+                    <a href="formularios.html" class="btn btn-success">Aprender más</a>
+                </div>
+            </div>
+
+             <div class="card">
+                <img src="https://picsum.photos/400/200?random=2" class="card-img-top" alt="Formularios">
+                <div class="card-body">
+                    <h5 class="card-title">Actividad formularios</h5>
+                    <p class="card-text">Practica. Crea tu formulario</p>
+                    <a href="actividadformulario.html" class="btn btn-danger">Aprender más</a>
+                </div>
+            </div>
+
+           
+
+            <div class="card">
+                <img src="https://picsum.photos/400/200?random=4" class="card-img-top" alt="Móviles Primero">
+                <div class="card-body">
+                    <h5 class="card-title">Móviles Primero</h5>
+                    <p class="card-text">Domina la estrategia Mobile-First para diseños responsivos.</p>
+                    <a href="mediaqueries.html" class="btn btn-danger">Aprender más</a>
+                </div>
+            </div>
+
+             <div class="card">
+                <img src="https://picsum.photos/400/200?random=6" class="card-img-top" alt="La Magia del CSS">
+                <div class="card-body">
+                    <h5 class="card-title">Manual de Bootstrap</h5>
+                    <p class="card-text">Usa Bootstrap y crea paginas perfectas</p>
+                    <a href="bootstrap.html" class="btn btn-success">Manual de bootstrap</a>
+                </div>
+            </div>
+            
+            
+
+            <div class="card">
+                <img src="https://picsum.photos/400/200?random=6" class="card-img-top" alt="La Magia del CSS">
+                <div class="card-body">
+                    <h5 class="card-title">La Magia de Bootstrap</h5>
+                    <p class="card-text">Descubre trucos y utilidades avanzadas que hacen mágica tu maquetación.</p>
+                    <a href="magia.html" class="btn btn-primary">Usa Bootstrap</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://picsum.photos/400/200?random=5" class="card-img-top" alt="Manual de Maquetación">
+                <div class="card-body">
+                    <h5 class="card-title">Actividad con Bootstrap</h5>
+                    <p class="card-text">Practica y aprende</p>
+                    <a href="actividad.html" class="btn btn-warning">Ir al Manual</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://picsum.photos/400/200?random=7" class="card-img-top" alt="Actividad práctica">
+                <div class="card-body">
+                    <h5 class="card-title">Animaciones</h5>
+                    <p class="card-text">Dale vida a tu pagina</p>
+                    <a href="animaciones.html" class="btn btn-danger">Ir a la actividad</a>
+                </div>
+            </div>
         </div>
 
-        <!-- Tarjeta 1 -->
-        <div class="col">
-          <div class="card h-100 shadow-sm">
-            <img src="bootstrap.png" class="card-img-top" alt="Manual de Bootstrap">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Manual</h5>
-              <p class="card-text">Aprende lo esencial: contenedores, grid de 12 columnas y componentes básicos.</p>
-              <a href="bootstrap.html" class="btn btn-primary mt-auto">Ir al Manual</a>
-            </div>
-          </div>
+        
+
+    <footer class="page-footer">
+        <div class="main-content">
+            <p>Hecho con HTML y CSS</p>
         </div>
-
-        <!-- Tarjeta 2 -->
-        <div class="col">
-          <div class="card h-100 shadow-sm">
-            <img src="magia.png" class="card-img-top" alt="Magia de Bootstrap">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">La Magia</h5>
-              <p class="card-text">Descubre trucos y utilidades avanzadas que hacen mágico a Bootstrap.</p>
-              <a href="htmlconbootstrap.html" class="btn btn-warning mt-auto">Descubrir Magia</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- NUEVA Tarjeta 4: Actividad -->
-        <div class="col">
-          <div class="card h-100 shadow-sm">
-            <!-- Cambia 'actividad.png' por tu imagen o una URL si prefieres -->
-            <img src="actividad.jpeg" class="card-img-top" alt="Actividad práctica">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Actividad</h5>
-              <p class="card-text">Pon a prueba lo aprendido con una actividad guiada paso a paso.</p>
-              <!-- Enlace a la página solicitada -->
-              <a href="actividad.html" class="btn btn-danger mt-auto">Ir a la actividad</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="py-4 border-top">
-    <div class="container text-center small text-muted">
-      © 2025 · Manual Interactivo con Bootstrap
-    </div>
-  </footer>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-          crossorigin="anonymous"></script>
+    </footer>
 </body>
 </html>

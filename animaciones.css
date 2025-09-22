@@ -101,7 +101,7 @@ body{
   from{ left: 0; }
   to  { left: 500px; }
 }
-.move{
+.moverse{
   animation: move-x 2s ease-in-out infinite alternate;
 }
 
