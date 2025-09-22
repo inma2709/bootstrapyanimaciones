@@ -1,142 +1,356 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Manual Interactivo de Maquetación</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manual Interactivo de Maquetación</title>
 
-    <link rel="stylesheet" href="styles.css">
+  <!-- Estilos base y portada organizada -->
+  <style>
+    /* ===== Paleta y tokens simples ===== */
+    :root{
+      --brand:#1f1aab;
+      --brand-2:#1487a9;
+      --bg:#ffffff;
+      --ink:#1f1f1f;
+      --muted:#6b7280;
+      --panel:#f7f7fb;
+      --border:#e5e7eb;
+      --radius:16px;
+      --shadow:0 10px 25px rgba(0,0,0,.08);
+    }
+
+    /* ===== Reset mínimo accesible ===== */
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      color:var(--ink); background:var(--bg); line-height:1.6;
+    }
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:none}
+
+    /* ===== Cabecera ===== */
+    .page-header{
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:#fff; padding:48px 16px; text-align:center;
+    }
+    .page-title{margin:0 0 8px; font-size:clamp(28px, 4vw, 44px)}
+    .page-subtitle{
+      font-weight:800; font-size:clamp(22px, 3.2vw, 36px);
+      background: linear-gradient(90deg, red, orange, green, blue, purple);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      display:inline-block; animation:caer 3800ms ease-out 200ms forwards;
+      opacity:.9;
+    }
+    @keyframes caer{
+      from{ transform:translateY(-100px); opacity:0;}
+      to{ transform:translateY(0); opacity:1;}
+    }
+
+    /* ===== Layout principal ===== */
+    .wrap{max-width:1140px; margin:auto; padding:32px 16px}
+    .intro{
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:var(--radius); padding:18px 20px; margin-bottom:28px;
+    }
+    .intro p{margin:.4rem 0; color:var(--muted)}
+
+    /* ===== Bloques de lección (tarjeta + explicación) ===== */
+    .lesson{
+      display:grid;
+      grid-template-columns:minmax(260px, 420px) 1fr;
+      gap:18px; align-items:start;
+      background:#fff; border:1px solid var(--border);
+      border-radius:var(--radius); padding:14px; margin-bottom:18px;
+      box-shadow:var(--shadow);
+    }
+    @media (max-width:860px){ .lesson{ grid-template-columns:1fr } }
+
+    .card{
+      overflow:hidden; border-radius:calc(var(--radius) - 4px);
+      border:1px solid var(--border); background:#fff;
+    }
+    .card-img-top{ aspect-ratio: 16/9; object-fit:cover }
+    .card-body{ padding:14px }
+    .card-title{ margin:0 0 6px; font-size:1.1rem }
+    .card-text{ margin:0 0 12px; color:var(--muted) }
+
+    .btn{
+      display:inline-block; padding:10px 14px; border-radius:999px;
+      border:1px solid transparent; font-weight:600;
+    }
+    .btn-primary{ background:var(--brand); color:#fff }
+    .btn-success{ background:#16a34a; color:#fff }
+    .btn-danger{ background:#dc2626; color:#fff }
+    .btn-warning{ background:#f59e0b; color:#111 }
+    .btn-info{ background:#0ea5e9; color:#fff }
+
+    /* ===== Texto explicativo ===== */
+    .lesson-info h3{ margin:.2rem 0 .4rem; font-size:1.15rem }
+    .lesson-info p{ margin:.3rem 0; color:var(--ink) }
+    .lesson-info ul{ margin:.4rem 0 0 1.1rem; color:var(--muted) }
+
+    /* ===== Pie ===== */
+    .page-footer{ padding:28px 16px; color:#555; text-align:center }
+  </style>
 </head>
 <body>
 
-    <header class="page-header">
-        <div class="main-content">
-            <h1 class="page-title">Bienvenidos al Manual Interactivo</h1>
-            <p class="page-subtitle"
-               style="
-                font-weight: 800;
-                font-size: 3rem;
-                text-align:center;    
-                background: linear-gradient(90deg, red, orange, green, blue, purple);
-                -webkit-background-clip: text; 
-                background-clip: text;
-                color: transparent;
-                animation: caer 3800ms ease-out forwards;
-                animation-delay: 200ms;
-                display: inline-block;
-               ">
-                ¡Buenos días Lunes!
-            </p>
-            <style>
-                @keyframes caer{
-                    from{
-                        transform: translateY(-100px);
-                        opacity: 0;
-                    }
-                    to{
-                        transform: translateY(0);
-                        opacity: 1;
-                    }
-                }
-            </style>
+  <!-- CABECERA -->
+  <header class="page-header">
+    <h1 class="page-title">Bienvenidos al Manual Interactivo</h1>
+    <p class="page-subtitle">¡Buenos días Lunes!</p>
+  </header>
+
+  <main class="wrap">
+    <section class="intro" aria-label="Descripción del manual">
+      <p>Portada de tu <strong>Manual Interactivo de Maquetación</strong>. Cada bloque combina una
+         <em>tarjeta</em> (imagen + botón de acceso) con un texto que explica objetivos, contenidos y práctica.</p>
+      <p>Consejo: abre cada lección, lee la guía y realiza la actividad propuesta.</p>
+    </section>
+
+   
+    <!-- 1) Arquitectura de la Navegación -->
+    <article class="lesson" id="arquitectura">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=1" class="card-img-top" alt="Arquitectura de la Navegación">
+        <div class="card-body">
+          <h5 class="card-title">Arquitectura de la Navegación</h5>
+          <p class="card-text">Diseña la estructura de tu sitio de forma lógica y coherente.</p>
+          <a href="arquitectura.html" class="btn btn-primary">Aprender más</a>
         </div>
-    </header>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a encontrar</h3>
+        <p>Cómo pensar menús, rutas, páginas y jerarquías para que el usuario no se pierda.</p>
+        <ul>
+          <li>Mapas de sitio y wireframes básicos.</li>
+          <li>Patrones de navegación (header, footer, breadcrumb).</li>
+          <li>Consejos de accesibilidad en enlaces y foco.</li>
+        </ul>
+      </div>
+    </article>
 
-    <main class="main-content">
-        <div class="grid-container">
-            <div class="card">
-                <img src="https://picsum.photos/400/200?random=1" class="card-img-top" alt="Arquitectura de la Navegación">
-                <div class="card-body">
-                    <h5 class="card-title">Arquitectura de la Navegación</h5>
-                    <p class="card-text">Diseña la estructura de tu sitio de manera lógica y coherente.</p>
-                    <a href="arquitectura.html" class="btn btn-primary">Aprender más</a>
-                </div>
-            </div>
-
-            <div class="card">
-    <img src="https://picsum.photos/400/200?random=8" class="card-img-top" alt="Otro índice">
-    <div class="card-body">
-        <h5 class="card-title">HTML y CSS</h5>
-        <p class="card-text">Accede a otro manual interactivo con ejemplos prácticos.</p>
-        <a href="HTML/índice.html" class="btn btn-info">Ver manual</a>
-    </div>
-</div>
-
-
-            <div class="card">
-                <img src="https://picsum.photos/400/200?random=2" class="card-img-top" alt="Formularios">
-                <div class="card-body">
-                    <h5 class="card-title">Formularios Accesibles</h5>
-                    <p class="card-text">Aprende a crearformularios accesibles para captar información.</p>
-                    <a href="formularios.html" class="btn btn-success">Aprender más</a>
-                </div>
-            </div>
-
-             <div class="card">
-                <img src="https://picsum.photos/400/200?random=2" class="card-img-top" alt="Formularios">
-                <div class="card-body">
-                    <h5 class="card-title">Actividad formularios</h5>
-                    <p class="card-text">Practica. Crea tu formulario</p>
-                    <a href="actividadformulario.html" class="btn btn-danger">Aprender más</a>
-                </div>
-            </div>
-
-           
-
-            <div class="card">
-                <img src="https://picsum.photos/400/200?random=4" class="card-img-top" alt="Móviles Primero">
-                <div class="card-body">
-                    <h5 class="card-title">Móviles Primero</h5>
-                    <p class="card-text">Domina la estrategia Mobile-First para diseños responsivos.</p>
-                    <a href="mediaqueries.html" class="btn btn-danger">Aprender más</a>
-                </div>
-            </div>
-
-             <div class="card">
-                <img src="https://picsum.photos/400/200?random=6" class="card-img-top" alt="La Magia del CSS">
-                <div class="card-body">
-                    <h5 class="card-title">Manual de Bootstrap</h5>
-                    <p class="card-text">Usa Bootstrap y crea paginas perfectas</p>
-                    <a href="bootstrap.html" class="btn btn-success">Manual de bootstrap</a>
-                </div>
-            </div>
-            
-            
-
-            <div class="card">
-                <img src="https://picsum.photos/400/200?random=6" class="card-img-top" alt="La Magia del CSS">
-                <div class="card-body">
-                    <h5 class="card-title">La Magia de Bootstrap</h5>
-                    <p class="card-text">Descubre trucos y utilidades avanzadas que hacen mágica tu maquetación.</p>
-                    <a href="magia.html" class="btn btn-primary">Usa Bootstrap</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://picsum.photos/400/200?random=5" class="card-img-top" alt="Manual de Maquetación">
-                <div class="card-body">
-                    <h5 class="card-title">Actividad con Bootstrap</h5>
-                    <p class="card-text">Practica y aprende</p>
-                    <a href="actividad.html" class="btn btn-warning">Ir al Manual</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://picsum.photos/400/200?random=7" class="card-img-top" alt="Actividad práctica">
-                <div class="card-body">
-                    <h5 class="card-title">Animaciones</h5>
-                    <p class="card-text">Dale vida a tu pagina</p>
-                    <a href="animaciones.html" class="btn btn-danger">Ir a la actividad</a>
-                </div>
-            </div>
+     <!-- 2) HTML y CSS (otro índice dentro de /HTML) -->
+    <article class="lesson" id="html-css">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=8" class="card-img-top" alt="HTML y CSS">
+        <div class="card-body">
+          <h5 class="card-title">HTML y CSS</h5>
+          <p class="card-text">Accede a otro manual interactivo con ejemplos prácticos.</p>
+          <a href="HTML/índice.html" class="btn btn-info">Ver manual</a>
         </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a encontrar</h3>
+        <p>Un índice alternativo con páginas de apoyo: estructura básica de un documento, etiquetas
+           más usadas, organización de carpetas y estilos iniciales.</p>
+        <ul>
+          <li>Plantilla HTML5 comentada.</li>
+          <li>Buenas prácticas para rutas y assets.</li>
+          <li>Primeros estilos y tipografía base.</li>
+        </ul>
+      </div>
+    </article>
 
-        
 
-    <footer class="page-footer">
-        <div class="main-content">
-            <p>Hecho con HTML y CSS</p>
+    <!-- 3) Formularios Accesibles -->
+    <article class="lesson" id="formularios">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=2" class="card-img-top" alt="Formularios">
+        <div class="card-body">
+          <h5 class="card-title">Formularios Accesibles</h5>
+          <p class="card-text">Crea formularios bien etiquetados y usables.</p>
+          <a href="formularios.html" class="btn btn-success">Aprender más</a>
         </div>
-    </footer>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a encontrar</h3>
+        <p>Relación entre <code>label</code>, <code>id</code> y <code>name</code>, tipos de inputs,
+           validación HTML y ayudas de texto.</p>
+        <ul>
+          <li>Inputs, selects, radios, checkboxes y <code>fieldset</code>/<code>legend</code>.</li>
+          <li>Mensajes de error con <code>aria-live</code> y <code>required</code>.</li>
+          <li>Patrones de accesibilidad y microcopy.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 4) Actividad de Formularios -->
+    <article class="lesson" id="actividad-formularios">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=9" class="card-img-top" alt="Actividad de formularios">
+        <div class="card-body">
+          <h5 class="card-title">Actividad: Formularios</h5>
+          <p class="card-text">Pon en práctica lo aprendido.</p>
+          <a href="actividadformulario.html" class="btn btn-danger">Abrir actividad</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a hacer</h3>
+        <p>Construirás un formulario completo con validación nativa, ayudas contextuales y resumen de errores.</p>
+        <ul>
+          <li>Estructura semántica y agrupación por secciones.</li>
+          <li>Validaciones: patrones, longitudes, <code>required</code>.</li>
+          <li>Envío simulado y revisión de usabilidad.</li>
+        </ul>
+      </div>
+    </article>
+<!-- Flex Grid Teoría -->
+    <article class="lesson" id="flexgrid-teoria">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=12" class="card-img-top" alt="Flex y Grid Teoría">
+        <div class="card-body">
+          <h5 class="card-title">Flex & Grid: Teoría</h5>
+          <p class="card-text">Comprende las diferencias y cuándo usar cada técnica.</p>
+          <a href="flexgridteoria.html" class="btn btn-primary">Leer teoría</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a encontrar</h3>
+        <p>Explicación clara de cuándo elegir <strong>Flexbox</strong> (alineaciones en una dimensión)
+           y cuándo usar <strong>Grid</strong> (layouts en dos dimensiones).</p>
+        <ul>
+          <li>Principios de Flexbox: eje principal y secundario.</li>
+          <li>Principios de Grid: filas, columnas y áreas.</li>
+          <li>Comparativas prácticas con ejemplos visuales.</li>
+        </ul>
+      </div>
+    </article>
+
+     <!-- Ejercicio Grid -->
+    <article class="lesson" id="ejercicio-grid">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=11" class="card-img-top" alt="Ejercicio Grid">
+        <div class="card-body">
+          <h5 class="card-title">Ejercicio Grid</h5>
+          <p class="card-text">Pon a prueba tus conocimientos de CSS Grid con un ejercicio práctico.</p>
+          <a href="ejerciciogrid.html" class="btn btn-success">Hacer el ejercicio</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a hacer</h3>
+        <p>Un ejercicio guiado para construir un layout con <code>grid-template-areas</code>,
+           fracciones y columnas responsivas.</p>
+        <ul>
+          <li>Crear cabecera, menú lateral, contenido y footer con Grid.</li>
+          <li>Aplicar áreas de rejilla y breakpoints.</li>
+          <li>Reflexionar sobre ventajas frente a Flexbox.</li>
+        </ul>
+      </div>
+    </article>
+
+    
+
+    <!-- 5) Móviles Primero -->
+    <article class="lesson" id="mobile-first">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=4" class="card-img-top" alt="Móviles Primero">
+        <div class="card-body">
+          <h5 class="card-title">Móviles Primero</h5>
+          <p class="card-text">Diseña desde pantallas pequeñas hacia grandes.</p>
+          <a href="mediaqueries.html" class="btn btn-danger">Aprender más</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a encontrar</h3>
+        <p>Uso de <code>meta viewport</code>, breakpoints y estrategias responsive con
+           <em>grid</em>/<em>flex</em>.</p>
+        <ul>
+          <li>Media queries comunes y tokens fluidos.</li>
+          <li>Imágenes responsivas y <code>clamp()</code>.</li>
+          <li>Pruebas en dispositivos y DevTools.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 6) Manual de Bootstrap -->
+    <article class="lesson" id="bootstrap-manual">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=6" class="card-img-top" alt="Manual de Bootstrap">
+        <div class="card-body">
+          <h5 class="card-title">Manual de Bootstrap</h5>
+          <p class="card-text">Componentes y utilidades para maquetar rápido.</p>
+          <a href="bootstrap.html" class="btn btn-success">Manual de Bootstrap</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a encontrar</h3>
+        <p>CDN, grid de 12 columnas, utilidades de espaciado, tipografía y componentes base.</p>
+        <ul>
+          <li>Grid, contenedores y breakpoints.</li>
+          <li>Cards, modals, alerts y navbars.</li>
+          <li>Buenas prácticas de sobreescritura CSS.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 7) La Magia de Bootstrap -->
+    <article class="lesson" id="bootstrap-magia">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=10" class="card-img-top" alt="La Magia de Bootstrap">
+        <div class="card-body">
+          <h5 class="card-title">La Magia de Bootstrap</h5>
+          <p class="card-text">Trucos y utilidades avanzadas.</p>
+          <a href="htmlconbootstrap.html" class="btn btn-primary">Usa Bootstrap</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a encontrar</h3>
+        <p>Patrones de layout, helpers menos conocidos y combinaciones productivas.</p>
+        <ul>
+          <li>Utility-first con clases personalizadas.</li>
+          <li>Accesibilidad con roles y aria-*</li>
+          <li>Pequeños hacks para prototipar.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 8) Actividad con Bootstrap -->
+    <article class="lesson" id="actividad-bootstrap">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=5" class="card-img-top" alt="Actividad con Bootstrap">
+        <div class="card-body">
+          <h5 class="card-title">Actividad con Bootstrap</h5>
+          <p class="card-text">Practica y afianza conocimientos.</p>
+          <a href="actividad.html" class="btn btn-warning">Ir a la actividad</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a hacer</h3>
+        <p>Una landing responsive con navbar, hero, cards y footer usando la grilla de Bootstrap.</p>
+        <ul>
+          <li>Estructura semántica + utilidades.</li>
+          <li>Adaptación a móviles/tablet/desktop.</li>
+          <li>Checklist de accesibilidad visual.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 9) Animaciones -->
+    <article class="lesson" id="animaciones">
+      <div class="card">
+        <img src="https://picsum.photos/400/200?random=7" class="card-img-top" alt="Animaciones CSS">
+        <div class="card-body">
+          <h5 class="card-title">Animaciones</h5>
+          <p class="card-text">Dale vida a tu página con transiciones y keyframes.</p>
+          <a href="animaciones.html" class="btn btn-danger">Ir a la actividad</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Qué vas a encontrar</h3>
+        <p>Transiciones, transformaciones y <code>@keyframes</code> con ejemplos listos para reutilizar.</p>
+        <ul>
+          <li>Hover states accesibles.</li>
+          <li>Animaciones de entrada/salida (fade, slide, scale).</li>
+          <li>Buenas prácticas de rendimiento.</li>
+        </ul>
+      </div>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p>Hecho con HTML y CSS</p>
+  </footer>
 </body>
 </html>
