@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario Síntesis — Tipos de Entrada y Buenas Prácticas</title>
+
+  <style>
+    /* ===========================
+       TOKENS DE DISEÑO EN :root
+       Paleta inspirada en HTML5
+       =========================== */
+    :root{
+      --brand: #E44D26;     /* naranja HTML */
+      --brand-2:#F16529;    /* naranja claro */
+      --ink:#1f1f1f;        /* texto principal */
+      --muted:#6b6b6b;      /* texto secundario */
+      --bg:#3a129f;            /* fondo */
+      --panel:#fff8f3;      /* panel suave */
+      --border:#e7e7e7;     /* borde sutil */
+      --ok:#2e7d32;         /* verde ok */
+      --bad:#b00020;        /* rojo error */
+      --focus:#1e88e5;      /* azul foco accesible */
+    }
+
+    /* ====== RESETEOS SUAVES ====== */
+    *{ box-sizing: border-box; }
+    html,body{ margin:0; padding:0; background:var(--bg); color:var(--ink); font:16px/1.5 system-ui,Segoe UI,Roboto,Arial,sans-serif; }
+
+    /* ====== LAYOUT BÁSICO ====== */
+    .container{
+      max-width: 920px;
+      margin-inline: auto;
+      padding: 2rem 1rem 4rem;
+    }
+    header{
+      background: linear-gradient(90deg,var(--brand),var(--brand-2));
+      color: #fff;
+      padding: 1.5rem 1rem;
+      border-bottom: 4px solid rgba(255,255,255,.25);
+    }
+    header h1{ margin:0 0 .25rem; font-weight:800; letter-spacing:.2px; }
+    header p{ margin:0; opacity:.9 }
+
+    form{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    fieldset{
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      background: #fff;
+    }
+    legend{
+      padding: .25rem .6rem;
+      border-radius: 999px;
+      background: var(--brand-2);
+      color:#fff;
+      font-weight: 700;
+      letter-spacing:.2px;
+    }
+
+    /* ====== GRID DE CAMPOS ====== */
+    .grid{
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width:720px){
+      .grid.cols-2{ grid-template-columns: 1fr 1fr; }
+      .grid.cols-3{ grid-template-columns: repeat(3,1fr); }
+    }
+
+    /* ====== CAMPOS ====== */
+    label{ display:block; font-weight: 600; margin-bottom:.35rem; }
+    .req{ color:var(--brand); font-weight:800; } /* <span class="req">*</span> */
+
+    input, select, textarea{
+      width: 100%;
+      padding: .7rem .8rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font: inherit;
+      background: #fff;
+    }
+    input::placeholder, textarea::placeholder{ color:#9a9a9a; }
+
+    /* Title no se ve en CSS; lo muestra el navegador como tooltip al pasar el ratón */
+
+    small{
+      display:block;
+      color: var(--muted);
+      font-size: .85rem;
+      margin-top: .35rem;
+    }
+
+    /* Estados de validación nativos */
+    input:focus, select:focus, textarea:focus{
+      outline: 3px solid color-mix(in oklab, var(--focus) 40%, transparent);
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 20%, transparent);
+    }
+    input:required:invalid, select:required:invalid, textarea:required:invalid{
+      border-color: color-mix(in oklab, var(--bad) 50%, var(--border));
+    }
+    input:valid, select:valid, textarea:valid{
+      border-color: color-mix(in oklab, var(--ok) 40%, var(--border));
+    }
+
+    /* Grupo inline (radios/checkbox) */
+    .inline{ display:flex; flex-wrap: wrap; gap:.75rem 1.25rem; align-items: center; }
+    .inline label{ font-weight:500; margin:0; }
+
+    /* Botones */
+    .actions{
+      display:flex; gap:.75rem; flex-wrap: wrap; justify-content: flex-end; margin-top: 1rem;
+    }
+    button{
+      border:0; padding:.8rem 1.1rem; border-radius: 10px; font-weight:700; cursor: pointer;
+    }
+    .btn-primary{ background: var(--brand); color:#fff; }
+    .btn-secondary{ background: #fff; color:var(--ink); border:1px solid var(--border); }
+    .btn-primary:hover{ filter: brightness(1.05); }
+    .btn-secondary:hover{ background:#fafafa; }
+
+    /* Ayudas visuales */
+    .hint{
+      background:#fff7ee; border:1px dashed var(--brand-2); border-radius:10px; padding:.6rem .75rem; font-size:.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <h1>Formulario síntesis de entradas HTML</h1>
+    <p>Repaso práctico de <strong>fieldset/legend</strong>, <strong>small</strong>, <strong>span</strong>, atributo <strong>title</strong> y <strong>placeholder</strong>, con múltiples tipos de input.</p>
+  </header>
+
+  <main class="container">
+    <form action="#" method="post" novalidate>
+      <!-- ============================
+           GRUPO 1 · Datos personales
+           Usa fieldset + legend, placeholders, title y small con aria-describedby
+           ============================ -->
+      <fieldset>
+        <legend>Datos personales</legend>
+
+        <div class="grid cols-2">
+          <!-- Texto + placeholder + title + small -->
+          <div>
+            <label for="nombre">Nombre <span class="req" aria-hidden="true">*</span></label>
+            <input id="nombre" name="nombre" type="text"
+                   placeholder="Ej: Inmaculada"
+                   title="Escribe tu nombre tal como aparece en tu documento"
+                   minlength="2" required
+                   aria-describedby="ayuda-nombre">
+            <small id="ayuda-nombre">Entre 2 y 60 caracteres. Sin emojis.</small>
+          </div>
+
+          <div>
+            <label for="apellidos">Apellidos <span class="req" aria-hidden="true">*</span></label>
+            <input id="apellidos" name="apellidos" type="text"
+                   placeholder="Tus apellidos"
+                   title="Introduce tus apellidos"
+                   minlength="2" required>
+            <small>Usa mayúscula inicial: p. ej., “Contreras Íñiguez”.</small>
+          </div>
+
+          <!-- Email con validación nativa + title -->
+          <div>
+            <label for="email">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email"
+                   placeholder="tu@correo.com"
+                   title="Formato válido: nombre@dominio.ext"
+                   required>
+            <small>El navegador valida la sintaxis básica (texto@dominio.tld).</small>
+          </div>
+
+          <!-- Tel con pattern + title -->
+          <div>
+            <label for="tel">Teléfono (ES)</label>
+            <input id="tel" name="tel" type="tel"
+                   placeholder="612 345 678"
+                   pattern="^[679]\d{2}[\s\-]?\d{3}[\s\-]?\d{3}$"
+                   title="9 dígitos; puede llevar espacios o guiones. Debe empezar por 6, 7 o 9.">
+            <small>Se aceptan “612345678”, “612 345 678” o “612-345-678”.</small>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============================
+           GRUPO 2 · Preferencias
+           Radios, select requerido, datalist, range con step, color, url
+           ============================ -->
+      <fieldset>
+        <legend>Preferencias de viaje</legend>
+
+        <!-- Radios en línea (uno requerido en el grupo) -->
+        <div class="grid">
+          <div>
+            <label>Asiento preferido <span class="req" aria-hidden="true">*</span></label>
+            <div class="inline" role="radiogroup" aria-label="Asiento preferido">
+              <label><input type="radio" name="asiento" value="ventanilla" required title="Selecciona una opción"> Ventanilla</label>
+              <label><input type="radio" name="asiento" value="pasillo"> Pasillo</label>
+              <label><input type="radio" name="asiento" value="medio"> Medio</label>
+            </div>
+            <small>Selecciona al menos una opción.</small>
+          </div>
+
+          <!-- Select requerido con opción nula -->
+          <div>
+            <label for="clase">Clase <span class="req" aria-hidden="true">*</span></label>
+            <select id="clase" name="clase" required title="Elige una clase">
+              <option value="" disabled selected>-- Selecciona clase --</option>
+              <option value="turista">Turista</option>
+              <option value="premium">Turista Premium</option>
+              <option value="business">Business</option>
+            </select>
+            <small>Usa la opción superior para forzar la elección.</small>
+          </div>
+
+          <!-- Datalist (sugerencias) + small con id -->
+          <div>
+            <label for="ciudad">Ciudad de salida</label>
+            <input id="ciudad" name="ciudad" list="ciudades"
+                   placeholder="Escribe o elige…"
+                   title="Puedes escribir libremente o elegir de la lista"
+                   aria-describedby="ayuda-ciudad">
+            <datalist id="ciudades">
+              <option value="Madrid">
+              <option value="Barcelona">
+              <option value="Sevilla">
+              <option value="Valencia">
+              <option value="Bilbao">
+            </datalist>
+            <small id="ayuda-ciudad">Puedes escribir tu ciudad o elegir una sugerida.</small>
+          </div>
+
+          <!-- Range con min/max/step y ayuda -->
+          <div>
+            <label for="equipaje">Equipaje (kg)</label>
+            <input id="equipaje" name="equipaje" type="range"
+                   min="0" max="40" step="5"
+                   title="Mueve el control en saltos de 5 kg">
+            <small>Rango 0–40 kg en incrementos de 5.</small>
+          </div>
+
+          <!-- Color (input color) -->
+          <div>
+            <label for="color">Color preferido de la etiqueta</label>
+            <input id="color" name="color" type="color" value="#F16529" title="Elige un color">
+            <small>Control nativo de color.</small>
+          </div>
+
+          <!-- URL -->
+          <div>
+            <label for="web">Tu web (opcional)</label>
+            <input id="web" name="web" type="url"
+                   placeholder="https://tu-dominio.com"
+                   title="Incluye https:// al comienzo">
+            <small>Ej.: https://inmacontreras.com</small>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============================
+           GRUPO 3 · Fechas y números
+           date con min/max, number con step
+           ============================ -->
+      <fieldset>
+        <legend>Fechas y cantidades</legend>
+
+        <div class="grid cols-3">
+          <div>
+            <label for="ida">Fecha de ida <span class="req" aria-hidden="true">*</span></label>
+            <input id="ida" name="ida" type="date" required
+                   min="2025-01-01" max="2026-12-31"
+                   title="Selecciona una fecha válida (formato ISO: aaaa-mm-dd)">
+            <small>Restringida con <code>min</code> y <code>max</code>.</small>
+          </div>
+
+          <div>
+            <label for="vuelta">Fecha de vuelta</label>
+            <input id="vuelta" name="vuelta" type="date"
+                   min="2025-01-02" max="2026-12-31"
+                   title="Debe ser posterior a la ida">
+            <small>Ajusta el rango según tus reglas.</small>
+          </div>
+
+          <div>
+            <label for="personas">Personas</label>
+            <input id="personas" name="personas" type="number"
+                   min="1" max="9" step="1" value="1"
+                   title="Valores enteros de 1 a 9">
+            <small>Usa <code>min</code>, <code>max</code> y <code>step</code> para restringir.</small>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============================
+           GRUPO 4 · Seguridad y archivo
+           password con pattern, textarea con minlength/maxlength, file
+           ============================ -->
+      <fieldset>
+        <legend>Seguridad y comentarios</legend>
+
+        <div class="grid">
+          <!-- Password con patrón y tooltip (title) -->
+          <div>
+            <label for="pass">Contraseña <span class="req" aria-hidden="true">*</span></label>
+            <input id="pass" name="pass" type="password" required
+                   placeholder="••••••••"
+                   title="Min. 8 caracteres: 1 mayúscula, 1 minúscula, 1 número y 1 símbolo"
+                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}">
+            <small>Validación con <code>pattern</code> (lookaheads) + ayuda en <code>title</code>.</small>
+          </div>
+
+          <!-- Textarea con límites -->
+          <div>
+            <label for="msg">Mensaje para la agencia</label>
+            <textarea id="msg" name="msg" rows="4"
+                      placeholder="Cuéntanos necesidades especiales (asistencia, dieta, etc.)"
+                      title="Entre 10 y 200 caracteres"
+                      minlength="10" maxlength="200"
+                      aria-describedby="ayuda-msg"></textarea>
+            <small id="ayuda-msg">Mínimo 10 y máximo 200 caracteres.</small>
+          </div>
+
+          <!-- Archivo -->
+          <div>
+            <label for="doc">Documento de identidad (PDF/JPG)</label>
+            <input id="doc" name="doc" type="file"
+                   accept=".pdf,.jpg,.jpeg,.png"
+                   title="Adjunta un archivo en formato PDF o imagen">
+            <small>El atributo <code>accept</code> restringe los tipos.</small>
+          </div>
+
+          <!-- Checkbox términos con title y <span> para énfasis -->
+          <div class="hint">
+            <label>
+              <input type="checkbox" name="terminos" required
+                     title="Debes aceptar para continuar">
+              Acepto los <span style="font-weight:700;">términos y condiciones</span>.
+            </label>
+            <small>El atributo <code>required</code> obliga a marcar el consentimiento.</small>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="reset" class="btn-secondary">Limpiar</button>
+        <button type="submit" class="btn-primary">Enviar solicitud</button>
+      </div>
+    </form>
+
+    <p style="margin-top:1rem; color:var(--muted);">
+      Nota: El atributo <strong>title</strong> se muestra como “tooltip” al pasar el ratón en escritorio. En móviles puede no aparecer.
+    </p>
+  </main>
+</body>
+</html>

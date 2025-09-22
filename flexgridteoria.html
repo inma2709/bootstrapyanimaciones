@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flex y Grid: Ejemplo sencillo e interactivo</title>
+    <link rel="stylesheet" href="tarjetasinteractivas.css" />
+</head>
+<body>
+    <header class="card">
+        <h1>Flexbox + Grid: guía práctica para aprender haciendo</h1>
+    </header>
+
+    <nav class="card">
+        <a href="#que-es-grid">Qué es Grid</a>
+        <a href="#que-es-flex">Qué es Flexbox</a>
+        <a href="#cuando-usar">Cuándo usar cada uno</a>
+        <a href="#demo">Demos interactivas</a>
+        <a href="#chuleta">Chuleta</a>
+    </nav>
+
+    <main class="card">
+        <h2 id="que-es-grid">¿Qué es CSS Grid?</h2>
+        <p>
+            <strong>CSS Grid</strong> es un sistema de diseño bidimensional que te permite organizar elementos en filas y columnas. 
+            Es ideal para crear layouts complejos y responsivos, como el esqueleto de una página web.
+        </p>
+        <div class="aviso">
+            <p>
+                <strong>¿Por qué usar Grid?</strong> Porque te da control total sobre la posición de cada elemento, 
+                permitiendo crear desde simples galerías hasta dashboards avanzados.
+            </p>
+            <ul>
+                <li>Define áreas de la página (header, nav, main, aside, footer) de forma clara.</li>
+                <li>Permite superponer elementos y crear diseños asimétricos.</li>
+                <li>Facilita la adaptación a diferentes tamaños de pantalla.</li>
+            </ul>
+        </div>
+        <details open>
+            <summary><strong>¿Cómo se declara Grid?</strong></summary>
+            <pre><code>/* 1) Convertimos el contenedor en grid */
+.container { display: grid; }
+
+/* 2) Definimos columnas y filas */
+.container {
+  grid-template-columns: 1fr 2fr 1fr;    /* 3 columnas */
+  grid-template-rows: auto auto;         /* 2 filas */
+  gap: 12px;                             /* separación */
+}
+
+/* 3) Colocamos cada ítem */
+.header { grid-column: 1 / -1; }         /* ocupa las 3 columnas */
+.main   { grid-column: 1 / 3; }          /* columnas 1 a 2 */
+.aside  { grid-column: 3; }              /* columna 3 */
+.footer { grid-column: 1 / -1; }
+</code></pre>
+            <p class="nota">
+                Recuerda: <code>1fr</code> reparte el espacio disponible. <code>-1</code> es el último borde de la rejilla.
+            </p>
+        </details>
+        <div class="aviso">
+            <strong>Consejo:</strong> Usa <code>grid-template-areas</code> para nombrar zonas y hacer tu CSS más legible.
+        </div>
+
+        <h2 id="que-es-flex" class="espacio-arriba">¿Qué es Flexbox?</h2>
+        <p>
+            <strong>Flexbox</strong> es un sistema de diseño unidimensional: organiza elementos en una fila o columna, 
+            alineándolos y distribuyéndolos de forma eficiente. Es perfecto para menús, barras de navegación, 
+            tarjetas en fila o para centrar elementos.
+        </p>
+        <div class="aviso">
+            <ul>
+                <li>Ideal para componentes donde el orden y el tamaño de los elementos puede variar.</li>
+                <li>Permite centrar fácilmente tanto horizontal como verticalmente.</li>
+                <li>Facilita el diseño responsivo de elementos en fila o columna.</li>
+            </ul>
+        </div>
+        <details open>
+            <summary><strong>¿Cómo se declara Flexbox?</strong></summary>
+            <pre><code>/* 1) Convertimos el contenedor en flex */
+.container { display: flex; }
+
+/* 2) Elegimos la dirección */
+.container { flex-direction: row; }   /* fila (por defecto) */
+/* .container { flex-direction: column; }   columna */
+
+/* 3) Alineamos y distribuimos */
+.container {
+  justify-content: center;   /* eje principal (x si row) */
+  align-items: center;       /* eje cruzado  (y si row) */
+  gap: 12px;                 /* hueco entre ítems */
+}
+</code></pre>
+            <p class="nota">
+                Recuerda: <code>justify-content</code> actúa sobre el eje principal y <code>align-items</code> sobre el eje cruzado. 
+                El eje cambia según uses <code>row</code> o <code>column</code>.
+            </p>
+        </details>
+        <div class="aviso">
+            <strong>Tip:</strong> Flexbox es tu mejor amigo para centrar cosas. ¡Pruébalo!
+        </div>
+
+        <section id="demo" class="espacio-arriba">
+            <h3 class="no-margin">Demos interactivas</h3>
+            <p>
+                Experimenta con los controles para ver cómo cambian los layouts. 
+                <strong>¡Aprender haciendo es la mejor forma!</strong>
+            </p>
+
+            <article class="play">
+                <h4>1) Playground de Flexbox</h4>
+                <div class="controles">
+                    <label>Dirección:
+                        <select id="flex-direction">
+                            <option>row</option>
+                            <option>row-reverse</option>
+                            <option>column</option>
+                        </select>
+                    </label>
+                    <label>Justify:
+                        <select id="justify">
+                            <option>flex-start</option>
+                            <option>center</option>
+                            <option>space-between</option>
+                            <option>space-around</option>
+                            <option>space-evenly</option>
+                            <option>flex-end</option>
+                        </select>
+                    </label>
+                    <label>Align:
+                        <select id="align">
+                            <option>stretch</option>
+                            <option>flex-start</option>
+                            <option>center</option>
+                            <option>flex-end</option>
+                        </select>
+                    </label>
+                    <label>Gap:
+                        <input id="flex-gap" type="range" min="0" max="30" value="10" />
+                    </label>
+                    <label>Wrap:
+                        <select id="flex-wrap">
+                            <option>nowrap</option>
+                            <option>wrap</option>
+                            <option>wrap-reverse</option>
+                        </select>
+                    </label>
+                </div>
+                <div id="flex-demo" class="demo-box">
+                    <div class="box">Uno</div>
+                    <div class="box">Dos</div>
+                    <div class="box">Tres</div>
+                </div>
+                <p>Flexbox sirve para alinear elementos en fila o columna.</p>
+            </article>
+
+            <article class="play espacio-arriba-sm">
+                <h4>2) Playground de Grid</h4>
+                <div class="controles">
+                    <label>Columnas:
+                        <select id="grid-cols">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </label>
+                    <label>Filas automáticas:
+                        <select id="grid-rows">
+                            <option value="minmax(60px, auto)">minmax(60px, auto)</option>
+                            <option value="80px">80px</option>
+                            <option value="auto" selected>auto</option>
+                        </select>
+                    </label>
+                    <label>Gap:
+                        <input id="grid-gap" type="range" min="0" max="30" value="12" />
+                    </label>
+                </div>
+                <div id="grid-demo" class="demo-box">
+                    <div class="box">A</div>
+                    <div class="box">B</div>
+                    <div class="box">C</div>
+                    <div class="box">D</div>
+                    <div class="box">E</div>
+                    <div class="box">F</div>
+                </div>
+                <p>Grid sirve para organizar elementos en filas y columnas.</p>
+            </article>
+        </section>
+
+        <h2 id="cuando-usar" class="espacio-arriba">¿Cuándo usar cada uno?</h2>
+        <ul>
+            <li><strong>Grid</strong>: para layouts generales, galerías, dashboards, y estructuras 2D.</li>
+            <li><strong>Flex</strong>: para menús, barras, tarjetas en fila/columna, y centrados rápidos.</li>
+            <li><strong>Combinados</strong>: usa Grid para la estructura principal y Flex para alinear el contenido interno.</li>
+        </ul>
+        <div class="aviso">
+            <strong>Ejemplo:</strong> Una página puede usar Grid para el layout general y Flexbox para el menú de navegación.
+        </div>
+
+        <section id="chuleta" class="espacio-arriba-sm">
+            <h3>Chuleta rápida</h3>
+            <div class="grid-chuleta">
+                <article class="card">
+                    <p class="subtitulo">Flex: propiedades clave (contenedor)</p>
+                    <ul>
+                        <li><code>display: flex | inline-flex</code></li>
+                        <li><code>flex-direction: row | column | …</code></li>
+                        <li><code>justify-content: start | center | space-between | …</code></li>
+                        <li><code>align-items: stretch | center | …</code></li>
+                        <li><code>gap: 12px</code>, <code>flex-wrap: wrap</code></li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <p class="subtitulo">Flex: propiedades de los hijos</p>
+                    <ul>
+                        <li><code>flex: 1</code> (crece/reduce)</li>
+                        <li><code>align-self: center</code> (alineación individual)</li>
+                        <li><code>order: 2</code> (reordenar)</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <p class="subtitulo">Grid: lo esencial</p>
+                    <ul>
+                        <li><code>display: grid</code></li>
+                        <li><code>grid-template-columns: repeat(3, 1fr)</code></li>
+                        <li><code>grid-template-rows: auto auto</code></li>
+                        <li><code>gap: 12px</code></li>
+                        <li><code>grid-column</code> / <code>grid-row</code> para colocar ítems</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <div class="bloque-ejercicio">
+  <h3 class="no-margin">¡Has llegado al final de la lección!</h3>
+  <p>Ahora que ya dominas los conceptos de Grid y Flexbox, estás listo para el próximo desafío.</p>
+  <p>En el siguiente ejercicio, pondrás en práctica todo lo que has aprendido para construir un layout completo usando ambas herramientas de forma combinada.</p>
+  <a href="ejerciciogrid.html" class="boton-enlace">Ejercicio fácil y divertido </a>
+</div>
+    </main>
+
+    <footer>
+        <span>Septiembre 2025</span>
+        <small>Tip: inspecciona el CSS y prueba a cambiar columnas/justify/align.</small>
+    </footer>
+
+    <script>
+        // JS para los playgrounds
+        const flexDemo = document.getElementById('flex-demo');
+        const flexDir = document.getElementById('flex-direction');
+        const justify = document.getElementById('justify');
+        const align = document.getElementById('align');
+        const flexGap = document.getElementById('flex-gap');
+        const flexWrap = document.getElementById('flex-wrap');
+
+        function updateFlex(){
+            flexDemo.style.display = 'flex';
+            flexDemo.style.flexDirection = flexDir.value;
+            flexDemo.style.justifyContent = justify.value;
+            flexDemo.style.alignItems = align.value;
+            flexDemo.style.gap = flexGap.value + 'px';
+            flexDemo.style.flexWrap = flexWrap.value;
+        }
+        [flexDir, justify, align, flexGap, flexWrap].forEach(el => el.addEventListener('input', updateFlex));
+        updateFlex();
+
+        const gridDemo = document.getElementById('grid-demo');
+        const gridCols = document.getElementById('grid-cols');
+        const gridRows = document.getElementById('grid-rows');
+        const gridGap = document.getElementById('grid-gap');
+
+        function updateGrid(){
+            const n = parseInt(gridCols.value,10);
+            gridDemo.style.display = 'grid';
+            gridDemo.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
+            gridDemo.style.gridAutoRows = gridRows.value;
+            gridDemo.style.gap = gridGap.value + 'px';
+        }
+        [gridCols, gridRows, gridGap].forEach(el => el.addEventListener('input', updateGrid));
+        updateGrid();
+    </script>
+</body>
+</html>
