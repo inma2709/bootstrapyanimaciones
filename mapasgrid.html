@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página en Grid (3 zonas) — Explicación paso a paso con ejemplos</title>
+  <style>
+    /* ====== PALETA + RESET ====== */
+    :root{
+      --ink:#1f1f1f; --muted:#666; --bg:#fff; --panel:#f6f6f6;
+      --accent:#F16529; --accent-2:#E44D26; --border:#e6e6e6;
+      --radius:12px; --gap:16px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; font-family:system-ui, Arial, sans-serif; color:var(--ink); background:var(--panel);
+
+      /* ===== PASO 1: convertir el BODY en contenedor GRID ===== */
+      display:grid;
+
+      /* ===== PASO 2: definir el mapa de áreas (3 ZONAS) =====
+         1 columna y 3 filas: header, content y footer */
+      grid-template-areas:
+        "header"
+        "content"
+        "footer";
+
+      /* ===== PASO 3: definir columnas y filas =====
+         - 1 única columna flexible (1fr)
+         - filas: header y footer ajustan (auto); content crece (1fr) */
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto;
+
+      /* ===== PASO 4: respiración general ===== */
+      gap: var(--gap);
+      min-height: 100vh;
+      padding: var(--gap);
+    }
+
+    /* ===== PASO 5: asignación de áreas a los hijos directos ===== */
+    header { grid-area: header; }
+    main   { grid-area: content; }
+    footer { grid-area: footer; }
+
+    /* ===== Estilo visual para identificar las zonas ===== */
+    header, main, footer{
+      background:var(--bg);
+      border:2px dashed var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+    header{ background: linear-gradient(180deg, #ffe1d3, #ffd6c1); }
+    main{   background: #e9ffe8; }
+    footer{ background: #f0f0f0; }
+
+    /* Bloques explicativos */
+    .explain{
+      background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+      padding:16px; margin-top:12px;
+    }
+    .explain h3{ margin:0 0 8px 0; font-size:1.05rem; }
+    .badge{
+      display:inline-block; padding:2px 8px; border-radius:999px;
+      background:var(--accent); color:#fff; font-weight:700; font-size:.8rem; margin-right:6px;
+    }
+    .muted{ color:var(--muted); }
+
+    pre{ background:#fafafa; border:1px solid var(--border); border-radius:10px; padding:12px; overflow:auto; }
+    code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    /* Mini demo gráfica dentro del main: 3 cajas para "ver" grid también en 1 fila */
+    .demo-3cajas{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top:12px;
+    }
+    .box{
+      background:#fff; border:1px solid var(--border); border-radius:10px; padding:12px; text-align:center; font-weight:600;
+    }
+
+    /* Opcional: hacer que en pantallas anchas el layout de 3 zonas se vea en filas/columnas distintas sin tocar HTML */
+    @media (min-width: 960px){
+      body{
+        /* Mismo HTML, otro mapa para pantallas grandes: header arriba, content centro, footer abajo (sigue siendo 1 col);
+           si quisieras 3 columnas (p.ej. para futuras zonas), cambiarías aquí. */
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ZONA 1: HEADER -->
+  <header>
+    <h1 style="margin:0">Página montada con Grid — 3 zonas (Header, Contenido y Footer)</h1>
+    <p class="muted" style="margin:.25rem 0 0 0">
+      Esta página completa es un <strong>Grid</strong> con 3 áreas verticales. Todo el paso a paso y los
+      ejemplos están dentro del <code>&lt;main&gt;</code>.
+    </p>
+  </header>
+
+  <!-- ZONA 2: MAIN (toda la explicación y el ejercicio van aquí) -->
+  <main>
+    <h2 style="margin:0 0 .5rem 0">Explicación paso a paso</h2>
+
+    <!-- PASO 1 -->
+    <div class="explain">
+      <h3><span class="badge">Paso 1</span> Activar Grid en el contenedor (body)</h3>
+      <p>Convertimos el <code>&lt;body&gt;</code> en un contenedor Grid con <code>display: grid</code>.</p>
+      <pre><code>/* CSS */
+body{
+  display: grid;     /* ← activa CSS Grid en el body */
+}</code></pre>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="explain">
+      <h3><span class="badge">Paso 2</span> Definir el mapa de áreas (3 zonas)</h3>
+      <p>Declaramos 3 filas (una por línea) y una sola columna: <code>header</code>, <code>content</code> y <code>footer</code>.</p>
+      <pre><code>/* CSS */
+body{
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+}</code></pre>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="explain">
+      <h3><span class="badge">Paso 3</span> Definir columnas y filas (fr y auto)</h3>
+      <p>
+        Usamos <code>1fr</code> para la única columna (flexible) y <code>auto 1fr auto</code> para filas:
+        header/foot se ajustan al contenido y la zona central crece.
+      </p>
+      <pre><code>/* CSS */
+body{
+  grid-template-columns: 1fr;  /* 1 columna flexible */
+  grid-template-rows: auto 1fr auto;  /* 3 filas: header (auto), content (1fr), footer (auto) */
+}</code></pre>
+      <p class="muted">Recuerda: <strong>fr</strong> reparte el espacio disponible tras asignar tamaños fijos/auto.</p>
+    </div>
+
+    <!-- PASO 4 -->
+    <div class="explain">
+      <h3><span class="badge">Paso 4</span> Asignar cada hijo a su área (grid-area)</h3>
+      <p>Solo los <em>hijos directos</em> del body pueden engancharse a las áreas con <code>grid-area</code>.</p>
+      <pre><code>/* CSS */
+header { grid-area: header; }
+main   { grid-area: content; }
+footer { grid-area: footer; }</code></pre>
+
+      <pre><code>&lt;!-- HTML mínimo --&gt;
+&lt;body&gt;
+  &lt;header&gt;Cabecera&lt;/header&gt;
+  &lt;main&gt;Contenido&lt;/main&gt;
+  &lt;footer&gt;Pie&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+
+      <p class="muted"><strong>Importante:</strong> el HTML no necesita clases especiales; la colocación la decide CSS.</p>
+    </div>
+
+    <!-- PASO 5 -->
+    <div class="explain">
+      <h3><span class="badge">Paso 5</span> Gaps y respiración</h3>
+      <p><code>gap</code> separa las áreas; <code>padding</code> añade espacio interior al contenedor.</p>
+      <pre><code>/* CSS */
+body{
+  gap: 16px;     /* separa filas/columnas del grid */
+  padding: 16px; /* espacio interior del body */
+}</code></pre>
+    </div>
+
+    <!-- PASO 6 -->
+    <div class="explain">
+      <h3><span class="badge">Paso 6</span> (Opcional) Adaptar en responsive cambiando el mapa</h3>
+      <p>
+        Puedes redefinir el mapa en media queries sin tocar el HTML. Aquí mantenemos 1 columna, pero
+        podrías cambiar a varias si más adelante añades zonas laterales.
+      </p>
+      <pre><code>/* CSS */
+@media (min-width: 960px){
+  body{
+    /* mismo HTML, podrías cambiar columnas/filas si lo necesitas */
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+    </div>
+
+    <!-- MINI-EJERCICIO PRÁCTICO: ver grid también en 3 columnas internas -->
+    <div class="explain">
+      <h3><span class="badge">Ejercicio</span> Visualiza el concepto de fracciones con 3 cajas</h3>
+      <p>
+        Abajo tienes un mini-grid interno con <code>repeat(3, 1fr)</code>.  
+        Modifica a <code>2fr 1fr 1fr</code> y comprueba cómo cambia el ancho relativo.
+      </p>
+      <pre><code>/* CSS */
+.demo-3cajas{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+  gap: 10px;
+}
+/* Variante:
+.demo-3cajas{ grid-template-columns: 2fr 1fr 1fr; } */</code></pre>
+
+      <div class="demo-3cajas">
+        <div class="box">Caja 1</div>
+        <div class="box">Caja 2</div>
+        <div class="box">Caja 3</div>
+      </div>
+    </div>
+
+    <!-- “Página montada” (resumen) -->
+    <div class="explain">
+      <h3><span class="badge">Resumen</span> Página completa con Grid (3 zonas)</h3>
+      <p>Este es el esqueleto mínimo funcional que estás viendo en esta misma página:</p>
+      <pre><code>/* CSS esencial */
+body{
+  display: grid;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+  min-height: 100vh;
+  padding: 16px;
+}
+header{ grid-area: header; }
+main{   grid-area: content; }
+footer{ grid-area: footer; }</code></pre>
+
+      <pre><code>&lt;!-- HTML esencial --&gt;
+&lt;body&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;main&gt;...&lt;/main&gt;
+  &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+    </div>
+
+    <div class="explain" >
+        <p>Enlazamos a un ejercicio de ejemplo. Entra con el inspector a ver el codigo de html y css y verás lo fácil que es grid</p>
+        <button style="background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 10px 20px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s;" onclick="location.href='ejerciciomapagrid.html'">
+            Ver ejercicio
+        </button>
+    </div>
+  </main>
+
+  <!-- ZONA 3: FOOTER -->
+  <footer>
+    <strong>Pie</strong> — 3 zonas con Grid: Header · Contenido · Footer.  
+    Amplía más adelante con columnas/áreas laterales si lo necesitas.
+  </footer>
+
+</body>
+</html>

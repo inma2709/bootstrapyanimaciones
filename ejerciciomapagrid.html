@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ejercicio CSS Grid — Header, Aside, Main, Footer</title>
+  <style>
+    :root{
+      --ink:#1f1f1f; --bg:#fff; --panel:#f6f6f6;
+      --accent:#F16529; --border:#e6e6e6;
+      --radius:12px; --gap:16px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0; font-family:system-ui, Arial, sans-serif; color:var(--ink); background:var(--panel);
+
+      /* Paso 1: activar Grid en body */
+      display:grid;
+
+      /* Paso 2: mapa de áreas */
+      grid-template-areas:
+        "header header"
+        "aside  main"
+        "footer footer";
+
+      /* Paso 3: columnas y filas */
+      grid-template-columns: 250px 1fr;  /* aside fijo, main flexible */
+      grid-template-rows: auto 1fr auto; /* header y footer auto, centro crece */
+
+      gap: var(--gap);
+      min-height: 100vh;
+      padding: var(--gap);
+    }
+
+    /* Paso 4: asignación de áreas */
+    header{ grid-area: header; }
+    aside { grid-area: aside; }
+    main  { grid-area: main; }
+    footer{ grid-area: footer; }
+
+    /* Estilos visuales */
+    header, aside, main, footer{
+      background:var(--bg);
+      border:2px dashed var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+    header{ background: #ffe1d3; }
+    aside{  background: #e8f4ff; }
+    main{   background: #e9ffe8; }
+    footer{ background: #f0f0f0; }
+
+    /* Responsive: en pantallas pequeñas, todo en 1 columna */
+    @media (max-width: 700px){
+      body{
+        grid-template-areas:
+          "header"
+          "aside"
+          "main"
+          "footer";
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cabecera (Header)</h1>
+    <p>Aquí iría el logotipo o menú principal.</p>
+  </header>
+
+  <aside>
+    <h2>Lateral (Aside)</h2>
+    <ul>
+      <li>Enlace 1</li>
+      <li>Enlace 2</li>
+      <li>Enlace 3</li>
+    </ul>
+  </aside>
+
+  <main>
+    <h2>Contenido principal (Main)</h2>
+    <p>
+      Aquí se muestra el contenido más importante de la página.  
+      Observa cómo el aside queda a la izquierda y esta zona se adapta al ancho restante.
+    </p>
+  </main>
+
+  <footer>
+    <strong>Pie (Footer)</strong> — © 2025 · Aquí van los créditos o enlaces legales.
+  </footer>
+</body>
+</html>
