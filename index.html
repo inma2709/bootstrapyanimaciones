@@ -55,18 +55,34 @@
     }
     .intro p{margin:.4rem 0; color:var(--muted)}
 
-    /* ===== Bloques de lección (tarjeta + explicación) ===== */
+    /* ===== Tarjetas (lección) ===== */
+    /* Patrón base: media (card) + content (lesson-info) */
     .lesson{
       display:grid;
       grid-template-columns:minmax(260px, 420px) 1fr;
+      grid-template-areas: "media content";
       gap:18px; align-items:start;
       background:#fff; border:1px solid var(--border);
-      border-radius:var(--radius); padding:14px; margin-bottom:18px;
+      border-radius:var(--radius); padding:14px; margin-bottom:24px;
       box-shadow:var(--shadow);
     }
-    @media (max-width:860px){ .lesson{ grid-template-columns:1fr } }
+    /* Alternar: en pares, el contenido va primero y la imagen a la derecha */
+    /* Usamos nth-of-type sobre article.lesson para no contar la .intro */
+    main .lesson:nth-of-type(even){
+      grid-template-columns:1fr minmax(260px, 420px);
+      grid-template-areas: "content media";
+    }
 
-    .card{
+    @media (max-width:860px){
+      .lesson{
+        grid-template-columns:1fr;
+        grid-template-areas:
+          "media"
+          "content";
+      }
+    }
+
+    .card{ grid-area: media;
       overflow:hidden; border-radius:calc(var(--radius) - 4px);
       border:1px solid var(--border); background:#fff;
     }
@@ -86,6 +102,7 @@
     .btn-info{ background:#0ea5e9; color:#fff }
 
     /* ===== Texto explicativo ===== */
+    .lesson-info{ grid-area: content; }
     .lesson-info h3{ margin:.2rem 0 .4rem; font-size:1.15rem }
     .lesson-info p{ margin:.3rem 0; color:var(--ink) }
     .lesson-info ul{ margin:.4rem 0 0 1.1rem; color:var(--muted) }
@@ -98,126 +115,125 @@
 
   <!-- CABECERA -->
   <header class="page-header">
-    <h1 class="page-title">Bienvenidos al Manual Interactivo</h1>
-    <p class="page-subtitle">Crea tu pagina web</p>
+    <h1 class="page-title">Bienvenidos al Manual de HTML y CSS</h1>
+    <p class="page-subtitle">Crea tu página web</p>
   </header>
 
   <main class="wrap">
     <section class="intro" aria-label="Descripción del manual">
-       <strong>Manual Interactivo de diseño web</strong>. <p></p>
+      <strong>Manual de diseño web</strong>
+      <p>Explora las lecciones organizadas paso a paso.</p>
     </section>
 
-   
     <!-- 1) Arquitectura de la Navegación -->
     <article class="lesson" id="arquitectura">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=1" class="card-img-top" alt="Arquitectura de la Navegación">
+        <img src="https://picsum.photos/800/400?random=1" class="card-img-top" alt="Arquitectura de la Navegación">
         <div class="card-body">
           <h5 class="card-title">Arquitectura de la Navegación</h5>
-          <p class="card-text">Piensa en el usuario y garantiza la usabilidad</p>
-          <a href="arquitectura.html" class="btn btn-primary">Usabilidad y navegación.</a>
+          <p class="card-text">Piensa en el usuario y garantiza la usabilidad.</p>
+          <a href="arquitectura.html" class="btn btn-primary">Usabilidad y navegación</a>
         </div>
       </div>
       <div class="lesson-info">
-        <h3>Navegabilidad y experiencia de usario.</h3>
-        <p>Cómo pensar menús, rutas, páginas y jerarquías para que el usuario no se pierda.</p>
-        <ul> 
-          <li>Mapas de sitio y wireframes básicos.</li>
-          <li>Patrones de navegación (header, footer, breadcrumb).</li>
-          <li>Consejos de accesibilidad en enlaces y foco.</li>
+        <h3>Navegabilidad y experiencia de usuario</h3>
+        <p>Diseña menús, rutas y jerarquías pensando en la experiencia del usuario.</p>
+        <ul>
+          <li>Diseño centrado en la tarea</li>
+          <li>Patrones: header, footer, breadcrumb</li>
+          <li>Accesibilidad en enlaces y foco</li>
         </ul>
       </div>
     </article>
 
-     <!-- 2) HTML y CSS (otro índice dentro de /HTML) -->
+    <!-- 2) HTML y CSS -->
     <article class="lesson" id="html-css">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=8" class="card-img-top" alt="HTML y CSS">
+        <img src="https://picsum.photos/800/400?random=8" class="card-img-top" alt="HTML y CSS">
         <div class="card-body">
           <h5 class="card-title">HTML y CSS</h5>
-          <p class="card-text">Manual completo de HTML y CSS con ejemplos</p>
+          <p class="card-text">Manual completo con ejemplos.</p>
           <a href="html/index.html" class="btn btn-info">Ver manual</a>
         </div>
       </div>
       <div class="lesson-info">
         <h3>Manual de HTML y CSS</h3>
-        <p>Recogemos lo que hemos visto en este modulo para que te valga a modo de recordatorio.</p>
+        <p>Guía de consulta y recordatorio de todo el módulo.</p>
         <ul>
-          <li>Plantilla HTML5 comentada.</li>
-          <li>Buenas prácticas para rutas y assets.</li>
-          <li>CSS y declaración de estilos</li>
+          <li>Plantilla HTML5 comentada</li>
+          <li>Buenas prácticas de rutas y assets</li>
+          <li>CSS: estructura y declaración de estilos</li>
         </ul>
       </div>
     </article>
-<!-- Flex Grid Teoría -->
+
+    <!-- 3) Flex & Grid: Teoría -->
     <article class="lesson" id="flexgrid-teoria">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=12" class="card-img-top" alt="Flex y Grid Teoría">
+        <img src="https://picsum.photos/800/400?random=12" class="card-img-top" alt="Flex y Grid Teoría">
         <div class="card-body">
           <h5 class="card-title">Flex & Grid: Teoría</h5>
-          <p class="card-text">Comprende las diferencias y cuándo usar cada técnica.</p>
+          <p class="card-text">Cuándo usar cada técnica.</p>
           <a href="flexgridteoria.html" class="btn btn-primary">Leer teoría</a>
         </div>
       </div>
       <div class="lesson-info">
-        <h3>Usamos Grid y Flex y hacemos más fácil la maquetación</h3>
-        <p>Explicación clara de cuándo elegir <strong>Flexbox</strong> (alineaciones en una dimensión)
-           y cuándo usar <strong>Grid</strong> (layouts en dos dimensiones).</p>
+        <h3>Grid y Flex para maquetar mejor</h3>
+        <p>Elige <strong>Flexbox</strong> para una dimensión; <strong>Grid</strong> para dos dimensiones.</p>
         <ul>
-          <li>Principios de Flexbox: eje principal y secundario.</li>
-          <li>Principios de Grid: filas, columnas y áreas.</li>
-          <li>Comparativas prácticas con ejemplos visuales.</li>
-          <li>Recuerda leer el pdf que se agrego a la lección con los ejemplos prácticos.</li>
+          <li>Ejes principal/secundario en Flex</li>
+          <li>Filas, columnas y áreas en Grid</li>
+          <li>Comparativas con ejemplos visuales</li>
         </ul>
       </div>
     </article>
 
-     <!-- Ejercicio Grid -->
-    <article class="lesson" id="ejercicio-grid">
+    <!-- 4) Ejercicio Grid (1) -->
+    <article class="lesson" id="ejercicio-grid-1">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=11" class="card-img-top" alt="Ejercicio Grid">
+        <img src="https://picsum.photos/800/400?random=11" class="card-img-top" alt="Ejercicio Grid">
         <div class="card-body">
-          <h5 class="card-title">Ejercicio Grid</h5>
-          <p class="card-text">Pon a prueba tus conocimientos de CSS Grid con un ejercicio práctico.Diseña tu página con estructura responsivas</p>
+          <h5 class="card-title">Ejercicio Grid (el primero)</h5>
+          <p class="card-text">Pon a prueba CSS Grid. Diseña una estructura responsive.</p>
           <a href="ejerciciogrid.html" class="btn btn-success">Hacer el ejercicio</a>
         </div>
       </div>
       <div class="lesson-info">
-        <h3>Ayudate con el pdf de la plataforma y construye tu layout</h3>
-        <p>Un ejercicio guiado a través del pdf de la plataforma (ver) para construir un layout con <code>grid-template-areas</code>,
-           fracciones y columnas responsivas.</p>
+        <h3>Construye tu layout con áreas</h3>
+        <p>Guíate por el PDF para levantar un layout con <code>grid-template-areas</code>.</p>
         <ul>
-          <li>Crear cabecera, menú lateral, contenido y footer con Grid.</li>
-          <li>Aplicar áreas de rejilla y breakpoints.</li>
-          <li>Reflexionar sobre ventajas frente a Flexbox.</li>
-        </ul>
-      </div>
-    </article>
-<!-- Ejercicio Grid -->
-    <article class="lesson" id="ejercicio-grid">
-      <div class="card">
-        <img src="https://picsum.photos/400/200?random=11" class="card-img-top" alt="Ejercicio Grid">
-        <div class="card-body">
-          <h5 class="card-title">Intentando aclararnos con el GRID</h5>
-          <p class="card-text">Paso a paso para crear tu página con grid. No olvides que grid y flex se complementan</p>
-          <a href="mapasgrid.html" class="btn btn-success">ver el paso a paso de grid/a>
-        </div>
-      </div>
-      <div class="lesson-info">
-        <h3>Analizamos paso a paso como hacer un grid. Son sólo cuatro paso todo en CSS</h3>
-        <p>Un poco de teoria y un ejercicio para aprender a hacer una página completa dentro de un grid</p>
-        <ul>
-          <li>Crear cabecera, menú lateral, contenido y footer con Grid.</li>
-          <li>Aplicar áreas de rejilla y darle el tamaño a las areas.</li>
-          <li>Invocamos los componentes creados en html para que se posicionen en nuestro mapa</li>
+          <li>Header, sidebar, contenido y footer</li>
+          <li>Áreas de rejilla y breakpoints</li>
+          <li>Ventajas frente a Flexbox</li>
         </ul>
       </div>
     </article>
 
-    <!-- 3) Formularios Accesibles -->
+    <!-- 5) Ejercicio Grid (2) - paso a paso -->
+    <article class="lesson" id="ejercicio-grid-2">
+      <div class="card">
+        <img src="https://picsum.photos/800/400?random=16" class="card-img-top" alt="Paso a paso Grid">
+        <div class="card-body">
+          <h5 class="card-title">Intentando aclararnos con el GRID</h5>
+          <p class="card-text">Cuatro pasos para un layout completo con Grid.</p>
+          <a href="mapasgrid.html" class="btn btn-success">Ver paso a paso</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Guía en cuatro pasos</h3>
+        <p>Aprende a crear layouts solo con CSS Grid en cuatro pasos.</p>
+        <ul>
+          <li>Definir áreas y estructura</li>
+          <li>Tamaños de áreas y fracciones</li>
+          <li>Vincular elementos HTML a áreas</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 6) Formularios Accesibles -->
     <article class="lesson" id="formularios">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=2" class="card-img-top" alt="Formularios">
+        <img src="https://picsum.photos/800/400?random=2" class="card-img-top" alt="Formularios">
         <div class="card-body">
           <h5 class="card-title">Formularios Accesibles</h5>
           <p class="card-text">Crea formularios bien etiquetados y usables.</p>
@@ -225,68 +241,63 @@
         </div>
       </div>
       <div class="lesson-info">
-        <h3>Como hacer un formulario para contactar con tus clientes</h3>
-        <p>Relación entre <code>label</code>, <code>id</code> y <code>name</code>, tipos de inputs,
-           validación HTML y ayudas de texto.</p>
+        <h3>Contacto con clientes: el formulario</h3>
+        <p>Domina la relación <code>label</code>–<code>id</code>–<code>name</code>, tipos de input y validación nativa.</p>
         <ul>
-          <li>Inputs, selects, radios, checkboxes y <code>fieldset</code>/<code>legend</code>.</li>
-          <li>Mensajes de error con <code>aria-live</code> y <code>required</code>.</li>
-          <li>Patrones de accesibilidad y microcopy.</li>
+          <li>Inputs, selects, radios, checkboxes</li>
+          <li><code>fieldset</code>/<code>legend</code>, mensajes y <code>aria-live</code></li>
+          <li>Microcopy y accesibilidad</li>
         </ul>
       </div>
     </article>
 
-    <!-- 4) Actividad de Formularios -->
+    <!-- 7) Actividad de Formularios -->
     <article class="lesson" id="actividad-formularios">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=9" class="card-img-top" alt="Actividad de formularios">
+        <img src="https://picsum.photos/800/400?random=9" class="card-img-top" alt="Actividad de formularios">
         <div class="card-body">
           <h5 class="card-title">Actividad: Formularios</h5>
           <p class="card-text">Pon en práctica lo aprendido.</p>
           <a href="actividadformulario.html" class="btn btn-danger">Abrir actividad</a>
-           <a href="formulario.html" class="btn btn-success">Aprender más</a>
+          <a href="formulario.html" class="btn btn-success">Ver ejemplo</a>
         </div>
       </div>
       <div class="lesson-info">
         <h3>Construye un formulario</h3>
-        <p>Construirás  formularios completo con validación nativa, ayudas contextuales y resumen de errores.</p>
+        <p>Validación nativa, ayudas contextuales y manejo de errores.</p>
         <ul>
-          <li>Estructura semántica y agrupación por secciones.</li>
-          <li>Validaciones: patrones, longitudes, <code>required</code>.</li>
-          <li>Envío simulado y revisión de usabilidad.</li>
+          <li>Estructura semántica por secciones</li>
+          <li>Patrones, longitudes y <code>required</code></li>
+          <li>Envío simulado y revisión UX</li>
         </ul>
       </div>
     </article>
 
-
-    
-
-    <!-- 5) Móviles Primero -->
+    <!-- 8) Móviles Primero -->
     <article class="lesson" id="mobile-first">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=4" class="card-img-top" alt="Móviles Primero">
+        <img src="https://picsum.photos/800/400?random=4" class="card-img-top" alt="Móviles Primero">
         <div class="card-body">
-          <h5 class="card-title">Móviles Primero. mediaqueries/h5>
+          <h5 class="card-title">Móviles Primero · Media Queries</h5>
           <p class="card-text">Diseña desde pantallas pequeñas hacia grandes.</p>
           <a href="mediaqueries.html" class="btn btn-danger">Aprender más</a>
         </div>
       </div>
       <div class="lesson-info">
         <h3>Qué vas a encontrar</h3>
-        <p>Uso de <code>meta viewport</code>, breakpoints y estrategias responsive con
-           <em>grid</em>/<em>flex</em>.</p>
+        <p>Metodología mobile-first con <code>meta viewport</code>, breakpoints y responsive con Grid/Flex.</p>
         <ul>
-          <li>Media queries comunes y tokens fluidos.</li>
-          <li>Imágenes responsivas y <code>clamp()</code>.</li>
-          <li>Pruebas en dispositivos y DevTools.</li>
+          <li>Media queries comunes</li>
+          <li>Imágenes responsive y <code>clamp()</code></li>
+          <li>Pruebas en dispositivos y DevTools</li>
         </ul>
       </div>
     </article>
 
-    <!-- 6) Manual de Bootstrap -->
+    <!-- 9) Manual de Bootstrap -->
     <article class="lesson" id="bootstrap-manual">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=6" class="card-img-top" alt="Manual de Bootstrap">
+        <img src="https://picsum.photos/800/400?random=6" class="card-img-top" alt="Manual de Bootstrap">
         <div class="card-body">
           <h5 class="card-title">Manual de Bootstrap</h5>
           <p class="card-text">Componentes y utilidades para maquetar rápido.</p>
@@ -294,41 +305,41 @@
         </div>
       </div>
       <div class="lesson-info">
-        <h3>Qué vas a encontrar</h3>
-        <p>CDN, grid de 12 columnas, utilidades de espaciado, tipografía y componentes base.</p>
+        <h3>Aprende bootstrap y haz una web en minutos</h3>
+        <p>CDN, grid de 12 columnas, utilidades y componentes esenciales.</p>
         <ul>
-          <li>Grid, contenedores y breakpoints.</li>
-          <li>Cards, modals, alerts y navbars.</li>
-          <li>Buenas prácticas de sobreescritura CSS.</li>
+          <li>Grid, contenedores y breakpoints</li>
+          <li>Cards, modals, alerts y navbars</li>
+          <li>Buenas prácticas de sobreescritura</li>
         </ul>
       </div>
     </article>
 
-    <!-- 7) La Magia de Bootstrap -->
+    <!-- 10) La Magia de Bootstrap -->
     <article class="lesson" id="bootstrap-magia">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=10" class="card-img-top" alt="La Magia de Bootstrap">
+        <img src="https://picsum.photos/800/400?random=10" class="card-img-top" alt="La Magia de Bootstrap">
         <div class="card-body">
-          <h5 class="card-title">¿Qué hacemos con bootstrap??</h5>
+          <h5 class="card-title">¿Qué hacemos con Bootstrap?</h5>
           <p class="card-text">Trucos y utilidades avanzadas.</p>
           <a href="htmlconbootstrap.html" class="btn btn-primary">Usa Bootstrap</a>
         </div>
       </div>
       <div class="lesson-info">
-        <h3>Un diseño con Bootstrap sin hoja de estilo</h3>
-        <p>Patrones de layout, helpers menos conocidos y combinaciones productivas.</p>
+        <h3>Un diseño sin CSS propio</h3>
+        <p>Patrones de layout, helpers menos conocidos y prototipado rápido.</p>
         <ul>
-          <li>Utility-first con clases personalizadas.</li>
+          <li>Utility-first con clases</li>
           <li>Accesibilidad con roles y aria-*</li>
-          <li>Pequeños hacks para prototipar.</li>
+          <li>Pequeños hacks productivos</li>
         </ul>
       </div>
     </article>
 
-    <!-- 8) Actividad con Bootstrap -->
+    <!-- 11) Actividad con Bootstrap -->
     <article class="lesson" id="actividad-bootstrap">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=5" class="card-img-top" alt="Actividad con Bootstrap">
+        <img src="https://picsum.photos/800/400?random=5" class="card-img-top" alt="Actividad con Bootstrap">
         <div class="card-body">
           <h5 class="card-title">Actividad con Bootstrap</h5>
           <p class="card-text">Practica y afianza conocimientos.</p>
@@ -337,175 +348,144 @@
       </div>
       <div class="lesson-info">
         <h3>Qué vas a hacer</h3>
-        <p>Una landing responsive con navbar, hero, cards y footer usando la grilla de Bootstrap.</p>
+        <p>Landing responsive con navbar, hero, cards y footer usando el grid de Bootstrap.</p>
         <ul>
-          <li>Estructura semántica + utilidades.</li>
-          <li>Adaptación a móviles/tablet/desktop.</li>
-          <li>Checklist de accesibilidad visual.</li>
+          <li>Estructura semántica + utilidades</li>
+          <li>Adaptación móvil/tablet/desktop</li>
+          <li>Checklist de accesibilidad</li>
         </ul>
       </div>
     </article>
 
-    <!-- 9) Animaciones -->
+    <!-- 12) Animaciones -->
     <article class="lesson" id="animaciones">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=7" class="card-img-top" alt="Animaciones CSS">
+        <img src="https://picsum.photos/800/400?random=7" class="card-img-top" alt="Animaciones CSS">
         <div class="card-body">
           <h5 class="card-title">Animaciones para inspirarte</h5>
-          <p class="card-text">Dale vida a tu página con transiciones y keyframes.</p>
+          <p class="card-text">Transiciones y <code>@keyframes</code> con buenas prácticas.</p>
           <a href="animaciones.html" class="btn btn-danger">Ir a la actividad</a>
         </div>
       </div>
       <div class="lesson-info">
-        <h3>Qué vas a encontrar</h3>
-        <p>Transiciones, transformaciones y <code>@keyframes</code> con ejemplos listos para reutilizar.</p>
+        <h3>Da vida a tu web con animaciones sin codigo</h3>
+        <p>Efectos listos para usar con foco en accesibilidad y rendimiento.</p>
         <ul>
-          <li>Hover states accesibles.</li>
-          <li>Animaciones de entrada/salida (fade, slide, scale).</li>
-          <li>Buenas prácticas de rendimiento.</li>
+          <li>Estados :hover accesibles</li>
+          <li>Entradas/salidas: fade, slide, scale</li>
+          <li>Rendimiento y preferencia de movimiento</li>
         </ul>
       </div>
     </article>
 
-     <!-- REPASO FINAL -->
-<article class="lesson" id="repasofinal">
-  <div class="card">
-    <img src="https://picsum.photos/400/200?random=9" class="card-img-top" alt="Repaso Final de HTML y CSS">
-    <div class="card-body">
-      <h5 class="card-title">(Incompleto) Resumen de css y estructura de proyecto</h5>
-      <p class="card-text">
-       Recordamos css, estructura de proyecto, colores root, migas de pan.
-      </p>
-      <a href="repasofinal/index.html" class="btn btn-primary">Entrar al repaso</a>
-    </div>
-  </div>
-  <div class="lesson-info">
-    <h3>Migas de pan, insertar imagenes y multimedia, colo</h3>
-    <p>
-      En este apartado consolidamos los conocimientos con ejemplos prácticos y ejercicios:
-    </p>
-    <ul>
-      <li>📌 Selectores de CSS, cascada y herencia.</li>      
-      <li>📌 Multimedia: imágenes, audio, vídeo y <code>iframe</code> (YouTube, etc.).</li>
-      <li>📌 Migas de pan (breadcrumbs) y su importancia en la usabilidad.</li>
-      
-    </ul>
-    <p>
-      Este repaso final te servirá para afianzar los conocimientos ya adquiridos.
-    </p>
-  </div>
-</article>
-
-<!-- REPASO FINAL -->
-<article class="lesson" id="repasofinal">
-  <div class="card">
-    <img src="https://picsum.photos/400/200?random=12" class="card-img-top" alt="Repaso Final: Estructuras con Grid y Bootstrap">
-    <div class="card-body">
-      <h5 class="card-title">Ejercicio final de actividad</h5>
-      <p class="card-text">
-        Pon en práctica todo lo aprendido en maquetación web: organiza contenidos con
-        <strong>CSS Grid</strong> y el sistema de cuadrículas de <strong>Bootstrap</strong>.
-      </p>
-      <a href="Ejerciciofinalhtmlycss/index.html" class="btn btn-primary">Ir al ejercicio</a>
-    </div>
-  </div>
-  <div class="lesson-info">
-    <h3>Ideas para practicar y aprender</h3>
-    <p>
-      Aquí tienes una actividad con la que podrás practicar todo lo que hemos visto y seguro que muchas cosas más. 
-    </p>
-    <ul>
-      <li>Garantiza la usabilidad utilizando el naveador y las etiquetas alt de las</li>
-      <li>📌Si quieres puedes crear un Grid que ordene tu contenido (body)
-      <li>📌 Usa al menos cinco etiquetas semanticas. No te olvides de usar H1. 
-      <li>📌Crea un archivo externo para tu css. Si quieres puedes usar Bootstrap pero acuerdate de pisarlo con tu hoja de estilo.</li>
-      <li>📌Inserta una imagen, video o sonido.</li>
-      <li>📌Entrega con un enlace en Netlify, subelo a tu git y comparte el enlace o enviamelo por la plataforma.</li>
-    </ul>
-    
-    </ul>
-    <p>
-      Es un ejercicio de síntesis: aprenderás a decidir cuándo conviene usar
-      <em>Grid puro</em> y cuándo aprovechar las utilidades de <em>Bootstrap</em>.
-    </p>
-  </div>
-</article>
-
-
-
-        <!-- Repaso básico de HTML -->
-    <article class="lesson" id="repaso-html">
+    <!-- 13) Repaso Final (1) -->
+    <article class="lesson" id="repasofinal-1">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=13" class="card-img-top" alt="Repaso básico de HTML">
+        <img src="https://picsum.photos/800/400?random=9" class="card-img-top" alt="Repaso Final de HTML y CSS">
         <div class="card-body">
-          <h5 class="card-title">Repaso  de HTML</h5>
-          <p class="card-text">Recordatorio  de etiquetas y estructura de un documento.Completa el documento con las etiquetas que faltan</p>
-          <a href="repaso2.html" class="btn btn-primary">Plantilla para completar de HTML/a>
+          <h5 class="card-title">(Incompleto) Resumen de CSS y estructura de proyecto</h5>
+          <p class="card-text">CSS, estructura, colores root y breadcrumbs.</p>
+          <a href="repasofinal/index.html" class="btn btn-primary">Entrar al repaso</a>
         </div>
       </div>
       <div class="lesson-info">
-        <h3>Ejercicio para completar con etiquetas que faltan</h3>
-        <p>Una síntesis clara para reforzar la base de HTML antes de avanzar a temas más complejos.</p>
+        <h3>Migas de pan, multimedia y colores</h3>
+        <p>Revisión de selectores, multimedia (img/audio/video/iframe) y navegación avanzada.</p>
         <ul>
-          <li>Plantilla mínima con <code>&lt;!DOCTYPE&gt;</code>, <code>&lt;head&gt;</code> y <code>&lt;body&gt;</code>.</li>
-          <li>Encabezados, párrafos, listas y enlaces.</li>
-          <li>Buenas prácticas de indentación y accesibilidad básica.</li>
+          <li>📌 Selectores, cascada y herencia</li>
+          <li>📌 Multimedia integrada</li>
+          <li>📌 Breadcrumbs y usabilidad</li>
         </ul>
       </div>
     </article>
 
-    <!-- Repaso con CSS -->
+    <!-- 14) Repaso Final (2) Actividad final -->
+    <article class="lesson" id="repasofinal-2">
+      <div class="card">
+        <img src="https://picsum.photos/800/400?random=12" class="card-img-top" alt="Repaso Final: Estructuras con Grid y Bootstrap">
+        <div class="card-body">
+          <h5 class="card-title">Actividad Final</h5>
+          <p class="card-text">Aplica Grid y Bootstrap en un sitio completo.</p>
+          <a href="Ejerciciofinalhtmlycss/index.html" class="btn btn-primary">Ir al ejercicio</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Ideas para practicar y aprender</h3>
+        <p>Tu desafío: crear un sitio aplicando todas las técnicas aprendidas.</p>
+        <ul>
+          <li>Usabilidad e imágenes con <code>alt</code></li>
+          <li>📌 Grid para ordenar contenido (opcional)</li>
+          <li>📌 Mínimo 5 etiquetas semánticas (incluye <code>h1</code>)</li>
+          <li>📌 CSS externo; puedes usar Bootstrap y sobreescribirlo</li>
+          <li>📌 Inserta imagen, vídeo o sonido</li>
+          <li>📌 Entrega en Netlify y Git (comparte enlace)</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 15) Repaso HTML -->
+    <article class="lesson" id="repaso-html">
+      <div class="card">
+        <img src="https://picsum.photos/800/400?random=13" class="card-img-top" alt="Repaso básico de HTML">
+        <div class="card-body">
+          <h5 class="card-title">Repaso de HTML</h5>
+          <p class="card-text">Completa la plantilla con etiquetas que faltan.</p>
+          <a href="repaso2.html" class="btn btn-primary">Plantilla para completar de HTML</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Ejercicio de fundamentos</h3>
+        <p>Estructura mínima (<code>doctype</code>, <code>head</code>, <code>body</code>) y elementos básicos.</p>
+        <ul>
+          <li>Encabezados, párrafos, listas y enlaces</li>
+          <li>Indentación y accesibilidad básica</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 16) Repaso CSS -->
     <article class="lesson" id="repaso-css">
       <div class="card">
-        <img src="https://picsum.photos/400/200?random=14" class="card-img-top" alt="Repaso de CSS">
+        <img src="https://picsum.photos/800/400?random=14" class="card-img-top" alt="Repaso de CSS">
         <div class="card-body">
-          <h5 class="card-title">Dale estilo a tu web. Recuerda los selectores y la herencia.</h5>
+          <h5 class="card-title">Estilos: selectores y herencia</h5>
           <p class="card-text">Refuerza los conceptos CSS.</p>
           <a href="repaso.html" class="btn btn-success">Plantilla para completar de CSS</a>
         </div>
       </div>
       <div class="lesson-info">
-        <h3>Incluir etiquetas css</h3>
-        <p>Una guía breve con ejemplos prácticos para dar estilo a tu HTML y comprender cómo funciona la cascada.</p>
+        <h3>Practica CSS</h3>
+        <p>Selecciona, declara y organiza tu hoja de estilos.</p>
         <ul>
-          <li>Selectores básicos, combinadores y pseudoclases.</li>
-          <li>Uso de colores, tipografías, márgenes y paddings.</li>
-          <li>Buenas prácticas para hojas de estilo organizadas.</li>
+          <li>Selectores, combinadores, pseudoclases</li>
+          <li>Colores, tipografías, márgenes y paddings</li>
+          <li>Buenas prácticas de organización</li>
         </ul>
       </div>
     </article>
 
-    <!-- TEST FINAL -->
-<article class="lesson" id="testfinal">
-  <div class="card">
-    <img src="https://picsum.photos/400/200?random=15" class="card-img-top" alt="Test de Repaso HTML, CSS y más">
-    <div class="card-body">
-      <h5 class="card-title">Test Final · HTML, CSS, Bootstrap & Más</h5>
-      <p class="card-text">
-        Pon a prueba tus conocimientos con un cuestionario interactivo de más de 30 preguntas,
-        con explicaciones y ejemplos de código.
-      </p>
-      <a href="test.html" class="btn btn-primary">Hacer el test</a>
-    </div>
-  </div>
-  <div class="lesson-info">
-    <h3>Test para repasar y recordar</h3>
-    <p>
-      El test incluye preguntas de todos los temas vistos en clase para consolidar la teoría y la práctica:
-    </p>
-    <ul>
-      <li>📌 HTML: etiquetas semánticas, formularios, multimedia.</li>
-      <li>📌 CSS: selectores, cascada, herencia y variables.</li>
-      <li>📌 Flexbox y Grid: organización en filas y columnas.</li>
-      <li>📌 Bootstrap: sistema de cuadrículas, botones y componentes.</li>
-      <li>📌 Usabilidad: breadcrumbs, accesibilidad y buenas prácticas.</li>
-    </ul>
-    <p>
-      Cada pregunta tiene retroalimentación inmediata, explicaciones y ejemplos en código.
-    </p>
-  </div>
-</article>
-
+    <!-- 17) Test Final -->
+    <article class="lesson" id="testfinal">
+      <div class="card">
+        <img src="https://picsum.photos/800/400?random=15" class="card-img-top" alt="Test de Repaso HTML, CSS y más">
+        <div class="card-body">
+          <h5 class="card-title">Test Final · HTML, CSS, Bootstrap & Más</h5>
+          <p class="card-text">Más de 30 preguntas con explicación y ejemplos.</p>
+          <a href="test.html" class="btn btn-primary">Hacer el test</a>
+        </div>
+      </div>
+      <div class="lesson-info">
+        <h3>Evalúa y consolida</h3>
+        <p>Preguntas sobre todo el temario con feedback inmediato.</p>
+        <ul>
+          <li>HTML: semántica, formularios, multimedia</li>
+          <li>CSS: selectores, cascada, herencia y variables</li>
+          <li>Flexbox y Grid</li>
+          <li>Bootstrap: grid, botones, componentes</li>
+          <li>Usabilidad y accesibilidad</li>
+        </ul>
+      </div>
+    </article>
 
   </main>
 

@@ -3,7 +3,64 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Formulario Síntesis — Tipos de Entrada y Buenas Prácticas</title>
+  <title>Formulario Síntesis — Ti          <!-- 📧 CAMPO EMAIL con validac          <div>
+            <label for="apellidos">Apellidos Completos <span class="req" aria-hidden="true">*</span></label>
+            <input id="apellidos" name="apellidos" type="text"
+                   placeholder="García Martínez"
+                   title="Introduce tus apellidos completos"
+                   minlength="2" required>
+            <small>🏷️ <strong>Validación:</strong> Usa mayúscula inicial. El atributo <code>minlength</code> requiere mínimo 2 caracteres.</small>
+          </div>mática -->
+          <div>
+            <label for="email">Correo Electrónico <span class="req" aria-hidden="true">*</span></label>
+            <input id="email" na      <div class="actions">
+        <button type="reset" class="btn-secondary">🔄 Limpiar Formulario</button>
+        <button type="submit" class="btn-primary">🚀 Enviar Inscripción</button>
+      </div>
+    </form>
+
+    <!-- 💡 SECCIÓN EDUCATIVA -->
+    <div style="background: var(--panel); border: 2px dashed var(--brand-2); border-radius: 14px; padding: 1.5rem; margin-top: 2rem;">
+      <h3 style="margin: 0 0 1rem; color: var(--brand);">🎓 ¿Qué has aprendido?</h3>
+      <div style="display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div>
+          <h4 style="margin: 0 0 0.5rem; color: var(--ink);">📋 Elementos Estructurales:</h4>
+          <ul style="margin: 0; color: var(--muted); font-size: 0.9rem;">
+            <li><strong>&lt;fieldset&gt;</strong> + <strong>&lt;legend&gt;</strong>: Agrupa campos relacionados</li>
+            <li><strong>&lt;small&gt;</strong>: Texto de ayuda y explicaciones</li>
+            <li><strong>&lt;span&gt;</strong>: Resalta contenido importante</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin: 0 0 0.5rem; color: var(--ink);">⚙️ Atributos Clave:</h4>
+          <ul style="margin: 0; color: var(--muted); font-size: 0.9rem;">
+            <li><strong>placeholder</strong>: Texto de ejemplo en el campo</li>
+            <li><strong>title</strong>: Tooltip informativo al pasar el ratón</li>
+            <li><strong>pattern</strong>: Validación personalizada con regex</li>
+            <li><strong>min/max/step</strong>: Control de rangos numéricos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 2rem; padding: 1rem; background: #fff7ee; border-radius: 10px; color: var(--muted);">
+      💡 <strong>Consejo profesional:</strong> El atributo <strong>title</strong> se muestra como "tooltip" al pasar el ratón en escritorio. En dispositivos móviles puede no aparecer, por eso siempre complementa con elementos <strong>&lt;small&gt;</strong> visibles.
+    </p>" type="email"
+                   placeholder="tu.nombre@ejemplo.com"
+                   title="El navegador validará automáticamente el formato de email"
+                   required>
+            <small>📧 <strong>Tipo email:</strong> El navegador valida automáticamente la sintaxis (texto@dominio.tld). ¡Prueba a escribir mal!</small>
+          </div>
+
+          <!-- ☎️ CAMPO TELÉFONO con patrón personalizado -->
+          <div>
+            <label for="tel">Teléfono Móvil (España)</label>
+            <input id="tel" name="tel" type="tel"
+                   placeholder="612 345 678"
+                   pattern="^[679]\d{2}[\s\-]?\d{3}[\s\-]?\d{3}$"
+                   title="Formato: 9 dígitos empezando por 6, 7 o 9. Puede llevar espacios o guiones">
+            <small>☎️ <strong>Tipo tel + pattern:</strong> Se aceptan "612345678", "612 345 678" o "612-345-678".</small>
+          </div>enas Prácticas</title>
 
   <style>
     /* ===========================
@@ -136,29 +193,30 @@
 </head>
 <body>
   <header class="container">
-    <h1>Formulario síntesis de entradas HTML</h1>
-    <p>Repaso práctico de <strong>fieldset/legend</strong>, <strong>small</strong>, <strong>span</strong>, atributo <strong>title</strong> y <strong>placeholder</strong>, con múltiples tipos de input.</p>
+    <h1>🎓 Aprende Formularios HTML: Guía Práctica Completa</h1>
+    <p>Descubre todos los tipos de campos de entrada con ejemplos interactivos. Aprende cómo usar <strong>fieldset/legend</strong>, <strong>small</strong>, <strong>span</strong>, <strong>title</strong> y <strong>placeholder</strong> para crear formularios profesionales y accesibles.</p>
   </header>
 
   <main class="container">
     <form action="#" method="post" novalidate>
       <!-- ============================
-           GRUPO 1 · Datos personales
-           Usa fieldset + legend, placeholders, title y small con aria-describedby
+           📝 SECCIÓN 1: Información Personal
+           Aprende: fieldset + legend, placeholders, title y small con aria-describedby
+           Elementos clave: input[text], input[email], input[tel]
            ============================ -->
       <fieldset>
-        <legend>Datos personales</legend>
+        <legend>📝 Información Personal Básica</legend>
 
         <div class="grid cols-2">
-          <!-- Texto + placeholder + title + small -->
+          <!-- 🏷️ CAMPO TEXTO + placeholder + title + small -->
           <div>
-            <label for="nombre">Nombre <span class="req" aria-hidden="true">*</span></label>
+            <label for="nombre">Nombre Completo <span class="req" aria-hidden="true">*</span></label>
             <input id="nombre" name="nombre" type="text"
-                   placeholder="Ej: Inmaculada"
-                   title="Escribe tu nombre tal como aparece en tu documento"
+                   placeholder="Ej: María Carmen"
+                   title="Escribe tu nombre tal como aparece en tu documento de identidad"
                    minlength="2" required
                    aria-describedby="ayuda-nombre">
-            <small id="ayuda-nombre">Entre 2 y 60 caracteres. Sin emojis.</small>
+            <small id="ayuda-nombre">💡 <strong>Aprende:</strong> El atributo <code>placeholder</code> muestra texto de ejemplo. <code>title</code> aparece al pasar el ratón.</small>
           </div>
 
           <div>
@@ -193,160 +251,173 @@
       </fieldset>
 
       <!-- ============================
-           GRUPO 2 · Preferencias
-           Radios, select requerido, datalist, range con step, color, url
+           🎯 SECCIÓN 2: Opciones y Selecciones  
+           Aprende: radio buttons, select, datalist, range, color, url
+           Elementos clave: input[radio], select, datalist, input[range], input[color], input[url]
            ============================ -->
       <fieldset>
-        <legend>Preferencias de viaje</legend>
+        <legend>🎯 Opciones y Preferencias Interactivas</legend>
 
-        <!-- Radios en línea (uno requerido en el grupo) -->
+        <!-- 🔘 BOTONES RADIO (solo una opción) -->
         <div class="grid">
           <div>
-            <label>Asiento preferido <span class="req" aria-hidden="true">*</span></label>
-            <div class="inline" role="radiogroup" aria-label="Asiento preferido">
-              <label><input type="radio" name="asiento" value="ventanilla" required title="Selecciona una opción"> Ventanilla</label>
-              <label><input type="radio" name="asiento" value="pasillo"> Pasillo</label>
-              <label><input type="radio" name="asiento" value="medio"> Medio</label>
+            <label>Nivel de Experiencia en HTML <span class="req" aria-hidden="true">*</span></label>
+            <div class="inline" role="radiogroup" aria-label="Nivel de experiencia">
+              <label><input type="radio" name="nivel" value="principiante" required title="Selecciona tu nivel"> 🌱 Principiante</label>
+              <label><input type="radio" name="nivel" value="intermedio"> 📚 Intermedio</label>
+              <label><input type="radio" name="nivel" value="avanzado"> 🚀 Avanzado</label>
             </div>
-            <small>Selecciona al menos una opción.</small>
+            <small>🔘 <strong>Radio buttons:</strong> Solo puedes elegir UNA opción. Perfecto para opciones mutuamente excluyentes.</small>
           </div>
 
-          <!-- Select requerido con opción nula -->
+          <!-- 📋 SELECT con opción vacía obligatoria -->
           <div>
-            <label for="clase">Clase <span class="req" aria-hidden="true">*</span></label>
-            <select id="clase" name="clase" required title="Elige una clase">
-              <option value="" disabled selected>-- Selecciona clase --</option>
-              <option value="turista">Turista</option>
-              <option value="premium">Turista Premium</option>
-              <option value="business">Business</option>
+            <label for="curso">Curso de Interés <span class="req" aria-hidden="true">*</span></label>
+            <select id="curso" name="curso" required title="Elige el curso que más te interese">
+              <option value="" disabled selected>-- Selecciona un curso --</option>
+              <option value="html-css">🎨 HTML y CSS Básico</option>
+              <option value="javascript">⚡ JavaScript Moderno</option>
+              <option value="react">⚛️ React desde Cero</option>
+              <option value="fullstack">🌟 Full Stack Completo</option>
             </select>
-            <small>Usa la opción superior para forzar la elección.</small>
+            <small>📋 <strong>Select:</strong> La primera opción vacía obliga al usuario a hacer una elección consciente.</small>
           </div>
 
-          <!-- Datalist (sugerencias) + small con id -->
+          <!-- 🎯 DATALIST (sugerencias inteligentes) -->
           <div>
-            <label for="ciudad">Ciudad de salida</label>
+            <label for="ciudad">Tu Ciudad o Localidad</label>
             <input id="ciudad" name="ciudad" list="ciudades"
-                   placeholder="Escribe o elige…"
-                   title="Puedes escribir libremente o elegir de la lista"
+                   placeholder="Escribe tu ciudad..."
+                   title="Puedes escribir libremente o elegir de las sugerencias"
                    aria-describedby="ayuda-ciudad">
             <datalist id="ciudades">
               <option value="Madrid">
               <option value="Barcelona">
-              <option value="Sevilla">
               <option value="Valencia">
+              <option value="Sevilla">
+              <option value="Zaragoza">
+              <option value="Málaga">
+              <option value="Murcia">
+              <option value="Palma">
+              <option value="Las Palmas">
               <option value="Bilbao">
             </datalist>
-            <small id="ayuda-ciudad">Puedes escribir tu ciudad o elegir una sugerida.</small>
+            <small id="ayuda-ciudad">🎯 <strong>Datalist:</strong> ¡Escribe y verás sugerencias! Combina la libertad del texto con opciones predefinidas.</small>
           </div>
 
-          <!-- Range con min/max/step y ayuda -->
+          <!-- 🎚️ CONTROL DESLIZANTE (range) -->
           <div>
-            <label for="equipaje">Equipaje (kg)</label>
-            <input id="equipaje" name="equipaje" type="range"
-                   min="0" max="40" step="5"
-                   title="Mueve el control en saltos de 5 kg">
-            <small>Rango 0–40 kg en incrementos de 5.</small>
+            <label for="experiencia">Años de Experiencia Programando</label>
+            <input id="experiencia" name="experiencia" type="range"
+                   min="0" max="20" step="1" value="2"
+                   title="Mueve el control para seleccionar años de experiencia"
+                   oninput="this.nextElementSibling.textContent = this.value + ' años'">
+            <small>🎚️ <strong>Range:</strong> <span>2 años</span> - Control deslizante perfecto para valores numéricos con límites.</small>
           </div>
 
-          <!-- Color (input color) -->
+          <!-- 🎨 SELECTOR DE COLOR -->
           <div>
-            <label for="color">Color preferido de la etiqueta</label>
-            <input id="color" name="color" type="color" value="#F16529" title="Elige un color">
-            <small>Control nativo de color.</small>
+            <label for="color">Tu Color Favorito</label>
+            <input id="color" name="color" type="color" value="#E44D26" title="Haz clic para abrir el selector de color">
+            <small>🎨 <strong>Color picker:</strong> Selector nativo de colores. ¡Haz clic y explora la paleta!</small>
           </div>
 
-          <!-- URL -->
+          <!-- 🌐 CAMPO URL -->
           <div>
-            <label for="web">Tu web (opcional)</label>
-            <input id="web" name="web" type="url"
-                   placeholder="https://tu-dominio.com"
-                   title="Incluye https:// al comienzo">
-            <small>Ej.: https://inmacontreras.com</small>
+            <label for="portfolio">Tu Portfolio Web (opcional)</label>
+            <input id="portfolio" name="portfolio" type="url"
+                   placeholder="https://tu-portfolio.com"
+                   title="Incluye https:// al comienzo de la URL">
+            <small>🌐 <strong>URL input:</strong> Valida automáticamente el formato de URLs. Debe empezar con http:// o https://</small>
           </div>
         </div>
       </fieldset>
 
       <!-- ============================
-           GRUPO 3 · Fechas y números
-           date con min/max, number con step
+           📅 SECCIÓN 3: Fechas y Números
+           Aprende: input[date], input[number] con restricciones
+           Elementos clave: min, max, step para controlar rangos
            ============================ -->
       <fieldset>
-        <legend>Fechas y cantidades</legend>
+        <legend>📅 Fechas y Cantidades Numéricas</legend>
 
         <div class="grid cols-3">
+          <!-- 📅 FECHA con restricciones -->
           <div>
-            <label for="ida">Fecha de ida <span class="req" aria-hidden="true">*</span></label>
-            <input id="ida" name="ida" type="date" required
-                   min="2025-01-01" max="2026-12-31"
-                   title="Selecciona una fecha válida (formato ISO: aaaa-mm-dd)">
-            <small>Restringida con <code>min</code> y <code>max</code>.</small>
+            <label for="nacimiento">Fecha de Nacimiento <span class="req" aria-hidden="true">*</span></label>
+            <input id="nacimiento" name="nacimiento" type="date" required
+                   min="1950-01-01" max="2010-12-31"
+                   title="Selecciona tu fecha de nacimiento">
+            <small>📅 <strong>Date input:</strong> Calendario nativo con límites <code>min</code> y <code>max</code>.</small>
           </div>
 
+          <!-- 📅 FECHA de inicio del curso -->
           <div>
-            <label for="vuelta">Fecha de vuelta</label>
-            <input id="vuelta" name="vuelta" type="date"
-                   min="2025-01-02" max="2026-12-31"
-                   title="Debe ser posterior a la ida">
-            <small>Ajusta el rango según tus reglas.</small>
+            <label for="inicio">Fecha Deseada de Inicio</label>
+            <input id="inicio" name="inicio" type="date"
+                   min="2025-01-01" max="2025-12-31"
+                   title="¿Cuándo te gustaría empezar el curso?">
+            <small>📅 <strong>Restricciones:</strong> Solo permite fechas del año 2025.</small>
           </div>
 
+          <!-- 🔢 NÚMERO con incrementos -->
           <div>
-            <label for="personas">Personas</label>
-            <input id="personas" name="personas" type="number"
-                   min="1" max="9" step="1" value="1"
-                   title="Valores enteros de 1 a 9">
-            <small>Usa <code>min</code>, <code>max</code> y <code>step</code> para restringir.</small>
+            <label for="horas">Horas de Estudio Semanales</label>
+            <input id="horas" name="horas" type="number"
+                   min="1" max="40" step="0.5" value="5"
+                   title="¿Cuántas horas puedes dedicar por semana?">
+            <small>🔢 <strong>Number + step:</strong> Incrementos de 0.5 horas. Usa las flechitas ↑↓</small>
           </div>
         </div>
       </fieldset>
 
       <!-- ============================
-           GRUPO 4 · Seguridad y archivo
-           password con pattern, textarea con minlength/maxlength, file
+           🔐 SECCIÓN 4: Campos Avanzados
+           Aprende: password con pattern, textarea, file, checkbox
+           Elementos clave: validación compleja, archivos, texto largo
            ============================ -->
       <fieldset>
-        <legend>Seguridad y comentarios</legend>
+        <legend>🔐 Campos Avanzados y Multimedia</legend>
 
         <div class="grid">
-          <!-- Password con patrón y tooltip (title) -->
+          <!-- 🔐 CONTRASEÑA con patrón complejo -->
           <div>
-            <label for="pass">Contraseña <span class="req" aria-hidden="true">*</span></label>
+            <label for="pass">Crea una Contraseña Segura <span class="req" aria-hidden="true">*</span></label>
             <input id="pass" name="pass" type="password" required
                    placeholder="••••••••"
-                   title="Min. 8 caracteres: 1 mayúscula, 1 minúscula, 1 número y 1 símbolo"
+                   title="Mínimo 8 caracteres: 1 mayúscula, 1 minúscula, 1 número y 1 símbolo (!@#$%)"
                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}">
-            <small>Validación con <code>pattern</code> (lookaheads) + ayuda en <code>title</code>.</small>
+            <small>🔐 <strong>Password + pattern:</strong> Validación avanzada con expresiones regulares. ¡Prueba "HolaMundo123!"</small>
           </div>
 
-          <!-- Textarea con límites -->
+          <!-- 📝 TEXTAREA para texto largo -->
           <div>
-            <label for="msg">Mensaje para la agencia</label>
-            <textarea id="msg" name="msg" rows="4"
-                      placeholder="Cuéntanos necesidades especiales (asistencia, dieta, etc.)"
-                      title="Entre 10 y 200 caracteres"
-                      minlength="10" maxlength="200"
-                      aria-describedby="ayuda-msg"></textarea>
-            <small id="ayuda-msg">Mínimo 10 y máximo 200 caracteres.</small>
+            <label for="motivacion">¿Por qué quieres aprender programación?</label>
+            <textarea id="motivacion" name="motivacion" rows="4"
+                      placeholder="Cuéntanos tus motivaciones, objetivos profesionales, proyectos que te emocionan..."
+                      title="Comparte tu historia y motivaciones"
+                      minlength="50" maxlength="500"
+                      aria-describedby="ayuda-motivacion"></textarea>
+            <small id="ayuda-motivacion">📝 <strong>Textarea:</strong> Entre 50 y 500 caracteres. Perfecto para textos largos con <code>minlength</code> y <code>maxlength</code>.</small>
           </div>
 
-          <!-- Archivo -->
+          <!-- 📎 SUBIDA DE ARCHIVOS -->
           <div>
-            <label for="doc">Documento de identidad (PDF/JPG)</label>
-            <input id="doc" name="doc" type="file"
-                   accept=".pdf,.jpg,.jpeg,.png"
-                   title="Adjunta un archivo en formato PDF o imagen">
-            <small>El atributo <code>accept</code> restringe los tipos.</small>
+            <label for="cv">Sube tu CV (Opcional)</label>
+            <input id="cv" name="cv" type="file"
+                   accept=".pdf,.doc,.docx"
+                   title="Adjunta tu currículum en formato PDF o Word">
+            <small>📎 <strong>File input:</strong> El atributo <code>accept</code> restringe tipos: .pdf, .doc, .docx</small>
           </div>
 
-          <!-- Checkbox términos con title y <span> para énfasis -->
+          <!-- ☑️ CHECKBOX con términos -->
           <div class="hint">
             <label>
               <input type="checkbox" name="terminos" required
-                     title="Debes aceptar para continuar">
-              Acepto los <span style="font-weight:700;">términos y condiciones</span>.
+                     title="Debes aceptar para continuar con la inscripción">
+              ☑️ Acepto los <span style="font-weight:700; color: var(--brand);">términos y condiciones</span> del curso.
             </label>
-            <small>El atributo <code>required</code> obliga a marcar el consentimiento.</small>
+            <small>☑️ <strong>Checkbox + required:</strong> El atributo <code>required</code> obliga a marcar antes de enviar. <code>&lt;span&gt;</code> resalta texto importante.</small>
           </div>
         </div>
       </fieldset>
