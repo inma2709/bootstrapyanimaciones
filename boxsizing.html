@@ -393,9 +393,92 @@ grid-template-columns: 300px 1fr 1fr;
 
 /* Resiliente: minmax con fr (crece pero no baja de 240px) */
 grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));</code></pre>
+
+<p>Crea tantas columnas como quepan en el contenedor, cada una de al menos 240px, que pueden expandirse hasta repartirse el ancho sobrante (1fr cada una).</p>
         </details>
       </div>
     </section>
+    <section class="lesson lesson--grid">
+  <h2>Configuración de columnas en CSS Grid</h2>
+
+  <p>
+    Sí, puedes definir las columnas como quieras (<code>2fr 1fr 3fr</code>, por ejemplo).
+    Pero ojo: las unidades <code>fr</code> reparten el <strong>espacio libre</strong> del contenedor
+    y respetan el <strong>tamaño mínimo del contenido</strong>. Eso significa que si en una columna
+    hay un texto muy largo o algo “inrompible”, esa columna puede crecer más de lo esperado
+    (rompiendo la proporción).
+  </p>
+
+  <h3>Reglas rápidas</h3>
+  <ul>
+    <li><code>fr</code> = fracción del espacio libre (tras restar <code>gap</code> y columnas fijas).</li>
+    <li>El contenido impone límites mínimos (<em>min-content</em>).</li>
+    <li>Para que las fracciones se cumplan mejor y evitar desbordes, usa <code>minmax(0, …)</code>.</li>
+  </ul>
+
+  <h3>Ejemplo básico</h3>
+  <pre><code>.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 3fr; /* 2:1:3 del espacio libre */
+  gap: 1rem;
+}</code></pre>
+
+  <h3>Variante recomendada</h3>
+  <pre><code>.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 3fr);
+  gap: 1rem;
+}</code></pre>
+
+  <h3>Consejos útiles</h3>
+  <ul>
+    <li>Si quieres que una columna nunca sea más pequeña que su contenido:  
+      <code>minmax(min-content, 2fr)</code>.
+    </li>
+    <li>Para layouts fluidos de tarjetas:  
+      <code>grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));</code>.
+    </li>
+    <li>Si hay palabras muy largas: <code>word-break: break-word;</code> o  
+      <code>overflow-wrap: anywhere;</code> en los ítems.
+    </li>
+  </ul>
+
+  <h3>¿Qué significa <code>grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))</code>?</h3>
+  <ol>
+    <li><strong>repeat(...)</strong>: evita escribir varias veces lo mismo  
+      (<code>repeat(3, 1fr)</code> = <code>1fr 1fr 1fr</code>).
+    </li>
+    <li><strong>auto-fit</strong>: mete tantas columnas como quepan; si sobran huecos, se colapsan.</li>
+    <li><strong>minmax(240px, 1fr)</strong>: cada columna mide al menos 240px y puede crecer hasta ocupar 1fr.</li>
+  </ol>
+
+  <p>
+    En conjunto, significa:  
+    <em>“Crea tantas columnas como quepan en el contenedor, cada una de mínimo 240px y máximo 1fr”</em>.
+  </p>
+
+  <h3>Ejemplo práctico</h3>
+  <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+&lt;div class="grid"&gt;
+  &lt;div class="card"&gt;A&lt;/div&gt;
+  &lt;div class="card"&gt;B&lt;/div&gt;
+  &lt;div class="card"&gt;C&lt;/div&gt;
+  &lt;div class="card"&gt;D&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+  <p><strong>🔎 Resultado:</strong></p>
+  <ul>
+    <li>En pantallas anchas, aparecen varias columnas de igual ancho.</li>
+    <li>Al reducir la ventana, las tarjetas se recolocan hasta apilarse en 1 sola columna cuando no caben 240px.</li>
+  </ul>
+</section>
+
 
     <!-- ========================== 5) Tarjetas (Grid + Flex) ========================== -->
     <section>
