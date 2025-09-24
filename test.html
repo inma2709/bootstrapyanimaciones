@@ -4,19 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quiz 60 preguntas: HTML, CSS, Bootstra  {t:"¿Qué hace 'position: sticky'?", o:["Se pega en un umbral al hacer scroll","Fija el elemento a la ventana","Lo posiciona relativo al ancestro posicionado"], a:0,
-   w:"Funciona como relative hasta alcanzar top/left especificado, luego queda "pegado".",
-   c:`.barra{ position:sticky; top:0 }`},
-  {t:"¿Qué propiedad crea un nuevo contexto de apilamiento?", o:["z-index con posicionamiento","font-weight","word-wrap"], a:0,
-   w:"z-index solo actúa en elementos posicionados (relative/absolute/fixed/sticky) o con propiedades que crean contexto.",
-   c:`.modal{ position:fixed; z-index:1000 }`},
-  {t:"¿Qué regla importa otra hoja CSS?", o:["@import url('file.css');","@use 'file.css';","link:import"], a:0,
-   w:"Existe, pero se recomienda <link> en HTML por rendimiento (descargas paralelas).",
-   c:`@import url('print.css');`},
-  {t:"¿Qué propiedad recorta el contenido por formas?", o:["clip-path","shape-outside","mask-repeat"], a:0,
-   w:"clip-path define la región visible; muy útil para imágenes con formas no rectangulares.",
-   c:`.avatar{ clip-path: circle(50% at 50% 50%) }`},
-
-  // Formularios (23-30)rios, Grid y Flex</title>
+   w:"Funciona como relative hasta alcanzar top/left especificado, luego queda 'pegado'.",
+   c:`.barra{ position:sticky; top:0 }`},Formularios, Grid y Flex</title>
 <style>
   :root{
     --ok:#16a34a;     /* verde */
@@ -94,7 +83,7 @@
 
     <div class="controls">
       <button id="gradeBtn">Corregir</button>
-      <button id="resetBtn" class="secondary" title="Permite volver a intentar">Reiniciar</button>
+      <button id="resetBtn" class="secondary" title="Nuevo intento con respuestas mezcladas">Reiniciar</button>
     </div>
     <div id="score" class="score"></div>
   </main>
@@ -111,9 +100,9 @@ function escapeHTML(s){
    Banco de preguntas (60)
    - t: texto
    - o: opciones
-   - a: índice correcto
-   - w: explicación ampliada
-   - c: código de ejemplo (opcional)
+   - a: índice correcto (se recalcula tras mezclar)
+   - w: explicación
+   - c: código (opcional)
    ======================= */
 const questions = [
   // HTML (1-12)
@@ -128,7 +117,7 @@ const questions = [
   <h1>Título de la página</h1>
   <p>Contenido principal...</p>
 </main>`},
-  {t:"¿Qué atributo marca un texto alternativo en imágenes?", o:["alt","title","aria-label"], a:0,
+  {t:"¿Qué atributo marca un texto alternativo en imágenes tan importante para la accesibilidad?", o:["alt","title","aria-label"], a:0,
    w:"El alt describe la imagen cuando no carga o para lectores de pantalla. Es obligatorio en imágenes relevantes.",
    c:`<img src="foto.jpg" alt="Retrato de perfil">`},
   {t:"¿Qué etiqueta semántica es adecuada para el pie global?", o:["<footer>","<aside>","<nav>"], a:0,
@@ -136,7 +125,7 @@ const questions = [
    c:`<footer>
   © 2025 Mi Sitio · Aviso legal
 </footer>`},
-  {t:"¿Qué elemento agrupa campos relacionados en formularios?", o:["<fieldset>","<group>","<section>"], a:0,
+  {t:"¿Qué elemento agrupa campos relacionados por contenido en formularios?", o:["<fieldset>","<group>","<section>"], a:0,
    w:"<fieldset> agrupa controles y  mejora accesibilidad y organización visual.",
    c:`<fieldset>
   <legend>Datos de envío</legend>
@@ -182,7 +171,7 @@ h1{ color: var(--color-base) }`},
   {t:"¿Qué unidad es relativa a la fuente del elemento raíz?", o:["rem","em","vh"], a:0,
    w:"1rem = tamaño de fuente en :root (suele ser 16px). em depende del elemento actual.",
    c:`html{ font-size:16px } .title{ font-size:1.5rem }`},
-  {t:"¿Qué propiedad controla el espacio externo?", o:["margin","padding","gap"], a:0,
+  {t:"¿Qué propiedad controla el espacio externo de un contenedor?", o:["margin","padding","gap"], a:0,
    w:"margin es el espacio hacia fuera del borde; padding hacia dentro; gap separa ítems en flex/grid.",
    c:`.box{ margin:1rem; padding:.5rem }`},
   {t:"¿Cómo centrar horizontalmente un bloque con ancho fijo?", o:["margin: 0 auto","text-align:center","justify-self:center"], a:0,
@@ -191,20 +180,17 @@ h1{ color: var(--color-base) }`},
   {t:"¿Qué hace 'position: sticky'?", o:["Se pega en un umbral al hacer scroll","Fija el elemento a la ventana","Lo posiciona relativo al ancestro posicionado"], a:0,
    w:"Funciona como relative hasta alcanzar top/left especificado, luego queda “pegado”.",
    c:`.barra{ position:sticky; top:0 }`},
-  
-{t:"¿Qué etiqueta enlaza una hoja de estilos externa en HTML?", o:["<link rel='stylesheet' href='estilos.css'>","<style src='estilos.css'>","<css-link href='estilos.css'>"], a:0,
- w:"<link> con rel='stylesheet' y href apunta a la hoja CSS externa. <style> es para CSS embebido, no externo.",
- c:`<link rel="stylesheet" href="estilos.css">`},
-
+  {t:"¿Qué etiqueta enlaza una hoja de estilos externa en HTML?", o:["<link rel='stylesheet' href='estilos.css'>","<style src='estilos.css'>","<css-link href='estilos.css'>"], a:0,
+   w:"<link> con rel='stylesheet' y href apunta a la hoja CSS externa. <style> es para CSS embebido, no externo.",
+   c:`<link rel="stylesheet" href="estilos.css">`},
 
   // Formularios (23-30)
-  {t:"¿Qué atributo envía una pista visible dentro del campo?", o:["placeholder","title","value"], a:0,
+  {t:"¿Qué atributo envía una pista visible dentro del campo de un formulario?", o:["placeholder","title","value"], a:0,
    w:"Úsalo como ayuda breve, no como etiqueta; puede desaparecer al escribir.",
    c:`<input placeholder="tu@correo.com">`},
   {t:"¿Qué tipo de input valida correos?", o:["type='email'","type='text'","type='mail'"], a:0,
    w:"Incluye teclado adaptado en móviles y validación básica de formato.",
    c:`<input type="email" required>`},
-  
   {t:"¿Cómo exigir ≥8 chars, 1 mayúscula y 1 dígito?", o:["pattern='(?=.*[A-Z])(?=.*\\d).{8,}'","minlength='8'","pattern='[A-Z0-9]{8,}'"], a:0,
    w:"Lookaheads verifican presencia sin restringir el resto de caracteres.",
    c:`<input type="password" pattern="(?=.*[A-Z])(?=.*\\d).{8,}">`},
@@ -214,9 +200,6 @@ h1{ color: var(--color-base) }`},
   {t:"¿Qué atributo define la URL de envío del formulario?", o:["action","method","enctype"], a:0,
    w:"action apunta al endpoint; method suele ser POST o GET.",
    c:`<form action="/enviar" method="post">...</form>`},
-  {t:"¿Qué atributo limita valores numéricos por saltos?", o:["step","minlength","size"], a:0,
-   w:"En inputs numéricos o range, define el incremento.",
-   c:`<input type="number" min="0" step="5">`},
 
   // Flexbox (31-38)
   {t:"¿Cuál es el eje principal por defecto en flexbox?", o:["Horizontal (row)","Vertical (column)","Depende del wrap"], a:0,
@@ -231,8 +214,6 @@ h1{ color: var(--color-base) }`},
   {t:"¿Cómo haces que un item crezca para ocupar espacio libre?", o:["flex-grow:1","flex-basis:auto","order:-1"], a:0,
    w:"Un grow mayor hace que ese item reciba más espacio libre relativo a los demás.",
    c:`.item--expansible{ flex-grow:1 }`},
-  
-  
   {t:"¿Qué hace 'flex-wrap: wrap'?", o:["Permite saltar de línea","Estira los ítems verticalmente","Bloquea el crecimiento"], a:0,
    w:"Si no caben, pasan a la siguiente línea/columna.",
    c:`.c{ display:flex; flex-wrap:wrap; gap:1rem }`},
@@ -256,8 +237,6 @@ h1{ color: var(--color-base) }`},
   "header header"
   "aside  main"
   "footer footer"; }`},
- 
-  
   {t:"¿Qué propiedad separa filas/columnas en grid?", o:["gap (row-gap/column-gap)","margin-between","space-grid"], a:0,
    w:"gap es la forma moderna (vale para flex y grid).",
    c:`.g{ display:grid; gap:1rem }`},
@@ -281,7 +260,7 @@ h1{ color: var(--color-base) }`},
    w:"Siempre 'btn' + variante de color.",
    c:`<button class="btn btn-primary">Aceptar</button>`},
 
-  // EXTRA fáciles (51-60): CSS, selectores, grid-template
+  // EXTRA (51-60)
   {t:"¿Qué selector aplica a todos los párrafos?", o:["p","*","#p"], a:0,
    w:"El selector de tipo usa el nombre de la etiqueta.",
    c:`p{ line-height:1.6 }`},
@@ -291,9 +270,6 @@ h1{ color: var(--color-base) }`},
   {t:"¿Qué selector selecciona por clase='card'?", o:[".card","#card","card[]"], a:0,
    w:"El punto selecciona por clase; puede haber múltiples elementos con esa clase.",
    c:`.card{ border-radius:8px }`},
- 
-  
-
   {t:"¿Qué pseudo-clase aplica al pasar el ratón?", o:[":hover",":active",":focus-within"], a:0,
    w:"hover se activa al colocar el cursor sobre el elemento.",
    c:`a:hover{ text-decoration:underline }`},
@@ -305,8 +281,26 @@ h1{ color: var(--color-base) }`},
    c:`grid-template-areas:
   "main main"
   "main main";`},
-
 ];
+
+/* ========= NUEVO: mezclar opciones y recalcular índice correcto ========= */
+function shuffleArray(arr){
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+function randomizeQuestion(q){
+  // Empareja cada opción con si es la correcta
+  const pairs = q.o.map((text, idx) => ({ text, isCorrect: idx === q.a }));
+  shuffleArray(pairs);
+  // Reescribe opciones e índice correcto
+  q.o = pairs.map(p => p.text);
+  q.a = pairs.findIndex(p => p.isCorrect);
+}
+function randomizeAll(){
+  questions.forEach(randomizeQuestion);
+}
 
 /* =======================
    Render dinámico
@@ -347,7 +341,6 @@ function render(){
 
     const det = document.createElement('div');
     det.className = 'explain';
-    // Explicación + snippet si existe
     const codeBlock = q.c ? `<pre><code>${escapeHTML(q.c)}</code></pre>` : '';
     det.innerHTML = `<details><summary>Ver explicación</summary><p>${q.w}</p>${codeBlock}</details>`;
 
@@ -356,7 +349,6 @@ function render(){
     $quiz.appendChild(field);
   });
 }
-render();
 
 /* =======================
    Corrección y reinicio
@@ -371,7 +363,6 @@ gradeBtn.addEventListener('click', ()=>{
   [...$quiz.querySelectorAll('.q')].forEach((qEl, i)=>{
     const selected = qEl.querySelector('input[type="radio"]:checked');
     const labels = qEl.querySelectorAll('.opt');
-    // limpia estilos previos
     labels.forEach(l=>l.classList.remove('correct','incorrect'));
 
     if(!selected){
@@ -390,7 +381,6 @@ gradeBtn.addEventListener('click', ()=>{
       }
     }
 
-    // deshabilita inputs y muestra explicación
     qEl.querySelectorAll('input').forEach(inp => inp.disabled = true);
     qEl.querySelector('.explain').style.display = 'block';
   });
@@ -400,13 +390,9 @@ gradeBtn.addEventListener('click', ()=>{
 });
 
 resetBtn.addEventListener('click', ()=>{
-  $quiz.querySelectorAll('.q').forEach((qEl)=>{
-    qEl.querySelectorAll('input').forEach(inp=>{
-      inp.disabled = false; inp.checked = false;
-    });
-    qEl.querySelectorAll('.opt').forEach(l=>l.classList.remove('correct','incorrect'));
-    qEl.querySelector('.explain').style.display = 'none';
-  });
+  // NUEVO: mezclar de nuevo y re-renderizar
+  randomizeAll();
+  render();
   gradeBtn.disabled = false;
   scoreEl.textContent = '';
 });
@@ -420,6 +406,10 @@ $quiz.addEventListener('change', e=>{
     });
   }
 });
+
+/* Inicializar: mezclar y pintar */
+randomizeAll();
+render();
 </script>
 </body>
 </html>

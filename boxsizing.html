@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Posicionamiento en CSS · Grid + Flex · Lección Interactiva</title>
+
+  <style>
+    /* ========= PALETA y TOKENS (inspirada en HTML) ========= */
+    :root{
+      --accent:#F16529;    /* naranja vivo */
+      --accent-2:#E44D26;  /* naranja oscuro */
+      --ink:#1f1f1f;
+      --ink-soft:#444;
+      --bg:#ffffff;
+      --panel:#fff8f3;
+      --panel-2:#f7f7f7;
+      --border:#e6e6e6;
+      --radius:14px;
+      --gap:14px;
+      --shadow:0 10px 25px rgba(0,0,0,.08);
+    }
+
+    /* ========= RESET ========= */
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial;
+      color:var(--ink); background:var(--bg);
+    }
+    img{ max-width:100%; display:block }
+
+    /* ========= LAYOUT ========= */
+    header{
+      background:linear-gradient(135deg,var(--accent-2),var(--accent));
+      color:#fff; padding:32px 20px;
+    }
+    .wrap{ max-width:1100px; margin:0 auto; padding:0 16px }
+    h1{ margin:0 0 6px }
+    .sub{ margin:0; opacity:.9 }
+    section{ padding:32px 0 }
+    .card{
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:18px; margin-bottom:20px;
+    }
+    .grid{ display:grid; gap:var(--gap) }
+    .cols-2{ grid-template-columns:repeat(2,minmax(0,1fr)) }
+    .cols-3{ grid-template-columns:repeat(3,minmax(0,1fr)) }
+    @media (max-width:900px){ .cols-3{ grid-template-columns:1fr 1fr } }
+    @media (max-width:640px){ .cols-2,.cols-3{ grid-template-columns:1fr } }
+
+    .hint{
+      font-size:.95rem; color:var(--ink-soft);
+      border-left:4px solid var(--accent);
+      background:#fff; padding:8px 12px; border-radius:8px; margin:10px 0;
+    }
+    code{ background:#fff; border:1px solid var(--border); padding:2px 6px; border-radius:6px }
+
+    /* ========= CONTROLES (selects) ========= */
+    .controls{
+      display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px;
+      background:var(--panel-2); border:1px solid var(--border); border-radius:12px; padding:10px;
+    }
+    .controls label{ font-size:.95rem; color:var(--ink-soft) }
+    .controls select{ padding:6px 8px; border-radius:10px; border:1px solid var(--border) }
+
+    /* ========= DEMOS GRID ========= */
+    .demo-grid{
+      display:grid; grid-template-columns:repeat(3,minmax(220px,1fr));
+      gap:var(--gap); min-height:220px; padding:16px;
+      border:2px dashed var(--accent-2); background:#fff; border-radius:var(--radius);
+    }
+    .demo-grid .box{
+      background:linear-gradient(135deg,#ffe0d2,#ffd1bd);
+      border:1px solid #ffb89a; border-radius:12px; padding:16px; font-weight:600; text-align:center;
+    }
+    /* utilidades grid (contenedor) */
+    .ji-start{ justify-items:start } .ji-center{ justify-items:center } .ji-end{ justify-items:end }
+    .ai-start{ align-items:start }  .ai-center{ align-items:center }  .ai-end{ align-items:end }
+    .jc-start{ justify-content:start } .jc-center{ justify-content:center } .jc-end{ justify-content:end }
+    .jc-between{ justify-content:space-between } .jc-around{ justify-content:space-around } .jc-evenly{ justify-content:space-evenly }
+    .ac-start{ align-content:start } .ac-center{ align-content:center } .ac-end{ align-content:end }
+    .ac-between{ align-content:space-between } .ac-around{ align-content:space-around } .ac-evenly{ align-content:space-evenly }
+
+    /* ========= DEMOS TARJETAS (Grid + Flex interno) ========= */
+    .cards-grid{ display:grid; gap:var(--gap); grid-template-columns:repeat(auto-fit,minmax(280px,1fr)) }
+    .card-item{
+      background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow);
+      padding:16px; display:flex; gap:12px; align-items:center;
+    }
+    .media{ width:86px; height:86px; flex:0 0 auto; overflow:hidden; border-radius:12px; background:#eee }
+    .media img{ width:100%; height:100%; object-fit:cover }
+    .content{ flex:1 1 auto } .content h3{ margin:4px 0 6px }
+    .cta{ flex:0 0 auto }
+    .btn{ background:var(--accent); color:#fff; border:0; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600 }
+    .btn:focus{ outline:2px solid #2222; outline-offset:2px }
+
+    /* utilidades flex (contenedor) */
+    .flex-row{ display:flex; flex-direction:row } .flex-col{ display:flex; flex-direction:column }
+    .items-start{ align-items:flex-start } .items-center{ align-items:center } .items-end{ align-items:flex-end }
+    .justify-start{ justify-content:flex-start } .justify-center{ justify-content:center } .justify-between{ justify-content:space-between }
+    .gap-8{ gap:8px } .gap-12{ gap:12px } .gap-20{ gap:20px }
+    /* utilidades flex (ítems) */
+    .order-1{ order:1 } .order-2{ order:2 } .order-3{ order:3 }
+    .self-start{ align-self:flex-start } .self-center{ align-self:center } .self-end{ align-self:flex-end }
+
+    /* ========= DEMO self en Grid ========= */
+    .self-grid{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap);
+      border:2px dashed var(--accent-2); background:#fff; padding:16px; border-radius:var(--radius);
+      min-height:160px;
+    }
+    .gitem{ background:#fff2ea; border:1px solid #ffc7aa; border-radius:12px; padding:14px; font-weight:600 }
+    .js-start{ justify-self:start } .js-center{ justify-self:center } .js-end{ justify-self:end }
+    .as-start{ align-self:start } .as-center{ align-self:center } .as-end{ align-self:end }
+
+    /* ========= ÁREAS ========= */
+    .areas{
+      display:grid; gap:var(--gap);
+      grid-template-columns:1fr 2fr 1fr;
+      grid-template-areas:
+        "header header header"
+        "nav    main   aside"
+        "footer footer footer";
+    }
+    .area{ background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px }
+    .a-header{ grid-area:header; background:#ffe9e0 }
+    .a-nav{ grid-area:nav } .a-main{ grid-area:main } .a-aside{ grid-area:aside }
+    .a-footer{ grid-area:footer; background:#ffe9e0 }
+
+    /* ========= FR DEMO ========= */
+    .fr-demo{
+      display:grid; gap:12px; border:2px dashed var(--accent); background:#fff; border-radius:12px; padding:12px;
+    }
+    .fr-box{ background:#fff2ea; border:1px solid #ffc7aa; border-radius:10px; padding:10px; text-align:center; font-weight:600 }
+
+    /* ========= DETAILS ========= */
+    details{ background:#fff; border:1px solid var(--border); border-radius:12px; padding:10px 12px }
+    details+details{ margin-top:10px }
+    details summary{ cursor:pointer; font-weight:600; color:var(--ink-soft) }
+    pre{ margin:10px 0 0; overflow:auto }
+
+    /* ========= PIE ========= */
+    footer{
+      padding:28px 16px; color:#fff;
+      background:linear-gradient(135deg,var(--accent-2),var(--accent));
+      margin-top:28px; border-top:4px solid #00000010;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <h1>Posicionamiento en CSS: Grid (contenedores) + Flex (elementos)</h1>
+      <p class="sub">Aprende a alinear, distribuir y reordenar <strong>contenedores con Grid</strong> y <strong>elementos con Flex</strong>, y a dominar la unidad <strong>fr</strong> (p. ej. <code>3fr 1fr</code>).</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ========================== 0) Índice rápido ========================== -->
+    <section>
+      <div class="card">
+        <h2>Índice de la lección</h2>
+        <ol>
+          <li>Conceptos clave: ejes, “justify-” vs “align-”, hijos vs contenedor.</li>
+          <li>Flexbox: posicionar y reordenar elementos dentro de un contenedor.</li>
+          <li>Grid: alinear ítems y mover el grid completo; áreas; <code>self</code>.</li>
+          <li>Unidad <code>fr</code> en Grid (qué significa <code>3fr 1fr</code> y cómo usarlo bien).</li>
+          <li>Playgrounds para practicar (Flex y Grid) + ejercicios propuestos.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========================== 1) Conceptos clave ========================== -->
+    <section>
+      <div class="card">
+        <h2>1) Conceptos clave</h2>
+        <div class="grid cols-2">
+          <div>
+            <h3>Terminología esencial</h3>
+            <ul>
+              <li><strong>Contenedor</strong>: el elemento padre que activa <code>display:flex</code> o <code>display:grid</code>.</li>
+              <li><strong>Ítem</strong>: los hijos directos del contenedor.</li>
+              <li><code>justify-*</code>: actúa sobre el <em>eje principal</em> (en LTR, horizontal por defecto).</li>
+              <li><code>align-*</code>: actúa sobre el <em>eje cruzado</em> (en LTR, vertical por defecto).</li>
+              <li><strong>order</strong> (Flex): reordena visualmente sin cambiar el HTML.</li>
+              <li><strong>grid-area / grid-column / grid-row</strong> (Grid): colocan ítems en celdas concretas.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Reglas de oro</h3>
+            <ul>
+              <li>Flex = posicionar y distribuir <em>elementos en línea o columna</em>.</li>
+              <li>Grid = definir <em>estructura bidimensional</em> (columnas + filas).</li>
+              <li><code>justify-self</code> existe en Grid (por ítem), no en Flex.</li>
+              <li>Reordenar visualmente no cambia el orden del DOM (accesibilidad).</li>
+            </ul>
+            <p class="hint">Piensa: “Grid para el layout macro; Flex para organizar dentro de cada tarjeta/sección”.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================== 2) FLEXBOX ========================== -->
+    <section>
+      <div class="card">
+        <h2>2) Posicionamiento con Flexbox (contenedor &amp; elementos)</h2>
+
+        <p><strong>Contenedor Flex</strong> — propiedades principales:</p>
+        <ul>
+          <li><code>flex-direction</code>: <code>row | row-reverse | column | column-reverse</code></li>
+          <li><code>justify-content</code> (eje principal): <code>flex-start | center | flex-end | space-between | space-around | space-evenly</code></li>
+          <li><code>align-items</code> (eje cruzado): <code>flex-start | center | flex-end | stretch | baseline</code></li>
+          <li><code>gap</code>: separación entre ítems.</li>
+        </ul>
+
+        <p><strong>Ítems Flex (hijos)</strong> — propiedades útiles:</p>
+        <ul>
+          <li><code>order</code>: entero (admite negativos).</li>
+          <li><code>align-self</code>: sobreescribe <code>align-items</code> para ese ítem.</li>
+          <li><code>margin-left:auto</code> (fila) o <code>margin-top:auto</code> (columna): “empujan” el ítem al extremo.</li>
+        </ul>
+
+        <!-- Playground FLEX inline -->
+        <div class="hint"><strong>Playground (Flex)</strong>: edita estos <em>styles inline</em> para ver el efecto.</div>
+        <div class="card" style="background:#fff">
+<pre><code>&lt;div class="playground"
+     style="display:flex; gap:12px; border:2px dashed #E44D26; padding:12px;
+            flex-direction:row; /* row | row-reverse | column | column-reverse */
+            justify-content:flex-start; /* center | space-between | ... */
+            align-items:center; /* flex-start | flex-end | stretch */"&gt;
+
+  &lt;div style="order:1; padding:10px 14px; background:#ffe9e0; border:1px solid #ffb89a; border-radius:10px; font-weight:600;"&gt;A&lt;/div&gt;
+  &lt;div style="order:2; padding:10px 14px; background:#fff2ea; border:1px solid #ffc7aa; border-radius:10px; font-weight:600;"&gt;B&lt;/div&gt;
+  &lt;div style="order:3; padding:10px 14px; background:#ffe0d2; border:1px solid #ffb89a; border-radius:10px; font-weight:600; margin-left:auto"&gt;C&lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================== 3) GRID ========================== -->
+    <section>
+      <div class="card">
+        <h2>3) Posicionamiento con Grid (contenedor &amp; elementos)</h2>
+
+        <div class="controls">
+          <label>justify-items:
+            <select data-target="#demoGrid" data-classgroup="ji">
+              <option value="ji-start">start</option>
+              <option value="ji-center" selected>center</option>
+              <option value="ji-end">end</option>
+            </select>
+          </label>
+          <label>align-items:
+            <select data-target="#demoGrid" data-classgroup="ai">
+              <option value="ai-start">start</option>
+              <option value="ai-center" selected>center</option>
+              <option value="ai-end">end</option>
+            </select>
+          </label>
+          <label>justify-content:
+            <select data-target="#demoGrid" data-classgroup="jc">
+              <option value="jc-start">start</option>
+              <option value="jc-center" selected>center</option>
+              <option value="jc-end">end</option>
+              <option value="jc-between">space-between</option>
+              <option value="jc-around">space-around</option>
+              <option value="jc-evenly">space-evenly</option>
+            </select>
+          </label>
+          <label>align-content:
+            <select data-target="#demoGrid" data-classgroup="ac">
+              <option value="ac-start">start</option>
+              <option value="ac-center" selected>center</option>
+              <option value="ac-end">end</option>
+              <option value="ac-between">space-between</option>
+              <option value="ac-around">space-around</option>
+              <option value="ac-evenly">space-evenly</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="demoGrid" class="demo-grid ji-center ai-center jc-center ac-center">
+          <div class="box">A</div><div class="box">B</div><div class="box">C</div>
+          <div class="box">D</div><div class="box">E</div><div class="box">F</div>
+        </div>
+
+        <div class="grid cols-2" style="margin-top:16px">
+          <div>
+            <h3>Ítems en Grid (por ítem)</h3>
+            <ul>
+              <li><code>justify-self</code>: start | center | end | stretch</li>
+              <li><code>align-self</code>: start | center | end | stretch</li>
+              <li><code>grid-column</code>/<code>grid-row</code>: control de posición y tamaño de celda.</li>
+            </ul>
+            <div class="self-grid">
+              <div class="gitem js-start as-start">start / start</div>
+              <div class="gitem js-center as-center">center / center</div>
+              <div class="gitem js-end as-end">end / end</div>
+            </div>
+          </div>
+          <div>
+            <h3>Áreas en Grid (semántico)</h3>
+            <div class="areas">
+              <div class="area a-header">HEADER</div>
+              <nav class="area a-nav">NAV</nav>
+              <main class="area a-main">MAIN</main>
+              <aside class="area a-aside">ASIDE</aside>
+              <footer class="area a-footer">FOOTER</footer>
+            </div>
+            <pre class="hint"><code>.areas{
+  display:grid;
+  grid-template-columns:1fr 2fr 1fr;
+  grid-template-areas:
+    "header header header"
+    "nav    main   aside"
+    "footer footer footer";
+}
+.a-header{ grid-area:header }</code></pre>
+          </div>
+        </div>
+
+        <div class="hint"><strong>Playground (Grid)</strong>: copia y cambia inline <code>grid-area</code> o <code>grid-column</code>/<code>grid-row</code>.</div>
+        <div class="card" style="background:#fff">
+<pre><code>&lt;div style="display:grid; gap:12px; border:2px dashed #F16529; padding:12px;
+            grid-template-columns:1fr 1fr 1fr;
+            grid-template-areas:
+              'header header header'
+              'nav    main   aside'
+              'footer footer footer';"&gt;
+
+  &lt;div style="grid-area:header; background:#ffe9e0; padding:10px; border-radius:8px; font-weight:600"&gt;HEADER&lt;/div&gt;
+  &lt;div style="grid-area:nav;    background:#fff2ea; padding:10px; border-radius:8px; font-weight:600"&gt;NAV&lt;/div&gt;
+  &lt;div style="grid-area:main;   background:#ffe0d2; padding:10px; border-radius:8px; font-weight:600"&gt;MAIN&lt;/div&gt;
+  &lt;div style="grid-area:aside;  background:#fff8f3; padding:10px; border-radius:8px; font-weight:600"&gt;ASIDE&lt;/div&gt;
+  &lt;div style="grid-area:footer; background:#ffd1bd; padding:10px; border-radius:8px; font-weight:600"&gt;FOOTER&lt;/div&gt;
+
+&lt;/div&gt;
+<!-- PRUEBAS:
+1) Cambia "grid-area: nav" por "header".
+2) Sustituye un área por "grid-column:2 / 4; grid-row:1;" para posicionarlo manualmente.
+3) Usa "grid-column:span 2" para abarcar dos columnas. --> </code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================== 4) UNIDAD fr (¡incluye 3fr 1fr!) ========================== -->
+    <section>
+      <div class="card">
+        <h2>4) La unidad <code>fr</code> en Grid (qué es y cómo se reparte)</h2>
+        <p><strong><code>fr</code></strong> significa “parte fraccional del espacio disponible”. El contenedor reparte el
+        espacio libre entre pistas (columnas/filas) que usan <code>fr</code>.</p>
+
+        <ul>
+          <li><code>1fr 1fr</code> → 50% / 50% (dos partes iguales).</li>
+          <li><code>2fr 1fr</code> → 66% / 33% (dos partes para la 1ª, una para la 2ª).</li>
+          <li><code>3fr 1fr</code> → 75% / 25% (tres partes vs una). <strong>OJO:</strong> no es “3,1fr”.
+              Se escriben <em>dos pistas</em>: <code>grid-template-columns: 3fr 1fr;</code></li>
+          <li>Si mezclas valores fijos y fr, primero se restan los fijos y el resto se reparte en fr.</li>
+        </ul>
+
+        <div class="hint">Regla mental: suma los “fr” y reparte el ancho libre en esa proporción.</div>
+
+        <!-- Demos de fr -->
+        <div class="grid cols-2">
+          <div>
+            <h3>Ejemplo A: <code>1fr 1fr</code></h3>
+            <div class="fr-demo" style="grid-template-columns:1fr 1fr">
+              <div class="fr-box">1fr</div>
+              <div class="fr-box">1fr</div>
+            </div>
+          </div>
+          <div>
+            <h3>Ejemplo B: <code>3fr 1fr</code></h3>
+            <div class="fr-demo" style="grid-template-columns:3fr 1fr">
+              <div class="fr-box">3fr (¾ del ancho libre)</div>
+              <div class="fr-box">1fr (¼ del ancho libre)</div>
+            </div>
+          </div>
+        </div>
+
+        <details style="margin-top:12px">
+          <summary>Más combinaciones útiles con <code>fr</code> (copia y prueba)</summary>
+<pre><code>/* Tres columnas: 2/1/1 → 50% / 25% / 25% aprox. */
+grid-template-columns: 2fr 1fr 1fr;
+
+/* Mezcla con fijos: primera 300px fija, resto al 50/50 */
+grid-template-columns: 300px 1fr 1fr;
+
+/* Resiliente: minmax con fr (crece pero no baja de 240px) */
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));</code></pre>
+        </details>
+      </div>
+    </section>
+
+    <!-- ========================== 5) Tarjetas (Grid + Flex) ========================== -->
+    <section>
+      <div class="card">
+        <h2>5) Grid de tarjetas con Flex interno</h2>
+        <p>Grid define la rejilla de tarjetas; dentro de cada tarjeta, Flex ordena <em>imagen, texto y botón</em>.</p>
+
+        <div class="controls">
+          <label>Dirección tarjeta:
+            <select data-target=".card-item" data-classgroup="dir">
+              <option value="flex-row" selected>row</option>
+              <option value="flex-col">column</option>
+            </select>
+          </label>
+          <label>Alineación cruzada:
+            <select data-target=".card-item" data-classgroup="items">
+              <option value="items-start">start</option>
+              <option value="items-center" selected>center</option>
+              <option value="items-end">end</option>
+            </select>
+          </label>
+          <label>Distribución principal:
+            <select data-target=".card-item" data-classgroup="justify">
+              <option value="justify-start" selected>start</option>
+              <option value="justify-center">center</option>
+              <option value="justify-between">space-between</option>
+            </select>
+          </label>
+          <label>Gap:
+            <select data-target=".card-item" data-classgroup="gap">
+              <option value="gap-8">8px</option>
+              <option value="gap-12" selected>12px</option>
+              <option value="gap-20">20px</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card-item flex-row items-center justify-start gap-12">
+            <div class="media order-1"><img src="https://picsum.photos/200/200?random=11" alt=""></div>
+            <div class="content order-2"><h3>Tarjeta A</h3><p>Prueba <code>order</code>, <code>flex-direction</code> y auto-márgenes.</p></div>
+            <div class="cta order-3"><button class="btn">Comprar</button></div>
+          </article>
+
+          <article class="card-item flex-row items-center justify-start gap-12">
+            <div class="content order-1"><h3>Tarjeta B</h3><p>Texto primero (order 1), luego imagen y botón.</p></div>
+            <div class="media order-2"><img src="https://picsum.photos/200/200?random=12" alt=""></div>
+            <div class="cta order-3"><button class="btn">Más info</button></div>
+          </article>
+
+          <article class="card-item flex-row items-center justify-start gap-12">
+            <div class="media order-1"><img src="https://picsum.photos/200/200?random=13" alt=""></div>
+            <div class="cta order-2"><button class="btn">Añadir</button></div>
+            <div class="content order-3"><h3>Tarjeta C</h3><p>Botón en medio con <code>order</code>.</p></div>
+          </article>
+        </div>
+
+        <div class="hint"><strong>Claves Flex</strong>: <code>flex-direction</code> define el eje, <code>justify-content</code> distribuye, <code>align-items</code> alinea, <code>order</code> reordena sin tocar HTML.</div>
+      </div>
+    </section>
+
+    
+
+    <!-- ========================== 6) Ejercicios propuestos ========================== -->
+    <section>
+      <div class="card">
+        <h2>6) Ejercicios rápidos</h2>
+        <ol>
+          <li>Crea un Grid de 3 columnas y 6 tarjetas. En móvil, 1 columna (<code>repeat(auto-fit,minmax(280px,1fr))</code>).</li>
+          <li>Dentro de una tarjeta, pon <em>botón</em> al extremo derecho con <code>margin-left:auto</code> (fila).</li>
+          <li>Define un layout con <code>grid-template-areas</code> y mueve “nav” arriba cambiando su <code>grid-area</code> por “header”.</li>
+          <li>Usa <code>3fr 1fr</code> para un layout “principal + sidebar”. Cambia a <code>2fr 1fr</code> y compara.</li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <strong>Recuerda:</strong> usa Grid para el esqueleto de página y Flex para ordenar contenido dentro de cada bloque.
+      Practica cambiando valores inline: se entiende “con las manos”.
+    </div>
+  </footer>
+
+  <!-- ========== JS para los selects de control ========= -->
+  <script>
+    const classGroups = {
+      ji:["ji-start","ji-center","ji-end"],
+      ai:["ai-start","ai-center","ai-end"],
+      jc:["jc-start","jc-center","jc-end","jc-between","jc-around","jc-evenly"],
+      ac:["ac-start","ac-center","ac-end","ac-between","ac-around","ac-evenly"],
+      dir:["flex-row","flex-col"],
+      items:["items-start","items-center","items-end"],
+      justify:["justify-start","justify-center","justify-between"],
+      gap:["gap-8","gap-12","gap-20"]
+    };
+    document.querySelectorAll('.controls select').forEach(sel=>{
+      sel.addEventListener('change',()=>{
+        const target = sel.getAttribute('data-target');
+        const group = sel.getAttribute('data-classgroup');
+        const value = sel.value;
+        document.querySelectorAll(target).forEach(node=>{
+          (classGroups[group]||[]).forEach(c=>node.classList.remove(c));
+          node.classList.add(value);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
