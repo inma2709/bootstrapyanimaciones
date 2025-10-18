@@ -1,0 +1,51 @@
+*{
+
+    box-sizing: border-box;
+}
+
+.caja1{
+    background-color: lightcoral;
+    padding:30px;
+}
+.caja2{
+    background-color: lightblue;
+    border-color: red;
+    border-style: solid;
+    border-width:8px;
+    width: 350px;
+    height: 150px;
+   
+}
+.caja3{
+    background-color: lightgreen;
+}   
+.cajahija2{
+    background-color: yellow;    
+    border-color: blue;
+    border-style: solid;
+    border-width: 20px;
+}
+.contenedor{
+    border-color: black;
+    border:4px dotted;
+      
+    height: 300px;
+    display:flex;
+
+    
+    }
+.c1{
+    background-color: lightcoral;
+    flex:1;     
+    
+    }
+.c2{
+    background-color: lightblue;
+    flex:2;
+
+    }
+.c3{
+    background-color: lightgreen;
+    flex:1;
+
+    }

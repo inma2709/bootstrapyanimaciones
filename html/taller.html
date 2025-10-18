@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UF1841: Ejercicios Prácticos de Maquetación CSS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos básicos para la visualización del ejercicio */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1, h2, h3 {
+            color: #333;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+        .ejercicio {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .ejercicio > div {
+            padding: 15px;
+            border: 1px dashed #aaa;
+            margin-top: 10px;
+            min-height: 50px;
+        }
+        .box {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            margin: 5px;
+            background-color: #4CAF50;
+            display: inline-block;
+        }
+        .caja-hija {
+            width: 50%;
+            height: 50px;
+            background-color: #2196F3;
+            margin-top: 10px;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+        }
+        .card {
+            background-color: #ff9800;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            min-width: 200px; /* Para ejercicio 3 de Flexbox */
+        }
+        .sticky-box {
+            background-color: #E91E63;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin: 10px 0;
+            border: 2px solid #AD1457;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            /* Aquí se aplica 'position: sticky' en el CSS externo */
+        }
+        .section-scroll {
+            min-height: 600px;
+            margin-bottom: 20px;
+            border: 3px solid #795548;
+            padding-top: 50px;
+        }
+        .header-sticky {
+            background-color: #00BCD4;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2em;
+            /* Aquí se aplica 'position: fixed' o 'sticky' en el CSS externo */
+        }
+        .galeria-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>UF1841: Guía Práctica de Maquetación CSS</h1>
+
+    <section class="ejercicio" id="maquetacion-basica">
+        <h2>🧭 Ejercicio: Descubriendo la Maquetación en CSS</h2>
+        
+        <h3>1️⃣ Comportamiento por Defecto (Display)</h3>
+        <div id="comportamiento-defecto">
+            <button>Botón 1</button>
+            <button>Botón 2</button>
+            <span>Elemento Span</span>
+            <div class="box box-display">Caja Div</div>
+            <img src="https://picsum.photos/120/80" alt="imagen de prueba">
+        </div>
+
+        <h3>2️⃣ Probando la Propiedad Display</h3>
+        <div id="cambio-display">
+            <button class="display-test">Botón A</button>
+            <button class="display-test">Botón B</button>
+            <button class="display-test">Botón C</button>
+        </div>
+        
+        <h3>3️⃣ Entendiendo el Modelo de Caja (Box Model)</h3>
+        <div id="box-model-container">
+            <div class="box box-1">Caja 1</div>
+            <div class="box box-2">Caja 2 (Contenedora)
+                </div>
+            <div class="box box-3">Caja 3</div>
+        </div>
+
+        <h3>4️⃣ Analizando Box-Sizing</h3>
+        <div class="box box-sizing-parent">Caja 2 (Padre)
+            <div class="caja-hija box-sizing-child">Caja Hija</div>
+        </div>
+        
+        <h3>5️⃣ Aplicando el Selector Universal</h3>
+        <p>Observa los resultados del punto 4 al aplicar el selector universal en el CSS.</p>
+
+    </section>
+
+    <section class="ejercicio" id="posiciones-css">
+        <h2>🧭 Ejercicio: Jugando con las posiciones CSS</h2>
+        
+        <h3>1️⃣ Preparación (Position: Static)</h3>
+        <div id="contenedor-posiciones" style="border: 2px solid black; padding: 20px; position: relative; height: 300px;">
+            <div class="box box-pos-1" style="background-color: #F44336;">Caja 1 (Relative)</div>
+            <div class="box box-pos-2" style="background-color: #FFEB3B; color: #333;">Caja 2 (Absolute)</div>
+            <div class="box box-pos-3" style="background-color: #009688;">Caja 3 (Fixed/Sticky)</div>
+        </div>
+
+        <h3>2️⃣ Posición Relativa (position: relative)</h3>
+        <h3>3️⃣ Posición Absoluta (position: absolute)</h3>
+        <h3>4️⃣ Posición Fija (position: fixed)</h3>
+        <h3>5️⃣ Posición Sticky (position: sticky)</h3>
+        <header class="header-sticky">
+            🌐 Ejemplo de Position: Sticky (Fija/Pegada)
+        </header>
+
+        <section class="section-scroll" style="background-color: #E0F7FA;">
+            <h3>Sección 1: Contenedor Sticky</h3>
+            <p>Aquí hay contenido suficiente para el scroll. Haz scroll hacia abajo.</p>
+            <div class="sticky-box sticky-1">
+                📌 Soy sticky: me pego cuando llego al top: 0;
+            </div>
+            <p style="height: 350px;">Más contenido de la Sección 1.</p>
+            <p>Fíjate cómo la caja de arriba se pega, pero se va cuando finaliza esta sección.</p>
+        </section>
+
+        <section class="section-scroll" style="background-color: #FFFDE7;">
+            <h3>Sección 2: Más contenido</h3>
+            <p style="height: 500px;">Contenido de la Sección 2 para seguir el scroll.</p>
+        </section>
+
+        <section class="section-scroll" style="background-color: #E8F5E9;">
+            <h3>Sección 3: Contenedor Fixed vs. Sticky</h3>
+            <p style="height: 500px;">Contenido de la Sección 3.</p>
+        </section>
+
+    </section>
+
+    <section class="ejercicio" id="alineacion-centrado">
+        <h2>🧭 Ejercicio: Alineación y Centrado en CSS</h2>
+        
+        <h3>1️⃣ Preparación Inicial</h3>
+        <div id="contenedor-centrado-1">
+            <h2>Ejercicio de alineación CSS</h2>
+            <div class="box box-align-1" style="background-color: #795548;">Caja 1</div>
+            <div class="box box-align-2" style="background-color: #03A9F4;">Caja 2</div>
+            <div class="box box-align-3" style="background-color: #FFC107;">Caja 3</div>
+        </div>
+
+        <h3>2️⃣ Centrado con Margin (Horizontal)</h3>
+        <div class="box box-margin-center" style="width: 200px; height: 50px; background-color: #607D8B; margin: 20px 0;">Caja a Centrar</div>
+
+        <h3>3️⃣ Centrado con Position (Completo)</h3>
+        <div class="contenedor-position-parent" style="position: relative; width: 300px; height: 300px; border: 2px dashed #9E9E9E; margin: 20px;">
+            <div class="box box-position-center" style="width: 100px; height: 100px; background-color: #9C27B0;">Centro (Absolute)</div>
+        </div>
+
+        <h3>4️⃣ Centrado con Flexbox (El eje principal)</h3>
+        <div class="contenedor-flex-parent" style="display: flex; height: 200px; border: 2px dashed #4CAF50; margin: 20px; flex-direction: row;">
+            <div class="box box-flex-1">F-1</div>
+            <div class="box box-flex-2">F-2</div>
+            <div class="box box-flex-3">F-3</div>
+        </div>
+
+        <h3>5️⃣ Centrado con Grid</h3>
+        <div class="contenedor-grid-parent" style="display: grid; height: 200px; border: 2px dashed #FF9800; margin: 20px;">
+            <div class="box box-grid-center" style="background-color: #FF5722;">G-1</div>
+        </div>
+    </section>
+
+    <section class="ejercicio" id="ejercicios-flexbox">
+        <h2>🧱 EJERCICIOS FLEXBOX – DE PRINCIPIANTE A AVANZADO</h2>
+
+        <h3>Ejercicio 1: Alineación básica</h3>
+        <div class="flex-ej-1" style="display: flex; height: 100px; border: 1px solid blue;">
+            <div class="box" style="background-color: #8BC34A;">A</div>
+            <div class="box" style="background-color: #CDDC39;">B</div>
+            <div class="box" style="background-color: #FFEB3B;">C</div>
+        </div>
+
+        <h3>Ejercicio 2: Menú de navegación flexible</h3>
+        <header class="flex-ej-2" style="border: 1px solid green; padding: 10px;">
+            <div class="logo">LOGO</div>
+            <nav>
+                <a href="#">Inicio</a> | <a href="#">Servicios</a> | <a href="#">Contacto</a>
+            </nav>
+        </header>
+
+        <h3>Ejercicio 3: Cards responsivas</h3>
+        <div class="cards flex-ej-3" style="border: 1px solid red;">
+            <div class="card">Card 1</div>
+            <div class="card">Card 2</div>
+            <div class="card">Card 3</div>
+            <div class="card">Card 4</div>
+            <div class="card">Card 5</div>
+            <div class="card">Card 6</div>
+        </div>
+
+        <h3>Ejercicio 4: Centrado Completo</h3>
+        <div class="flex-ej-4" style="min-height: 100px; background-color: #B2EBF2; border: 1px solid cyan;">
+            <p>Texto Centrado Verticalmente</p>
+        </div>
+
+        <h3>Ejercicio 5: Orden y Crecimiento</h3>
+        <div class="flex-ej-5" style="display: flex; width: 100%; border: 1px solid purple;">
+            <div class="box box-grow-1" style="flex-basis: 0; background-color: #F06292;">1</div>
+            <div class="box box-grow-2" style="flex-basis: 0; background-color: #E91E63;">2</div>
+            <div class="box box-grow-3" style="flex-basis: 0; background-color: #AD1457;">3</div>
+        </div>
+    </section>
+
+    <section class="ejercicio" id="ejercicios-grid">
+        <h2>🔲 EJERCICIOS CSS GRID – DE PRINCIPIANTE A AVANZADO</h2>
+
+        <h3>Ejercicio 6: Columnas con Grid</h3>
+        <div class="grid-ej-6" style="border: 1px solid #795548; display: grid;">
+            <div class="box" style="background-color: #A1887F;">1</div>
+            <div class="box" style="background-color: #8D6E63;">2</div>
+            <div class="box" style="background-color: #6D4C41;">3</div>
+            <div class="box" style="background-color: #5D4037;">4</div>
+            <div class="box" style="background-color: #4E342E;">5</div>
+            <div class="box" style="background-color: #3E2723;">6</div>
+        </div>
+
+        <h3>Ejercicio 7: Ocupación de Celdas</h3>
+        <div class="grid-ej-7" style="border: 1px solid #009688; display: grid;">
+            <div class="box item-span-col" style="background-color: #4DB6AC;">Span Col</div>
+            <div class="box" style="background-color: #26A69A;">2</div>
+            <div class="box item-span-row" style="background-color: #00897B; height: auto;">Span Row</div>
+            <div class="box" style="background-color: #00796B;">4</div>
+            <div class="box" style="background-color: #00695C;">5</div>
+            <div class="box" style="background-color: #004D40;">6</div>
+        </div>
+
+        <h3>Ejercicio 8: Grid Template Areas (Layout)</h3>
+        <div class="layout grid-ej-8" style="border: 1px solid #FFC107; min-height: 250px;">
+            <header style="background-color: #FFD54F; padding: 10px;" class="grid-header">Header</header>
+            <div style="background-color: #FFF8E1; padding: 10px;" class="grid-sidebar">Sidebar</div>
+            <main style="background-color: #FFE082; padding: 10px;" class="grid-main">Main Content</main>
+            <aside style="background-color: #FFECB3; padding: 10px;" class="grid-aside">Aside</aside>
+            <footer style="background-color: #FFD54F; padding: 10px;" class="grid-footer">Footer</footer>
+        </div>
+
+        <h3>Ejercicio 9: Galería Responsiva (auto-fit, minmax)</h3>
+        <div class="galeria grid-ej-9" style="border: 1px solid #42A5F5; display: grid; gap: 5px;">
+            <img src="https://picsum.photos/300/200?random=1" alt="Imagen 1" class="galeria-img">
+            <img src="https://picsum.photos/300/200?random=2" alt="Imagen 2" class="galeria-img">
+            <img src="https://picsum.photos/300/200?random=3" alt="Imagen 3" class="galeria-img">
+            <img src="https://picsum.photos/300/200?random=4" alt="Imagen 4" class="galeria-img">
+            <img src="https://picsum.photos/300/200?random=5" alt="Imagen 5" class="galeria-img">
+            <img src="https://picsum.photos/300/200?random=6" alt="Imagen 6" class="galeria-img">
+        </div>
+
+        <h3>Ejercicio 10: Maquetación Completa (Grid + Media Queries)</h3>
+        <p>Aplica los conocimientos de Grid (Ej. 8) y usa un <code>@media query</code> en tu CSS para cambiar el diseño en pantallas pequeñas (menos de 600px).</p>
+        
+    </section>
+
+    <section class="ejercicio" id="combinacion-flex-grid">
+        <h2>🌐 Extra: Combinando Flexbox y Grid</h2>
+        <h3>Propuesta de Integración</h3>
+        <p>Crea una estructura principal con <strong>Grid</strong>, y dentro del área de <code>Main Content</code>, coloca las tarjetas del <strong>Ejercicio 3 de Flexbox</strong> para ver cómo interactúan.</p>
+        
+        <div class="layout-combinado" style="border: 3px solid #673AB7; min-height: 400px; padding: 10px;">
+            <header style="background-color: #D1C4E9; grid-area: h;">Header (Grid)</header>
+            <div style="background-color: #EDE7F6; grid-area: m; padding: 15px;">
+                <h4>Main Content (Grid) - Contiene Flexbox:</h4>
+                <div class="cards flex-ej-3" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <div class="card" style="min-width: 150px; background-color: #3F51B5;">F-Card 1</div>
+                    <div class="card" style="min-width: 150px; background-color: #2196F3;">F-Card 2</div>
+                    <div class="card" style="min-width: 150px; background-color: #03A9F4;">F-Card 3</div>
+                </div>
+            </div>
+            <footer style="background-color: #D1C4E9; grid-area: f;">Footer (Grid)</footer>
+        </div>
+        
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo de position: sticky</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Cabecera fija arriba */
+    header {
+      background: #004aad;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    /* Secciones largas para poder hacer scroll */
+    section {
+      height: 700px;
+      padding: 1rem 2rem;
+    }
+
+    /* Caja sticky */
+    .sticky {
+      position: sticky;
+      top: 0;                /* se pegará al borde superior */
+      background: #f7df1e;
+      color: #212121;
+      border: 2px solid #212121;
+      padding: 0.8rem;
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Colores alternos para distinguir secciones */
+    .s1 { background: #e0f7fa; }
+    .s2 { background: #fce4ec; }
+    .s3 { background: #e8f5e9; }
+  </style>
+</head>
+<body>
+
+  <header>🌐 Ejemplo de Position: Sticky</header>
+
+  <section class="s1">
+    <div class="sticky">📌 Soy sticky: me pego cuando llego arriba</div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in orci mauris. Vestibulum vitae eros vel orci facilisis volutpat. Duis rutrum sem et libero convallis, non vestibulum odio porta...</p>
+  </section>
+
+  <section class="s2">
+    <div class="sticky">📌 Yo también soy sticky</div>
+    <p>Continúa desplazándote para ver cómo esta caja se queda fija cuando su borde superior toca el viewport...</p>
+  </section>
+
+  <section class="s3">
+    <p>Fin del documento. Observa cómo las cajas sticky solo se quedan fijas dentro de su propia sección.</p>
+  </section>
+
+</body>
+</html>
