@@ -4784,491 +4784,589 @@ main {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     margin: 1rem 0;
 }
+<!-- ===================== BLOQUE 1 ===================== -->
+<details open>
+  <summary style="font-weight:700;background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;display:flex;gap:.75rem;align-items:center;justify-content:space-between;cursor:pointer;">
+    <span>📦 Bloque 1: Descubriendo la maquetación en CSS</span>
+    <span style="font-size:.9rem;color:#475569;">🟢 Básico · ⏱️ 45 min</span>
+  </summary>
 
-/* Aquí añades tus experimentos CSS según el ejercicio */</pre>
-                </div>
-            </div>
+  <div class="ejercicio" style="margin-top:.75rem;">
+    <div class="ejercicio-objetivo">
+      <h5>🎯 Objetivo</h5>
+      <p>Entender el comportamiento por defecto de los elementos (inline / block / inline-block), el modelo de caja y <code>box-sizing</code>.</p>
+    </div>
 
-             Bloque 1: Descubriendo la Maquetación -->
-            <div class="ejercicio">
-                <div class="ejercicio-header">
-                    <h4>📦 Bloque 1: Descubriendo la maquetación en CSS</h4>
-                    <div class="ejercicio-estado">
-                        <span class="dificultad">🟢 Básico</span>
-                        <span class="tiempo">⏱️ 45 min</span>
-                    </div>
-                </div>
+    <div class="ejercicio-instrucciones">
+      <h5>📝 Ejercicio 1.1: Exploración inicial</h5>
+      <ol>
+        <li>Crea un documento HTML usando la plantilla base</li>
+        <li>En el <code>&lt;body&gt;</code> añade: dos botones, un <code>&lt;span&gt;</code>, una caja <code>&lt;div&gt;</code> y una imagen</li>
+        <li>Usa una imagen de prueba: <code>&lt;img src="https://picsum.photos/120/80" alt="Imagen de prueba"&gt;</code></li>
+        <li>Observa sin añadir CSS: ¿quién se coloca en línea? ¿quién en bloque?</li>
+      </ol>
 
-                <div class="ejercicio-objetivo">
-                    <h5>🎯 Objetivo</h5>
-                    <p>Entender el comportamiento por defecto de los elementos (inline / block / inline-block), el modelo de caja y <code>box-sizing</code>.</p>
-                </div>
+      <div class="pistas">
+        <h6>💡 Pistas para reflexionar</h6>
+        <ul>
+          <li>Por defecto: <em>button</em> es inline-block, <em>span</em> es inline y <em>div</em> es block</li>
+          <li>No uses <code>position</code> todavía; observa el flujo natural</li>
+          <li>¿Qué elementos respetan el ancho del texto vs ocupan toda la línea?</li>
+        </ul>
+      </div>
 
-                <div class="ejercicio-instrucciones">
-                    <h5>📝 Ejercicio 1.1: Exploración inicial</h5>
-                    <ol>
-                        <li>Crea un documento HTML usando la plantilla base</li>
-                        <li>En el <code>&lt;body&gt;</code> añade: dos botones, un <code>&lt;span&gt;</code>, una caja <code>&lt;div&gt;</code> y una imagen</li>
-                        <li>Para la imagen usa esta o usa una propia: <code>&lt;img src="https://picsum.photos/120/80" alt="Imagen de prueba"&gt;</code></li>
-                        <li>Observa sin añadir CSS: ¿quién se coloca en línea? ¿quién en bloque?</li>
-                    </ol>
+      <h5>📝 Ejercicio 1.2: Display básico</h5>
+      <ol>
+        <li>Cambia el <code>display</code> de algún elemento y observa los cambios</li>
+        <li>Experimenta con <code>display: block</code>, <code>inline</code> e <code>inline-block</code></li>
+        <li>¿Qué elementos respetan márgenes verticales? ¿Cuáles no?</li>
+      </ol>
 
-                    <div class="pistas">
-                        <h6>💡 Pistas para reflexionar</h6>
-                        <ul>
-                            <li>Por defecto: <em>button</em> es inline-block, <em>span</em> es inline y <em>div</em> es block</li>
-                            <li>No uses <code>position</code> todavía, solo observa el flujo natural</li>
-                            <li>¿Qué elementos respetan el ancho del texto vs ocupan toda la línea?</li>
-                        </ul>
-                    </div>
+      <h5>🧩 Ejercicio 1.3: Entendiendo el Box Model</h5>
+      <ol>
+        <li><strong>Estructura básica:</strong> Crea tres cajas (<code>&lt;div&gt;</code>) y una cuarta caja dentro de la segunda</li>
+        <li><strong>Identificación visual:</strong> Asigna fondo y borde distintos a cada una</li>
+        <li><strong>Observa la estructura:</strong> content, padding, border, margin</li>
+        <li><strong>Experimenta con padding:</strong> añade <code>padding: 20px;</code></li>
+        <li><strong>Reflexiona:</strong> ¿Qué parte se agranda? ¿Interior o exterior?</li>
+      </ol>
 
-                    <h5>📝 Ejercicio 1.2: Display básico</h5>
-                    <ol>
-                        <li>Cambia el <code>display</code> de algún elemento y observa los cambios</li>
-                        <li>Experimenta con <code>display: block</code>, <code>inline</code> e <code>inline-block</code></li>
-                        <li>¿Qué elementos respetan margins verticales? ¿Cuáles no?</li>
-                    </ol>
+      <div class="consejo"><strong>💡 Recuerda:</strong> Tamaño total = <code>width + padding + border + margin</code></div>
 
-                    <h5>🧩 Ejercicio 1.3: Entendiendo el Modelo de Caja (Box Model)</h5>
-                    <ol>
-                        <li><strong>Estructura básica:</strong> Crea tres cajas (<code>&lt;div&gt;</code>) independientes y una cuarta caja dentro de la segunda (caja hija)</li>
-                        <li><strong>Identificación visual:</strong> Asigna un color de fondo y un borde distinto a cada una para distinguirlas</li>
-                        <li><strong>Observa la estructura visual:</strong>
-                            <ul>
-                                <li><strong>contenido</strong> (content) - el texto o elementos internos</li>
-                                <li><strong>relleno</strong> (padding) - espacio entre contenido y borde</li>
-                                <li><strong>borde</strong> (border) - línea alrededor del padding</li>
-                                <li><strong>margen</strong> (margin) - espacio exterior que separa de otros elementos</li>
-                            </ul>
-                        </li>
-                        <li><strong>Experimenta con padding:</strong> Añade <code>padding: 20px;</code> a una de las cajas</li>
-                        <li><strong>Reflexiona:</strong> ¿Qué parte de la caja se agranda? ¿Afecta al espacio interior o exterior?</li>
-                    </ol>
+      <h5>🧩 Ejercicio 1.4: Analizando box-sizing</h5>
+      <ol>
+        <li>Pon a la caja 2 y a la caja hija el mismo ancho (<code>width: 300px;</code>)</li>
+        <li>Añade a la hija <code>border: 5px solid</code> y <code>padding: 15px;</code></li>
+        <li>¿Se sale del contenedor? ¿Por qué?</li>
+        <li>Intenta corregirlo sin <code>box-sizing</code></li>
+        <li>Aplica <code>box-sizing: border-box;</code> y compara</li>
+        <li>¿En qué caja tiene más sentido aplicarlo?</li>
+      </ol>
 
-                    <div class="consejo">
-                        <strong>💡 Recuerda:</strong> El tamaño total de una caja se calcula como <code>width + padding + border + margin</code>
-                    </div>
+      <div class="reflexion">
+        <strong>🤔 Punto clave:</strong> Con <code>content-box</code>, el width NO incluye padding/border. Con <code>border-box</code>, SÍ.
+      </div>
 
-                    <h5>🧩 Ejercicio 1.4: Analizando box-sizing</h5>
-                    <ol>
-                        <li><strong>Configuración inicial:</strong> Pon a la caja 2 y a la caja hija el mismo ancho (ej: <code>width: 300px;</code>)</li>
-                        <li><strong>Añade espacio y borde:</strong> Añade a la caja hija un borde <code>border: 5px solid red;</code> y un relleno <code>padding: 15px;</code></li>
-                        <li><strong>Observa el problema:</strong> ¿La caja hija se sale del contenedor? ¿Por qué ocurre esto?</li>
-                        <li><strong>Solución sin box-sizing:</strong> Intenta que la caja hija no se salga sin usar <code>box-sizing</code>. ¿Qué tendrías que modificar para conseguirlo?</li>
-                        <li><strong>Prueba box-sizing:</strong> Ahora define <code>box-sizing: border-box;</code> en una de las cajas y compara el resultado</li>
-                        <li><strong>Analiza:</strong> ¿Qué diferencia observas? ¿En qué caja tiene más sentido aplicarlo?</li>
-                    </ol>
+      <h5>🧩 Ejercicio 1.5: Selector universal</h5>
+      <ol>
+        <li>Quita <code>box-sizing</code> individual</li>
+        <li>Aplica <code>* { box-sizing: border-box; }</code></li>
+        <li>Compara resultados y ventajas</li>
+      </ol>
 
-                    <div class="reflexion">
-                        <strong>🤔 Punto clave:</strong> Con <code>content-box</code> (por defecto), el width NO incluye padding ni border. Con <code>border-box</code>, el width SÍ los incluye.
-                    </div>
-
-                    <h5>🧩 Ejercicio 1.5: Aplicando el selector universal</h5>
-                    <ol>
-                        <li><strong>Reset individual:</strong> Quita el <code>box-sizing</code> individual de las cajas</li>
-                        <li><strong>Selector universal:</strong> Aplica la propiedad <code>box-sizing</code> usando el selector universal: <code>* { box-sizing: border-box; }</code></li>
-                        <li><strong>Compara resultados:</strong> Observa si el resultado es el mismo que antes</li>
-                        <li><strong>Reflexiona sobre las ventajas:</strong>
-                            <ul>
-                                <li>¿Por qué puede ser útil aplicarlo de forma global?</li>
-                                <li>¿Qué ventaja tiene para organizar el diseño de una página?</li>
-                                <li>¿Es más fácil calcular tamaños con este approach?</li>
-                            </ul>
-                        </li>
-                    </ol>
-
-                    <div class="ejercicio-ejemplo">
-                        <h5>💻 Plantilla HTML sugerida</h5>
-                        <pre>&lt;div class="caja caja1"&gt;Caja 1&lt;/div&gt;
+      <div class="ejercicio-ejemplo">
+        <h5>💻 Plantilla HTML sugerida</h5>
+        <pre>&lt;div class="caja caja1"&gt;Caja 1&lt;/div&gt;
 &lt;div class="caja caja2"&gt;
-    Caja 2
-    &lt;div class="caja-hija"&gt;Caja hija&lt;/div&gt;
+  Caja 2
+  &lt;div class="caja-hija"&gt;Caja hija&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="caja caja3"&gt;Caja 3&lt;/div&gt;</pre>
-                    </div>
+      </div>
 
-                    <div class="ejercicio-ejemplo">
-                        <h5>🎨 CSS de arranque</h5>
-                        <pre>.caja {
-    width: 200px;
-    height: 100px;
-    margin: 10px;
-    padding: 15px;
-    border: 2px solid #333;
-}
+      <div class="ejercicio-ejemplo">
+        <h5>🎨 CSS de arranque</h5>
+        <pre>.caja { width: 200px; height: 100px; margin: 10px; padding: 15px; border: 2px solid #333; }
+.caja1 { background:#ffebee; border-color:#f44336; }
+.caja2 { background:#e8f5e8; border-color:#4caf50; }
+.caja3 { background:#e3f2fd; border-color:#2196f3; }
+.caja-hija { background:#fff3e0; border-color:#ff9800; }</pre>
+      </div>
+    </div>
+  </div>
+</details>
 
-.caja1 { background-color: #ffebee; border-color: #f44336; }
-.caja2 { background-color: #e8f5e8; border-color: #4caf50; }
-.caja3 { background-color: #e3f2fd; border-color: #2196f3; }
-.caja-hija { background-color: #fff3e0; border-color: #ff9800; }</pre>
-                    </div>
-                </div>
-            </div>
+<!-- ===================== BLOQUE 2 ===================== -->
+<details>
+  <summary style="font-weight:700;background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;display:flex;gap:.75rem;align-items:center;justify-content:space-between;cursor:pointer;margin-top:1rem;">
+    <span>📍 Bloque 2: Jugando con las posiciones CSS</span>
+    <span style="font-size:.9rem;color:#475569;">🟡 Intermedio · ⏱️ 60 min</span>
+  </summary>
 
-            <!-- Bloque 2: Posiciones CSS -->
-            <div class="ejercicio">
-                <div class="ejercicio-header">
-                    <h4>📍 Bloque 2: Jugando con las posiciones CSS</h4>
-                    <div class="ejercicio-estado">
-                        <span class="dificultad">🟡 Intermedio</span>
-                        <span class="tiempo">⏱️ 60 min</span>
-                    </div>
-                </div>
+  <section class="ejercicio bloque-posiciones" style="margin-top:.75rem;">
+    <div class="ejercicio-objetivo">
+      <h5>🎯 Objetivo didáctico</h5>
+      <p>Explorar cómo <code>position</code> modifica el flujo y ancla elementos al contenedor o al <em>viewport</em> con pasos guiados.</p>
+    </div>
 
-                <div class="ejercicio-objetivo">
-                    <h5>🎯 Objetivo</h5>
-                    <p>Comprender cómo <code>position</code> altera (o no) el flujo del documento y el anclaje al contenedor o viewport.</p>
-                </div>
+    <div class="ejercicio-instrucciones">
+      <h5>🧱 Ejercicio 2.1 — Preparación y <code>static</code></h5>
+      <ol>
+        <li><span class="enunciado">Crea un contenedor principal</span> con tres cajas “Caja 1/2/3”.</li>
+        <li><span class="enunciado">Colorea</span> cada caja.</li>
+        <li><span class="enunciado">Sin posición</span> (por defecto <code>static</code>).</li>
+        <li><span class="enunciado">Intenta mover</span> una caja 20px abajo.</li>
+      </ol>
+      <ul><li><strong>Observa:</strong> orden, ocupación y si <code>top/left</code> tienen efecto.</li></ul>
+      <p class="conclusion"><strong>Conclusión:</strong> <code>static</code> respeta el flujo y no admite <code>top/left</code>.</p>
 
-                <div class="ejercicio-instrucciones">
-                    <h5>📝 Ejercicio 2.1: Preparación y static</h5>
-                    <ol>
-                        <li>Crea un contenedor principal con tres cajas con textos: "Caja 1", "Caja 2", "Caja 3"</li>
-                        <li>Dale diferentes colores de fondo para distinguirlas</li>
-                        <li>Observa el orden y ocupación con <code>position: static</code> (por defecto)</li>
-                    </ol>
+      <h5>⚙️ Ejercicio 2.2 — <code>position: relative</code></h5>
+      <ol>
+        <li><span class="enunciado">Aplica <code>relative</code></span> a la segunda caja.</li>
+        <li><span class="enunciado">Desplázala</span> con <code>top:20px; left:30px;</code>.</li>
+        <li><span class="enunciado">Restaura sin posición</span> para comparar.</li>
+      </ol>
+      <ul><li><strong>Observa:</strong> conserva su hueco; se mueve visualmente.</li></ul>
+      <p class="conclusion"><strong>Conclusión:</strong> <code>relative</code> mueve sin sacar del flujo.</p>
 
-                    <h5>📝 Ejercicio 2.2: Position relative</h5>
-                    <ol>
-                        <li>Aplica <code>position: relative</code> a la segunda caja</li>
-                        <li>Muévela con <code>top: 20px; left: 30px;</code></li>
-                        <li>Comprueba que conserva su hueco original pero se superpone visualmente</li>
-                    </ol>
+      <h5>🧭 Ejercicio 2.3 — <code>position: absolute</code></h5>
+      <ol>
+        <li><span class="enunciado">Cambia a <code>absolute</code></span> la segunda caja y usa <code>top/left</code>.</li>
+        <li><span class="enunciado">Observa</span> que sale del flujo.</li>
+        <li><span class="enunciado">Añade <code>relative</code></span> al contenedor padre.</li>
+        <li><span class="enunciado">Responde:</span> ¿respecto a quién se posiciona ahora?</li>
+      </ol>
+      <p class="conclusion"><strong>Conclusión:</strong> <code>absolute</code> se ancla al primer ancestro posicionado; si no, al viewport.</p>
 
-                    <h5>📝 Ejercicio 2.3: Position absolute</h5>
-                    <ol>
-                        <li>Aplica <code>position: absolute</code> a la segunda caja y desplázala</li>
-                        <li>Observa cómo las otras cajas se reubican</li>
-                        <li>Añade <code>position: relative</code> al contenedor padre</li>
-                        <li>¿Respecto a quién se posiciona ahora la caja absoluta?</li>
-                    </ol>
+      <h5>📌 Ejercicio 2.4 — <code>position: fixed</code></h5>
+      <ol>
+        <li><span class="enunciado">Crea una caja fija</span> <code>top:10px; right:10px;</code>.</li>
+        <li><span class="enunciado">Genera scroll</span> con contenido largo.</li>
+        <li><span class="enunciado">Comprueba</span> si se mueve.</li>
+      </ol>
+      <p class="conclusion"><strong>Conclusión:</strong> <code>fixed</code> se ancla al viewport.</p>
 
-                    <h5>📝 Ejercicio 2.4: Position fixed</h5>
-                    <ol>
-                        <li>Haz una caja con <code>position: fixed; top: 10px; right: 10px;</code></li>
-                        <li>Añade mucho contenido para generar scroll</li>
-                        <li>Comprueba que la caja queda anclada al viewport</li>
-                    </ol>
+      <h5>📎 Ejercicio 2.5 — <code>position: sticky</code> (ampliado)</h5>
+      <ol>
+        <li><span class="enunciado">Crea 3 secciones altas</span> (≈800px).</li>
+        <li><span class="enunciado">Añade</span> <code>&lt;div class="sticky-header"&gt;</code> en cada sección.</li>
+        <li><span class="enunciado">Aplica</span> <code>position: sticky; top: 0;</code>.</li>
+        <li><span class="enunciado">Observa</span> cuándo se pegan y cuándo dejan de estar fijas.</li>
+      </ol>
+      <ul>
+        <li><strong>Umbral:</strong> prueba <code>top:0/8/64px</code>.</li>
+        <li><strong>Contenedor:</strong> <code>overflow</code> ≠ <code>visible</code> limita el sticky al contenedor.</li>
+        <li><strong>Capas:</strong> usa <code>z-index</code> y fondo si se tapa.</li>
+      </ul>
+      <p class="conclusion"><strong>Conclusión:</strong> <code>sticky</code> actúa como <code>relative</code> hasta el umbral; luego se pega dentro de su contenedor desplazable.</p>
+    </div>
+  </section>
+</details>
 
-                    <h5>📝 Ejercicio 2.5: Position sticky</h5>
-                    <ol>
-                        <li>Crea 3 <code>&lt;section&gt;</code> altas (height: 800px cada una)</li>
-                        <li>Dentro de cada sección pon un <code>&lt;div class="sticky-header"&gt;</code></li>
-                        <li>Aplica <code>position: sticky; top: 0;</code> a las cabeceras</li>
-                        <li>Observa cuándo se pegan y cuándo dejan de estar fijas</li>
-                    </ol>
+<!-- ===================== BLOQUE 3 ===================== -->
+<details>
+  <summary style="font-weight:700;background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;display:flex;gap:.75rem;align-items:center;justify-content:space-between;cursor:pointer;margin-top:1rem;">
+    <span>📏 Bloque 3: Unidades de Medida en CSS</span>
+    <span style="font-size:.9rem;color:#475569;">🟢 Básico · ⏱️ 45 min</span>
+  </summary>
 
-                    <div class="reflexion">
-                        <strong>🤔 Comparación clave:</strong> ¿En qué se diferencia <strong>sticky</strong> de <strong>fixed</strong>? Experimenta con barras simuladas en cada sección.
-                    </div>
-                </div>
-            </div>
+  <div class="ejercicio" style="margin-top:.75rem;">
+    <div class="ejercicio-objetivo">
+      <h5>🎯 Objetivo didáctico</h5>
+      <p>Comprender unidades <em>absolutas</em> y <em>relativas</em> para diseños flexibles: <code>px</code>, <code>%</code>, <code>em</code>, <code>rem</code>, <code>vw/vh</code>, <code>fr</code>.</p>
+    </div>
 
-            <!-- Bloque 3: Alineación y Centrado -->
-            <div class="ejercicio">
-                <div class="ejercicio-header">
-                    <h4>🎯 Bloque 3: Alineación y centrado</h4>
-                    <div class="ejercicio-estado">
-                        <span class="dificultad">🟡 Intermedio</span>
-                        <span class="tiempo">⏱️ 50 min</span>
-                    </div>
-                </div>
+    <div class="ejercicio-instrucciones">
+      <h5>🧱 Ejercicio 3.1 — Medida base del navegador</h5>
+      <ol>
+        <li>Documento simple con un párrafo.</li>
+        <li>Sin definir <code>font-size</code>.</li>
+        <li>Inspecciona el tamaño por defecto.</li>
+      </ol>
+      <ul><li><strong>Observa:</strong> base habitual = <strong>16px</strong>.</li></ul>
 
-                <div class="ejercicio-objetivo">
-                    <h5>🎯 Objetivo</h5>
-                    <p>Dominar varias técnicas de centrado y saber cuándo usar cada una: margin, position, Flexbox y Grid.</p>
-                </div>
+      <h5>⚙️ Ejercicio 3.2 — <code>html { font-size: 62.5%; }</code></h5>
+      <ol>
+        <li>Aplica <code>62.5%</code> al <code>html</code>.</li>
+        <li>Calcula nuevo <code>1rem</code>.</li>
+        <li>Crea textos a 1rem, 1.6rem, 2rem.</li>
+      </ol>
+      <ul><li><strong>Observa:</strong> 1rem = 10px (si base era 16px).</li></ul>
 
-                <div class="ejercicio-instrucciones">
-                    <h5>📝 Ejercicio 3.1: Centrado con margin</h5>
-                    <ol>
-                        <li>Crea una caja con ancho fijo <code>width: 300px;</code></li>
-                        <li>Céntrala horizontalmente con <code>margin: 0 auto;</code></li>
-                        <li>¿Por qué no se centra verticalmente?</li>
-                    </ol>
+      <h5>📐 Ejercicio 3.3 — Absolutas vs relativas</h5>
+      <ol>
+        <li>Aplica tamaños con <code>px</code>, <code>%</code>, <code>em</code>, <code>rem</code>, <code>vw</code>, <code>vh</code>.</li>
+        <li>Redimensiona ventana y analiza.</li>
+      </ol>
 
-                    <h5>📝 Ejercicio 3.2: Centrado con position</h5>
-                    <ol>
-                        <li>Centra una caja dentro de un contenedor usando:</li>
-                        <li><code>position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);</code></li>
-                        <li>Nota que sale del flujo; compáralo con el método <em>margin</em></li>
-                    </ol>
+      <h5>🔲 Ejercicio 3.4 — Unidad <code>fr</code> en Grid</h5>
+      <ol>
+        <li>Grid de 3 columnas.</li>
+        <li>Usa <code>1fr 2fr 1fr</code>.</li>
+        <li>Observa la distribución proporcional.</li>
+      </ol>
+    </div>
+  </div>
+</details>
 
-                    <h5>📝 Ejercicio 3.3: Centrado con Flexbox</h5>
-                    <ol>
-                        <li>Usa <code>display: flex;</code> en el contenedor</li>
-                        <li>Centra con <code>justify-content: center;</code> y <code>align-items: center;</code></li>
-                        <li>Prueba también <code>gap: 1rem;</code> y <code>flex-direction: column;</code></li>
-                    </ol>
+<!-- ===================== BLOQUE 4 ===================== -->
+<details>
+  <summary style="font-weight:700;background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;display:flex;gap:.75rem;align-items:center;justify-content:space-between;cursor:pointer;margin-top:1rem;">
+    <span>🪄 Bloque 4: Capas y orden visual (z-index)</span>
+    <span style="font-size:.9rem;color:#475569;">🟡 Intermedio · ⏱️ 30 min</span>
+  </summary>
 
-                    <h5>📝 Ejercicio 3.4: Centrado con Grid</h5>
-                    <ol>
-                        <li>Usa <code>display: grid;</code> en el contenedor</li>
-                        <li>Centra con <code>place-items: center;</code></li>
-                        <li>Compara velocidad y claridad frente a Flex para centrar un único elemento</li>
-                    </ol>
+  <div class="ejercicio" style="margin-top:.75rem;">
+    <div class="ejercicio-objetivo">
+      <h5>🎯 Objetivo didáctico</h5>
+      <p>Comprender el stacking order, <code>z-index</code> y los contextos de apilamiento.</p>
+    </div>
 
-                    <div class="ejercicio-ejemplo">
-                        <h5>📊 Tabla comparativa para completar</h5>
-                        <pre>Método      | Props clave                 | Tipo centrado | Flujo | Ideal para
+    <div class="ejercicio-instrucciones">
+      <h5>🧱 Ejercicio 4.1 — Orden natural</h5>
+      <ol>
+        <li>Tres cajas superpuestas con desplazamientos.</li>
+        <li>Observa cuál queda arriba sin <code>z-index</code>.</li>
+      </ol>
+      <p class="conclusion"><strong>Conclusión:</strong> por defecto, el último en el DOM se apila encima.</p>
+
+      <h5>📶 Ejercicio 4.2 — Control con <code>z-index</code></h5>
+      <ol>
+        <li>Aplica <code>z-index</code> distintos a cada caja.</li>
+        <li>Crea un contenedor con su propio <code>z-index</code> y mete una caja dentro.</li>
+        <li>Comprueba que el hijo no sale del contexto del padre.</li>
+      </ol>
+      <div class="reflexion">
+        <strong>⚠️ Gotchas:</strong> <code>z-index</code> requiere <code>position</code> ≠ <code>static</code>. <code>opacity&lt;1</code>, <code>transform</code>, <code>filter</code> crean contextos nuevos.
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- ===================== BLOQUE 5 ===================== -->
+<details>
+  <summary style="font-weight:700;background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;display:flex;gap:.75rem;align-items:center;justify-content:space-between;cursor:pointer;margin-top:1rem;">
+    <span>🎯 Bloque 5: Alineación y centrado</span>
+    <span style="font-size:.9rem;color:#475569;">🟡 Intermedio · ⏱️ 50 min</span>
+  </summary>
+
+  <div class="ejercicio" style="margin-top:.75rem;">
+    <div class="ejercicio-objetivo">
+      <h5>🎯 Objetivo</h5>
+      <p>Dominar varias técnicas de centrado y saber cuándo usar cada una: margin, position, Flexbox y Grid.</p>
+    </div>
+
+    <div class="ejercicio-instrucciones">
+      <h5>📝 Ejercicio 5.1: Centrado con margin</h5>
+      <ol>
+        <li>Caja con <code>width: 300px;</code></li>
+        <li>Centra horizontal con <code>margin: 0 auto;</code></li>
+        <li>¿Por qué no centra vertical?</li>
+      </ol>
+
+      <h5>📝 Ejercicio 5.2: Centrado con position</h5>
+      <ol>
+        <li>Centra dentro de un contenedor con:</li>
+        <li><code>position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);</code></li>
+        <li>Compara con <em>margin</em> (sale del flujo).</li>
+      </ol>
+
+      <h5>📝 Ejercicio 5.3: Centrado con Flexbox</h5>
+      <ol>
+        <li><code>display:flex;</code> en el contenedor</li>
+        <li><code>justify-content:center;</code> + <code>align-items:center;</code></li>
+        <li>Prueba <code>gap</code> y <code>flex-direction: column;</code></li>
+      </ol>
+
+      <h5>📝 Ejercicio 5.4: Centrado con Grid</h5>
+      <ol>
+        <li><code>display:grid;</code> en el contenedor</li>
+        <li><code>place-items:center;</code></li>
+        <li>Compara rapidez frente a Flex para 1 elemento</li>
+      </ol>
+
+      <div class="ejercicio-ejemplo">
+        <h5>📊 Tabla comparativa</h5>
+<pre>Método      | Props clave                 | Tipo centrado | Flujo | Ideal para
 ------------|-----------------------------|--------------:|-------|----------------------------
 margin      | margin: 0 auto              | Horizontal    |   ✔   | Bloques con ancho fijo
 position    | top/left + transform        | Completo      |   ✖   | Superposiciones
-flexbox     | justify / align / gap       | Ambos         |   ✔   | Grupos de elementos  
+flexbox     | justify / align / gap       | Ambos         |   ✔   | Grupos de elementos
 grid        | place-items: center         | Ambos         |   ✔   | Layouts y centrar 1 caja</pre>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </div>
+  </div>
+</details>
 
-            <!-- Bloque 4: Flexbox -->
-            <div class="ejercicio">
-                <div class="ejercicio-header">
-                    <h4>📦 Bloque 4: Ejercicios Flexbox progresivos</h4>
-                    <div class="ejercicio-estado">
-                        <span class="dificultad">🟠 Intermedio-Avanzado</span>
-                        <span class="tiempo">⏱️ 75 min</span>
-                    </div>
-                </div>
+<!-- ===================== BLOQUE 6 ===================== -->
+<details>
+  <summary style="font-weight:700;background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;display:flex;gap:.75rem;align-items:center;justify-content:space-between;cursor:pointer;margin-top:1rem;">
+    <span>📏 Bloque 6: Espaciado (Margin, Padding, Gap) y Overflow</span>
+    <span style="font-size:.9rem;color:#475569;">🟢 Básico · ⏱️ 60 min</span>
+  </summary>
 
-                <div class="ejercicio-objetivo">
-                    <h5>🎯 Objetivo</h5>
-                    <p>Practicar alineación, distribución, crecimiento y orden con Flexbox en casos reales.</p>
-                </div>
+  <section class="ejercicio bloque-espaciado" style="margin-top:.75rem;">
+    <div class="ejercicio-objetivo">
+      <h5>🎯 Objetivo didáctico</h5>
+      <p>Gestionar espacios internos/externos con <code>padding</code>, <code>margin</code>, <code>gap</code> y controlar desbordes con <code>overflow</code>.</p>
+    </div>
 
-                <div class="ejercicio-instrucciones">
-                    <h5>📝 Ejercicio 4.1: Alineación básica</h5>
-                    <ol>
-                        <li>Crea 3 cajas en un contenedor y activa <code>display: flex;</code></li>
-                        <li>Prueba <code>justify-content: center | space-between | space-around</code></li>
-                        <li>Combina con <code>align-items: center | flex-start | flex-end</code></li>
-                        <li>Añade altura al contenedor para ver el efecto vertical</li>
-                    </ol>
+    <div class="ejercicio-instrucciones">
+      <h5>🧱 Ejercicio 6.1 — Padding vs Margin</h5>
+      <ol>
+        <li>3 cajas con texto.</li>
+        <li>Colorea cada una.</li>
+        <li>Primera: <code>padding:20px;</code> · Segunda: <code>margin:20px;</code></li>
+        <li>Compara tamaño real y separación.</li>
+      </ol>
 
-                    <h5>📝 Ejercicio 4.2: Menú de navegación</h5>
-                    <ol>
-                        <li>Crea un <code>&lt;header&gt;</code> con logo (texto) a la izquierda y menú (lista) a la derecha</li>
-                        <li>Usa <code>justify-content: space-between</code> y <code>align-items: center</code></li>
-                        <li>Añade <code>gap: 1rem;</code> entre los elementos del menú</li>
-                        <li>Haz que el menú sea una lista <code>&lt;ul&gt;</code> también con flexbox</li>
-                    </ol>
+      <h5>📦 Ejercicio 6.2 — <code>box-sizing</code></h5>
+      <ol>
+        <li>Dos cajas iguales: <code>200x200</code>.</li>
+        <li>Una con <code>content-box</code>, otra con <code>border-box</code>.</li>
+        <li>Añade <code>padding:20px;</code> y observa.</li>
+      </ol>
 
-                    <h5>📝 Ejercicio 4.3: Cards responsivas</h5>
-                    <ol>
-                        <li>Contenedor <code>.cards</code> con 6 elementos <code>.card</code></li>
-                        <li>Usa <code>flex-wrap: wrap</code> y <code>gap: 1rem;</code></li>
-                        <li>Controla el tamaño con <code>flex-basis: 250px;</code> en cada card</li>
-                        <li>Observa cómo saltan a nueva línea al cambiar el ancho del navegador</li>
-                    </ol>
+      <h5>🧩 Ejercicio 6.3 — <code>gap</code> en Flex/Grid</h5>
+      <ol>
+        <li>Contenedor <code>display:flex</code> con 3 hijos.</li>
+        <li>Aplica <code>gap:20px;</code> y compara con márgenes.</li>
+        <li>Cambia a columna y verifica que sigue funcionando.</li>
+      </ol>
 
-                    <h5>📝 Ejercicio 4.4: Centrado total de página</h5>
-                    <ol>
-                        <li>Usa <code>min-height: 100vh;</code> en el contenedor</li>
-                        <li>Centra una caja en pantalla completa con Flexbox</li>
-                        <li>Añade contenido y verifica que queda centrada</li>
-                    </ol>
+      <h5>📐 Ejercicio 6.4 — Colapso de márgenes</h5>
+      <ol>
+        <li>Dos bloques apilados.</li>
+        <li><code>margin-bottom:50px</code> vs <code>margin-top:100px</code>.</li>
+        <li>Mide el espacio real (será 100px).</li>
+        <li>Evita colapso con <code>padding</code> o <code>border</code> en el contenedor.</li>
+      </ol>
 
-                    <h5>📝 Ejercicio 4.5: Orden y crecimiento</h5>
-                    <ol>
-                        <li>Crea 3 elementos con <code>flex-grow: 1;</code>, <code>flex-grow: 2;</code> y <code>flex-grow: 3;</code></li>
-                        <li>Cambia el ancho del contenedor y observa las proporciones</li>
-                        <li>Reordena visualmente con <code>order: 3;</code>, <code>order: 1;</code>, <code>order: 2;</code></li>
-                        <li>Comprueba que el orden HTML no cambió pero el visual sí</li>
-                    </ol>
-                </div>
-            </div>
+      <h5>💧 Ejercicio 6.5 — <code>overflow</code></h5>
+      <ol>
+        <li>Caja pequeña con texto largo.</li>
+        <li>Prueba <code>visible | hidden | scroll | auto</code>.</li>
+        <li>Observa barras y cortes.</li>
+      </ol>
 
-            <!-- Bloque 5: CSS Grid -->
-            <div class="ejercicio">
-                <div class="ejercicio-header">
-                    <h4>🔲 Bloque 5: Ejercicios CSS Grid progresivos</h4>
-                    <div class="ejercicio-estado">
-                        <span class="dificultad">🔴 Avanzado</span>
-                        <span class="tiempo">⏱️ 90 min</span>
-                    </div>
-                </div>
+      <h5>🧠 Ejercicio 6.6 — Límites fluidos</h5>
+      <ol>
+        <li>Contenedor fluido <code>width:100%</code>.</li>
+        <li>Define <code>max-width</code> y <code>min-width</code>.</li>
+        <li>Centra con <code>margin:0 auto</code> y redimensiona.</li>
+      </ol>
 
-                <div class="ejercicio-objetivo">
-                    <h5>🎯 Objetivo</h5>
-                    <p>Dominar columnas/filas, áreas, funciones <code>repeat</code>, <code>auto-fit</code>, <code>minmax</code> y maquetación completa.</p>
-                </div>
+      <div class="ejercicio-ejemplo">
+        <h5>📊 Tabla comparativa de espaciado</h5>
+<pre>Propiedad | Tipo de espacio | Afecta total | Contexto           | Uso típico
+----------|------------------|--------------|--------------------|----------------------------
+margin    | Externo          | No           | Flujo normal       | Separar bloques/secciones
+padding   | Interno          | Sí*          | Dentro del bloque  | Área clicable y respiración
+gap       | Entre hijos      | No           | Flex/Grid          | Separación consistente
+overflow  | Desbordamiento   | No           | Cajas pequeñas     | Scroll y recortes
+* Con border-box no crece el total</pre>
+      </div>
+    </div>
+  </section>
+</details>
 
-                <div class="ejercicio-instrucciones">
-                    <h5>📝 Ejercicio 5.1: Activar Grid y columnas</h5>
-                    <ol>
-                        <li>Crea 6 cajas y aplica <code>display: grid;</code> al contenedor</li>
-                        <li>Usa <code>grid-template-columns: repeat(3, 1fr);</code> y <code>gap: 1rem;</code></li>
-                        <li>Prueba también <code>grid-template-columns: 200px 1fr 2fr;</code></li>
-                        <li>Observa cómo se distribuyen las cajas en ambos casos</li>
-                    </ol>
+<!-- ===================== BLOQUE 7 ===================== -->
+<details>
+  <summary style="font-weight:700;background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;display:flex;gap:.75rem;align-items:center;justify-content:space-between;cursor:pointer;margin-top:1rem;">
+    <span>📦 Bloque 7: Ejercicios Flexbox progresivos</span>
+    <span style="font-size:.9rem;color:#475569;">🟠 Intermedio-Avanzado · ⏱️ 75 min</span>
+  </summary>
 
-                    <h5>📝 Ejercicio 5.2: Filas y spans</h5>
-                    <ol>
-                        <li>Define <code>grid-template-rows: 100px 200px 100px;</code></li>
-                        <li>Haz que una caja ocupe varias columnas con <code>grid-column: span 2;</code></li>
-                        <li>Otra caja que ocupe varias filas con <code>grid-row: span 2;</code></li>
-                        <li>Experimenta con <code>grid-column: 1 / 4;</code> (sintaxis de líneas)</li>
-                    </ol>
+  <div class="ejercicio" style="margin-top:.75rem;">
+    <div class="ejercicio-objetivo">
+      <h5>🎯 Objetivo</h5>
+      <p>Practicar alineación, distribución, crecimiento y orden con Flexbox en casos reales.</p>
+    </div>
 
-                    <h5>📝 Ejercicio 5.3: Grid Template Areas</h5>
-                    <ol>
-                        <li>Crea elementos: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code></li>
-                        <li>Diseña un layout usando <code>grid-template-areas</code></li>
-                        <li>Asigna cada elemento con <code>grid-area: header;</code> etc.</li>
-                        <li>Añade un <code>@media (max-width: 768px)</code> para colapsar a 1 columna</li>
-                    </ol>
+    <div class="ejercicio-instrucciones">
+      <h5>📝 Ejercicio 7.1: Alineación básica</h5>
+      <ol>
+        <li>3 cajas + <code>display:flex;</code></li>
+        <li><code>justify-content: center | space-between | space-around</code></li>
+        <li><code>align-items: center | flex-start | flex-end</code></li>
+        <li>Define altura para ver eje vertical</li>
+      </ol>
 
-                    <div class="ejercicio-ejemplo">
-                        <h5>💡 Pista de áreas (completa el código)</h5>
-                        <pre>.layout { 
-    display: grid; 
-    gap: 1rem; 
-    grid-template-columns: 220px 1fr 220px; 
-    grid-template-areas:
-        "header header header"
-        "nav    main   aside"
-        "footer footer footer"; 
+      <h5>📝 Ejercicio 7.2: Menú de navegación</h5>
+      <ol>
+        <li><code>&lt;header&gt;</code> con logo a la izq. y menú a la dcha.</li>
+        <li><code>justify-content: space-between</code> + <code>align-items: center</code></li>
+        <li><code>gap: 1rem</code> entre elementos del menú</li>
+        <li>El <code>&lt;ul&gt;</code> del menú también con Flex</li>
+      </ol>
+
+      <h5>📝 Ejercicio 7.3: Cards responsivas</h5>
+      <ol>
+        <li>Contenedor <code>.cards</code> con 6 <code>.card</code></li>
+        <li><code>flex-wrap: wrap</code> + <code>gap: 1rem</code></li>
+        <li><code>flex-basis: 250px;</code> en cada card</li>
+        <li>Observa saltos de línea</li>
+      </ol>
+
+      <h5>📝 Ejercicio 7.4: Centrado total de página</h5>
+      <ol>
+        <li><code>min-height: 100vh;</code> en el contenedor</li>
+        <li>Centra una caja con Flex (ambos ejes)</li>
+        <li>Añade contenido y verifica</li>
+      </ol>
+
+      <h5>📝 Ejercicio 7.5: Orden y crecimiento</h5>
+      <ol>
+        <li>3 elementos con <code>flex-grow: 1 | 2 | 3</code></li>
+        <li>Redimensiona y observa proporciones</li>
+        <li>Reordena con <code>order</code> sin tocar el HTML</li>
+      </ol>
+    </div>
+  </div>
+</details>
+
+<!-- ===================== BLOQUE 8 ===================== -->
+<details>
+  <summary style="font-weight:700;background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;display:flex;gap:.75rem;align-items:center;justify-content:space-between;cursor:pointer;margin-top:1rem;">
+    <span>🔲 Bloque 8: Ejercicios CSS Grid progresivos</span>
+    <span style="font-size:.9rem;color:#475569;">🔴 Avanzado · ⏱️ 90 min</span>
+  </summary>
+
+  <div class="ejercicio" style="margin-top:.75rem;">
+    <div class="ejercicio-objetivo">
+      <h5>🎯 Objetivo</h5>
+      <p>Dominar columnas/filas, áreas, funciones <code>repeat</code>, <code>auto-fit</code>, <code>minmax</code> y maquetación completa.</p>
+    </div>
+
+    <div class="ejercicio-instrucciones">
+      <h5>📝 Ejercicio 8.1: Activar Grid y columnas</h5>
+      <ol>
+        <li>6 cajas + <code>display: grid;</code></li>
+        <li><code>grid-template-columns: repeat(3, 1fr);</code> y <code>gap: 1rem;</code></li>
+        <li>Prueba <code>grid-template-columns: 200px 1fr 2fr;</code></li>
+      </ol>
+
+      <h5>📝 Ejercicio 8.2: Filas y spans</h5>
+      <ol>
+        <li><code>grid-template-rows: 100px 200px 100px;</code></li>
+        <li><code>grid-column: span 2;</code> y <code>grid-row: span 2;</code></li>
+        <li>Prueba <code>grid-column: 1 / 4;</code></li>
+      </ol>
+
+      <h5>📝 Ejercicio 8.3: Grid Template Areas</h5>
+      <ol>
+        <li>Elementos: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code></li>
+        <li>Diseña con <code>grid-template-areas</code> + asignaciones <code>grid-area</code></li>
+        <li>Breakpoint con <code>@media (max-width: 768px)</code></li>
+      </ol>
+
+      <div class="ejercicio-ejemplo">
+        <h5>💡 Pista de áreas (completa)</h5>
+<pre>.layout { 
+  display:grid; gap:1rem;
+  grid-template-columns: 220px 1fr 220px; 
+  grid-template-areas:
+    "header header header"
+    "nav    main   aside"
+    "footer footer footer";
 }
-
 /* Completa las asignaciones */
-header { grid-area: /* ??? */; }
-nav    { grid-area: /* ??? */; }
-/* ... */</pre>
-                    </div>
+header { grid-area: /* header */; }
+nav    { grid-area: /* nav */; }
+main   { grid-area: /* main */; }
+aside  { grid-area: /* aside */; }
+footer { grid-area: /* footer */; }</pre>
+      </div>
 
-                    <h5>📝 Ejercicio 5.4: Galería responsiva</h5>
-                    <ol>
-                        <li>Contenedor <code>.galeria</code> con 12 imágenes (usa https://picsum.photos/300/200)</li>
-                        <li>Columnas: <code>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</code></li>
-                        <li>Añade <code>gap: 1rem;</code> y prueba redimensionar la ventana</li>
-                        <li>Observa cómo las columnas se ajustan automáticamente</li>
-                    </ol>
+      <h5>📝 Ejercicio 8.4: Galería responsiva</h5>
+      <ol>
+        <li>Contenedor <code>.galeria</code> con 12 imágenes (picsum.photos)</li>
+        <li><code>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</code></li>
+        <li><code>gap: 1rem;</code> y redimensiona</li>
+      </ol>
 
-                    <h5>📝 Ejercicio 5.5: Maquetación completa</h5>
-                    <ol>
-                        <li>Estructura completa: Header, Main, Sidebar, Aside, Footer usando Grid</li>
-                        <li>Incluye un <em>grid anidado</em> dentro de Main (ej: galería de tarjetas)</li>
-                        <li>Haz que sea responsive con al menos 2 breakpoints</li>
-                        <li>Prueba en modo móvil del navegador</li>
-                    </ol>
-                </div>
-            </div>
+      <h5>📝 Ejercicio 8.5: Maquetación completa</h5>
+      <ol>
+        <li>Header, Main, Sidebar, Aside, Footer con Grid</li>
+        <li>Grid anidado en Main (galería de tarjetas)</li>
+        <li>Responsive con 2 breakpoints</li>
+      </ol>
+    </div>
+  </div>
+</details>
 
-            <!-- Bloque 6: Flex + Grid -->
-            <div class="ejercicio">
-                <div class="ejercicio-header">
-                    <h4>🚀 Bloque 6: Combinando Flexbox y Grid</h4>
-                    <div class="ejercicio-estado">
-                        <span class="dificultad">🔴 Experto</span>
-                        <span class="tiempo">⏱️ 60 min</span>
-                    </div>
-                </div>
+<!-- ===================== BLOQUE 9 ===================== -->
+<details>
+  <summary style="font-weight:700;background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;display:flex;gap:.75rem;align-items:center;justify-content:space-between;cursor:pointer;margin-top:1rem;">
+    <span>🚀 Bloque 9: Combinando Flexbox y Grid</span>
+    <span style="font-size:.9rem;color:#475569;">🔴 Experto · ⏱️ 60 min</span>
+  </summary>
 
-                <div class="ejercicio-objetivo">
-                    <h5>🎯 Objetivo</h5>
-                    <p>Usar Grid para el esqueleto 2D y Flexbox para alinear el contenido interno. La combinación perfecta para layouts profesionales.</p>
-                </div>
+  <div class="ejercicio" style="margin-top:.75rem;">
+    <div class="ejercicio-objetivo">
+      <h5>🎯 Objetivo</h5>
+      <p>Usar Grid para el esqueleto 2D y Flexbox para alinear el contenido interno.</p>
+    </div>
 
-                <div class="ejercicio-instrucciones">
-                    <h5>📝 Ejercicio 6.1: Propuesta final</h5>
-                    <ol>
-                        <li>Layout principal con Grid en 3 zonas: header, main, footer</li>
-                        <li>Dentro del <em>header</em>: logo y navegación con Flexbox</li>
-                        <li>Dentro de <em>main</em>: distribuye tarjetas con Flexbox (usa <code>gap</code>)</li>
-                        <li>Dentro de cada <em>tarjeta</em>: título, contenido y botón alineados con Flexbox</li>
-                        <li>Haz que todo sea responsive</li>
-                    </ol>
+    <div class="ejercicio-instrucciones">
+      <h5>📝 Ejercicio 9.1: Propuesta final</h5>
+      <ol>
+        <li>Layout principal con Grid (header, main, footer)</li>
+        <li>Header: logo + navegación en Flex</li>
+        <li>Main: tarjetas en Flex con <code>gap</code></li>
+        <li>Tarjeta: título, contenido y botón alineados con Flex</li>
+        <li>Hazlo responsive</li>
+      </ol>
 
-                    <div class="pistas">
-                        <h6>💡 Estrategia recomendada</h6>
-                        <ul>
-                            <li><strong>Grid:</strong> para el layout principal (estructura 2D)</li>
-                            <li><strong>Flexbox:</strong> para alineación interna de componentes (1D)</li>
-                            <li>Usa <code>gap</code> en ambos para espaciado consistente</li>
-                            <li>Mobile-first: empieza por móvil y añade media queries para escritorio</li>
-                        </ul>
-                    </div>
+      <div class="pistas">
+        <h6>💡 Estrategia recomendada</h6>
+        <ul>
+          <li><strong>Grid:</strong> estructura 2D</li>
+          <li><strong>Flexbox:</strong> alineación 1D interna</li>
+          <li><code>gap</code> en ambos para consistencia</li>
+          <li>Enfoque mobile-first</li>
+        </ul>
+      </div>
 
-                    <h5>📸 Entregable</h5>
-                    <ol>
-                        <li>Captura de pantalla en escritorio (ventana ancha)</li>
-                        <li>Captura en móvil (usa DevTools del navegador)</li>
-                        <li>Código HTML y CSS comentado</li>
-                    </ol>
+      <div class="reflexion">
+        <strong>🤔 Reflexión final:</strong> ¿Cuándo usar Grid vs Flexbox? ¿Qué ventajas tiene combinarlos?
+      </div>
+    </div>
+  </div>
+</details>
 
-                    <div class="reflexion">
-                        <strong>🤔 Reflexión final:</strong> ¿Cuándo usarías Grid vs Flexbox? ¿Qué ventajas tiene combinar ambos? ¿Cómo mejorarías este layout para un sitio real?
-                    </div>
-                </div>
-            </div>
+<!-- ===================== CONSEJOS ===================== -->
+<details>
+  <summary style="font-weight:700;background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:10px;display:flex;gap:.75rem;align-items:center;justify-content:space-between;cursor:pointer;margin-top:1rem;">
+    <span>🎓 Consejos y Próximos Pasos</span>
+  </summary>
 
-            <!-- Sección de consejos finales -->
-            <div class="concepto">
-                <h3>🎓 Consejos para Continuar Practicando</h3>
-                
-                <div class="consejos-finales">
-                    <div class="consejos-grid">
-                        <div class="consejo-final">
-                            <h4>🔄 Practica Regularmente</h4>
-                            <p>Dedica 30 minutos diarios a experimentar con CSS. La consistencia es clave para dominar la maquetación.</p>
-                        </div>
-                        
-                        <div class="consejo-final">
-                            <h4>🌐 Inspecciona Sitios Reales</h4>
-                            <p>Usa las DevTools para ver cómo están construidos tus sitios favoritos. Es la mejor forma de aprender patrones profesionales.</p>
-                        </div>
-                        
-                        <div class="consejo-final">
-                            <h4>📱 Piensa Mobile-First</h4>
-                            <p>Empieza siempre diseñando para móvil y luego añade complejidad para pantallas más grandes.</p>
-                        </div>
-                        
-                        <div class="consejo-final">
-                            <h4>🎨 Experimenta sin Miedo</h4>
-                            <p>CSS no se rompe. Prueba valores extremos, combina técnicas y observa qué pasa. Los errores enseñan mucho.</p>
-                        </div>
-                    </div>
-                </div>
+  <div class="concepto" style="margin-top:.75rem;">
+    <h3>🎓 Consejos para Continuar Practicando</h3>
+    <div class="consejos-finales">
+      <div class="consejos-grid">
+        <div class="consejo-final">
+          <h4>🔄 Practica Regularmente</h4>
+          <p>Experimentar con CSS es clave para dominar la maquetación.</p>
+        </div>
+        <div class="consejo-final">
+          <h4>🌐 Inspecciona Sitios Reales</h4>
+          <p>DevTools te muestra cómo están construidos tus sitios favoritos.</p>
+        </div>
+        <div class="consejo-final">
+          <h4>📱 Mobile-First</h4>
+          <p>Empieza en móvil y escala a escritorio.</p>
+        </div>
+        <div class="consejo-final">
+          <h4>🎨 Experimenta sin miedo</h4>
+          <p>Probar extremo-te enseña límites y patrones.</p>
+        </div>
+      </div>
+    </div>
 
-                <div class="siguiente-paso">
-                    <h4>🚀 Próximos Pasos Recomendados</h4>
-                    <div class="proximos-pasos">
-                        <div class="proximo-paso">
-                            <span class="paso-icono">🎯</span>
-                            <div>
-                                <strong>Frameworks CSS:</strong> Explora Tailwind CSS o Bootstrap para acelerar tu workflow
-                            </div>
-                        </div>
-                        
-                        <div class="proximo-paso">
-                            <span class="paso-icono">⚡</span>
-                            <div>
-                                <strong>CSS Avanzado:</strong> Aprende animations, transforms, custom properties y CSS-in-JS
-                            </div>
-                        </div>
-                        
-                        <div class="proximo-paso">
-                            <span class="paso-icono">🏗️</span>
-                            <div>
-                                <strong>Proyectos Reales:</strong> Clona layouts de sitios populares o crea tu portfolio personal
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="siguiente-paso">
+      <h4>🚀 Próximos Pasos Recomendados</h4>
+      <div class="proximos-pasos">
+        <div class="proximo-paso"><span class="paso-icono">🎯</span> <strong>Frameworks CSS:</strong> Tailwind o Bootstrap</div>
+        <div class="proximo-paso"><span class="paso-icono">⚡</span> <strong>CSS Avanzado:</strong> animations, transforms, custom properties</div>
+        <div class="proximo-paso"><span class="paso-icono">🏗️</span> <strong>Proyectos Reales:</strong> clona layouts famosos o crea tu portfolio</div>
+      </div>
+    </div>
 
-                <div class="mensaje-final">
-                    <h3>¡Felicidades por completar los ejercicios! 🎉</h3>
-                    <p class="mensaje-motivacional">
-                        Has recorrido un camino importante en el dominio de la maquetación CSS. 
-                        Desde entender el box model hasta combinar Grid y Flexbox para layouts complejos, 
-                        <strong>ahora tienes las herramientas para crear interfaces web profesionales</strong>.
-                    </p>
-                    <p class="mensaje-motivacional">
-                        Recuerda: <em>la maestría viene con la práctica constante</em>. 
-                        Sigue experimentando, construyendo proyectos y desafiándote con nuevos layouts.
-                        <strong>¡El CSS moderno te espera!</strong>
-                    </p>
-                </div>
-            </div>
+    <div class="mensaje-final">
+      <h3>¡Felicidades por completar los ejercicios! 🎉</h3>
+      <p class="mensaje-motivacional">
+        Has recorrido un camino importante en la maquetación CSS. Desde el box model a combinar Grid y Flexbox,
+        <strong>ya tienes herramientas para interfaces profesionales</strong>.
+      </p>
+      <p class="mensaje-motivacional">
+        La maestría llega con la práctica constante. ¡Sigue creando!
+      </p>
+    </div>
+  </div>
+</details>
+
+
         </section>
 
         <!-- SECCIÓN 9: PROYECTO FINAL -->
@@ -5577,84 +5675,322 @@ nav    { grid-area: /* ??? */; }
                 </div>
             </div>
 
-            <!-- HERRAMIENTAS ESENCIALES -->
-            <div class="resumen-seccion">
-                <h3>🛠️ Tu Caja de Herramientas CSS</h3>
-                
-                <div class="herramientas-grid">
-                    <div class="herramienta">
-                        <h4>🔧 Para Centrar</h4>
-                        <div class="herramienta-opciones">
-                            <div class="opcion-herramienta">
-                                <strong>Texto:</strong>
-                                <code>text-align: center</code>
-                            </div>
-                            <div class="opcion-herramienta">
-                                <strong>Elemento:</strong>
-                                <code>margin: 0 auto</code>
-                            </div>
-                            <div class="opcion-herramienta">
-                                <strong>Todo:</strong>
-                                <code>display: flex; justify-content: center; align-items: center</code>
-                            </div>
-                        </div>
-                    </div>
+            <!-- HERRAMIENTAS ESENCIALES  -->
+<div class="resumen-seccion">
+  <h3>🛠️ Tu Caja de Herramientas CSS</h3>
 
-                    <div class="herramienta">
-                        <h4>📐 Para Organizar</h4>
-                        <div class="herramienta-opciones">
-                            <div class="opcion-herramienta">
-                                <strong>En fila:</strong>
-                                <code>display: flex</code>
-                            </div>
-                            <div class="opcion-herramienta">
-                                <strong>En columna:</strong>
-                                <code>display: flex; flex-direction: column</code>
-                            </div>
-                            <div class="opcion-herramienta">
-                                <strong>Layout complejo:</strong>
-                                <code>display: grid</code>
-                            </div>
-                        </div>
-                    </div>
+  <div class="herramientas-grid">
+    <!-- Centrado -->
+    <div class="herramienta">
+      <h4>🔧 Para Centrar</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Texto (inline):</strong>
+          <code>text-align: center</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Bloque con ancho fijo:</strong>
+          <code>margin: 0 auto</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Caja única:</strong>
+          <code>display: grid; place-items: center</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Grupo de elementos:</strong>
+          <code>display: flex; justify-content: center; align-items: center</code>
+        </div>
+      </div>
+    </div>
 
-                    <div class="herramienta">
-                        <h4>📏 Para Espaciar</h4>
-                        <div class="herramienta-opciones">
-                            <div class="opcion-herramienta">
-                                <strong>Entre elementos:</strong>
-                                <code>gap: 1rem</code>
-                            </div>
-                            <div class="opcion-herramienta">
-                                <strong>Dentro del elemento:</strong>
-                                <code>padding: 1rem</code>
-                            </div>
-                            <div class="opcion-herramienta">
-                                <strong>Fuera del elemento:</strong>
-                                <code>margin: 1rem</code>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Layout -->
+    <div class="herramienta">
+      <h4>📐 Layout (cómo se colocan)</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Bloques básicos:</strong>
+          <code>display: block | inline | inline-block</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Fila/Columna:</strong>
+          <code>display: flex; flex-direction: row | column</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Grid bidimensional:</strong>
+          <code>display: grid; grid-template-columns</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Multicolumna:</strong>
+          <code>columns: 2 300px; column-gap</code>
+        </div>
+      </div>
+    </div>
 
-                    <div class="herramienta">
-                        <h4>📱 Para Responsive</h4>
-                        <div class="herramienta-opciones">
-                            <div class="opcion-herramienta">
-                                <strong>Breakpoint móvil:</strong>
-                                <code>@media (max-width: 768px)</code>
-                            </div>
-                            <div class="opcion-herramienta">
-                                <strong>Unidades flexibles:</strong>
-                                <code>rem, %, vw, vh</code>
-                            </div>
-                            <div class="opcion-herramienta">
-                                <strong>Grid responsive:</strong>
-                                <code>repeat(auto-fit, minmax(250px, 1fr))</code>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Posicionamiento -->
+    <div class="herramienta">
+      <h4>📍 Posicionamiento</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Flujo normal:</strong>
+          <code>position: static</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Ajuste fino:</strong>
+          <code>position: relative; top/left</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Fuera de flujo:</strong>
+          <code>position: absolute</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Fija al viewport:</strong>
+          <code>position: fixed</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Se pega al hacer scroll:</strong>
+          <code>position: sticky; top: 0</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flujo clásico -->
+    <div class="herramienta">
+      <h4>🌊 Flujo clásico</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Flotar:</strong>
+          <code>float: left | right</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Limpiar flotados:</strong>
+          <code>clear: both</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Contener flotados (BFC):</strong>
+          <code>display: flow-root</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Capas -->
+    <div class="herramienta">
+      <h4>🪄 Capas (z-index)</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Orden de apilado:</strong>
+          <code>z-index: 10</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Contexto nuevo:</strong>
+          <code>position ≠ static</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>También crean contexto:</strong>
+          <code>opacity&lt;1, transform, filter</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tamaño -->
+    <div class="herramienta">
+      <h4>📏 Tamaño</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Anchos/Altos:</strong>
+          <code>width/height | min-/max-</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Caja predecible:</strong>
+          <code>box-sizing: border-box</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Medidas clave:</strong>
+          <code>rem, %, vw/vh, clamp()</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Espaciado -->
+    <div class="herramienta">
+      <h4>🧊 Espaciado</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Entre hijos:</strong>
+          <code>gap</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Dentro del bloque:</strong>
+          <code>padding</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Fuera del bloque:</strong>
+          <code>margin</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alineación -->
+    <div class="herramienta">
+      <h4>🎯 Alineación</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Texto:</strong>
+          <code>text-align: left/center/right</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Flex:</strong>
+          <code>justify-content | align-items | align-content</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Grid:</strong>
+          <code>place-items | place-content | place-self</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsive -->
+    <div class="herramienta">
+      <h4>📱 Responsive</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Media queries:</strong>
+          <code>@media (max-width: 768px)</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Container queries:</strong>
+          <code>@container (min-width: 600px)</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Grids fluidos:</strong>
+          <code>repeat(auto-fit, minmax(250px, 1fr))</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Preferencias OS:</strong>
+          <code>@media (prefers-color-scheme)</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overflow & scroll -->
+    <div class="herramienta">
+      <h4>🌀 Overflow & Scroll</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Control básico:</strong>
+          <code>overflow: visible | hidden | auto</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Bloques con scroll:</strong>
+          <code>overflow-y: auto</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Scroll alineado:</strong>
+          <code>scroll-snap-type/align</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tipografía -->
+    <div class="herramienta">
+      <h4>🔤 Tipografía</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Tamaño raíz:</strong>
+          <code>html{font-size:62.5%} → 1rem=10px</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Escala fluida:</strong>
+          <code>font-size: clamp(1rem, 2vw, 1.25rem)</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Legibilidad:</strong>
+          <code>line-height ~ 1.4–1.7</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Imagen & media -->
+    <div class="herramienta">
+      <h4>🖼️ Imágenes & media</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Que no desborde:</strong>
+          <code>max-width: 100%; height: auto</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Encaje:</strong>
+          <code>object-fit: cover | contain</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Posición:</strong>
+          <code>object-position: center</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decoración -->
+    <div class="herramienta">
+      <h4>🎨 Decoración</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Bordes & radio:</strong>
+          <code>border | border-radius</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Sombras:</strong>
+          <code>box-shadow | text-shadow</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Fondos:</strong>
+          <code>background: color | gradient | image</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Vidrio:</strong>
+          <code>backdrop-filter: blur()</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movimiento -->
+    <div class="herramienta">
+      <h4>⚡ Movimiento</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Transiciones:</strong>
+          <code>transition: prop .2s ease</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Transformaciones:</strong>
+          <code>transform: translate/scale/rotate</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Animaciones:</strong>
+          <code>@keyframes + animation</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Medidas & contenedores -->
+    <div class="herramienta">
+      <h4>📦 Medidas & contenedores</h4>
+      <div class="herramienta-opciones">
+        <div class="opcion-herramienta">
+          <strong>Atajos de posición:</strong>
+          <code>inset: 0 (top/right/bottom/left)</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Contención:</strong>
+          <code>contain | content-visibility: auto</code>
+        </div>
+        <div class="opcion-herramienta">
+          <strong>Safe areas (iOS):</strong>
+          <code>padding-top: env(safe-area-inset-top)</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
             <!-- PATRONES COMUNES -->
             <div class="resumen-seccion">
